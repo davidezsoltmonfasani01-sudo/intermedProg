@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Specifica Architetturale Layout HTM - L'Ultima Cena</title>
+</head>
+<body>
+
+    <h1>ARCHITETTURA DEI LAYOUT STATICI E MAPPA DELLE PAGINE PROTOTIPO (.HTM)</h1>
+    <p><strong>Progetto:</strong> Centro Dietologico l'Ultima Cena (Consegna Fase Novembre - AA 2026-27)</p>
+    <p><strong>Specifiche Vecchia Scuola Obbligatorie:</strong> HTML Puro, Zero CSS, Zero JavaScript. Estensione rigorosa dei file a 3 lettere (.htm). Conteggiate solo le interfacce reali che simulano il passaggio di parametri e i cambi di stato logico. Esclusi i frammenti.</p>
+
+    <hr>
+
+    <h2>🗺️ DIAGRAMMA DEI COLLEGAMENTI IPERTESTUALI (NAVIGABILITÀ CONTESTUALE)</h2>
+    <pre>
+========================================================================================================================
+                                MAPPA GENERALE DEI LINK TRA I LAYOUT (.HTM)
+========================================================================================================================
+
+    [ login.htm ] ===(Simulazione Controllo Ruolo)===+---&gt; Ruolo DS ==&gt; [ ds_dashboard.htm ]
+                                                     +---&gt; Ruolo PZ ==&gt; [ pz_dashboard.htm ]
+                                                     +---&gt; Ruolo MN ==&gt; [ mn_dashboard.htm ]
+                                                     +---&gt; Ruolo KC ==&gt; [ kc_dashboard.htm ]
+
+------------------------------------------------------------------------------------------------------------------------
+CIRCUITO CALENDARIO PREVIEW E DIARIO UNICO (PAZIENTE - PZ)
+------------------------------------------------------------------------------------------------------------------------
+[ pz_dashboard.htm ] 
+       |
+       v
+[ pz_calendario_anteprime.htm ]  &lt;--- (Mostra la griglia dei giorni con miniature fisse: Peso | Kcal | Note)
+       |
+       +---(Link sul giorno della griglia)----&gt; [ pz_diario_giornaliero.htm?data=YYYY-MM-DD ]
+                                                   |
+                                                   |---&gt; (Pulsante "DIET") ------&gt; [ pz_visualizza_referto.htm ]
+                                                   |---&gt; (Pulsante Annotazioni) --&gt; [ pz_annotazioni_thread.htm ]
+                                                   |
+                                                   |---&gt; (Collegamento Cerca) ----&gt; [ pz_ricerca_alimenti.htm ]
+                                                                                             |
+                                                                                             v
+                                                                                [ pz_risultati_alimenti.htm ]
+                                                                                             |
+                                                                                             v
+                                                                                [ pz_quantita_alimento_inserisci.htm ]
+                                                                                             |
+                                                                                             v (Simula Inserimento)
+                                                                                [ pz_diario_giornaliero.htm ]
+
+------------------------------------------------------------------------------------------------------------------------
+CIRCUITO CLINICO E SCADENZA TEMPORALE DEI PERMESSI (MEDICO - MN)
+------------------------------------------------------------------------------------------------------------------------
+[ mn_elenco_prenotazioni.htm ]
+       |
+       +---&gt; (Selezione Cartella Paziente - Fase Pre-Referto: Visibilità Totale Sbloccata)
+                  |--- [ mn_visualizza_anagrafica_pz.htm ]
+                  |--- [ mn_storico_referti_pz.htm ]
+                  |--- [ mn_ispezione_diario_pz.htm ]
+       |
+       +---&gt; [ mn_compila_referto.htm ] --(Submit Form: Salva Visita)---&gt; [ mn_elenco_visite_concluse.htm ]
+                                                                                      |
+                                                                                      v (Fase Post-Referto: Blocco)
+                                                                         [ mn_cartella_paziente_scaduta.htm ]
+========================================================================================================================
+    </pre>
+
+    <hr>
+
+    <h2> ELENCO SPECIFICO DELLE 51 INTERFACCE LAYOUT DA CONSEGNARE</h2>
+
+    <h3>🌐 AREA 1: AUTENTICAZIONE E REGISTRAZIONE (2 layout)</h3>
+    <table border="1" cellpadding="5">
+        <tr><th>#</th><th>Nome File (.htm)</th><th>Campi Form / Parametri Simulati</th><th>Descrizione Interfaccia di Prototipo</th></tr>
+        <tr><td>1</td><td><strong>login.htm</strong></td><td>Form con Username, Password e pulsante Invia. Link a registrazione.</td><td>Schermata di accesso. Nel prototipo simula il rinvio alle 4 aree o la ricarica con messaggio di errore.</td></tr>
+        <tr><td>2</td><td><strong>registrazione_paziente.htm</strong></td><td>Form con tutti i campi della Scheda Anagrafica e credenziali.</td><td>Interfaccia di autoregistrazione per i nuovi pazienti che richiedono l'iscrizione a l'Ultima Cena.</td></tr>
+    </table>
+
+    <h3> AREA 2: CIRCUITO DIREZIONE SANITARIA - DS (11 layout)</h3>
+    <table border="1" cellpadding="5">
+        <tr><th>#</th><th>Nome File (.htm)</th><th>Campi Form / Parametri Simulati</th><th>Descrizione Interfaccia di Prototipo</th></tr>
+        <tr><td>3</td><td><strong>ds_dashboard.htm</strong></td><td>Collegamenti ipertestuali alle aree di amministrazione.</td><td>Menu principale e hub di controllo per le funzioni della Direzione Sanitaria.</td></tr>
+        <tr><td>4</td><td><strong>ds_elenco_richieste_iscrizione.htm</strong></td><td>Tabella con elenco testuale di account PZ inoperativi.</td><td>Interfaccia che mostra l'elenco dei pazienti registrati in attesa di essere abilitati.</td></tr>
+        <tr><td>5</td><td><strong>ds_dettaglio_approvazione_pz.jsp</strong></td><td>Dati anagrafici statici e pulsanti Abilita e Rifiuta.</td><td>Layout per esaminare la singola richiesta e decidere se attivare l'account o cancellarlo.</td></tr>
+        <tr><td>6</td><td><strong>ds_elenco_pazienti_attivi.htm</strong></td><td>Form di ricerca per cognome e pulsanti Sospendi.</td><td>Tabella riassuntiva di tutti i pazienti attivi a sistema con opzione di blocco temporaneo.</td></tr>
+        <tr><td>7</td><td><strong>ds_crea_collaboratore.htm</strong></td><td>Form con dati personali, credenziali e menu a tendina Ruolo.</td><td>Layout vuoto per l'inserimento manuale a sistema di nuovi account per MN o KC.</td></tr>
+        <tr><td>8</td><td><strong>ds_elenco_medici.htm</strong></td><td>Tabella dei medici inseriti e pulsanti di revoca account.</td><td>Pannello di riepilogo per il monitoraggio e la gestione dello stato dei Medici Nutrizionisti.</td></tr>
+        <tr><td>9</td><td><strong>ds_elenco_coach.htm</strong></td><td>Tabella dei coach inseriti e pulsanti di revoca account.</td><td>Pannello parallelo per il monitoraggio e la gestione dello stato dei Kitchen Coach.</td></tr>
+        <tr><td>10</td><td><strong>ds_statistiche_visite_medici.htm</strong></td><td>Tabella dati simulata con i contatori delle visite svolte.</td><td><strong>Punto funzionale:</strong> Report grafico testuale del numero di visite totali e ripartite per MN.</td></tr>
+        <tr><td>11</td><td><strong>ds_statistiche_diari_pazienti.htm</strong></td><td>Tabella dati con contatore pagine compilate per PZ.</td><td><strong>Punto funzionale:</strong> Report di monitoraggio dell'uso del Diario Alimentare da parte dei pazienti.</td></tr>
+        <tr><td>12</td><td><strong>ds_statistiche_annotazioni_coach.htm</strong></td><td>Tabella dati con numero annotazioni inserite per KC.</td><td><strong>Punto funzionale:</strong> Report di riepilogo del volume di consigli inviati dai vari coach.</td></tr>
+        <tr><td>13</td><td><strong>ds_log_sostituzioni_coach.htm</strong></td><td>Tabella cronologica con i dati dei vecchi e nuovi KC.</td><td>Registro globale delle sostituzioni dei coach effettuate dai pazienti con le relative motivazioni.</td></tr>
+    </table>
+
+    <h3> AREA 3: CIRCUITO PAZIENTE - PZ (15 layout)</h3>
+    <table border="1" cellpadding="5">
+        <tr><th>#</th><th>Nome File (.htm)</th><th>Campi Form / Parametri Simulati</th><th>Descrizione Interfaccia di Prototipo</th></tr>
+        <tr><td>14</td><td><strong>pz_dashboard.htm</strong></td><td>Elenco testuale di notifiche fisse e messaggi bloccanti.</td><td>Hub principale del paziente con i link per muoversi tra le funzioni attive.</td></tr>
+        <tr><td>15</td><td><strong>pz_scelta_kitchen_coach.htm</strong></td><td>Elenco schede biografiche e pulsanti Scegli Coach.</td><td>Layout per visionare le presentazioni dei KC disponibili ed effettuare il primo inserimento.</td></tr>
+        <tr><td>16</td><td><strong>pz_sostituzione_kitchen_coach.htm</strong></td><td>Form con menu nuovi coach e area di testo obbligatoria.</td><td>Modulo per la revoca del KC corrente con inserimento vincolante della motivazione del cambio.</td></tr>
+        <tr><td>17</td><td><strong>pz_scelta_medico_nutrizionista.htm</strong></td><td>Elenco schede biografiche e pulsanti Prenota Visita.</td><td>Layout per visionare le schede professionali dei MN per decidere da chi farsi visitare.</td></tr>
+        <tr><td>18</td><td><strong>pz_prenota_visita.htm</strong></td><td>Form con campo inserimento data simulata della visita.</td><td>Interfaccia di prenotazione. Simula il blocco di errore se non sono passati 30 giorni dall'ultimo referto.</td></tr>
+        <tr><td>19</td><td><strong>pz_calendario_anteprime.htm</strong></td><td>Tabella a griglia mensile con dati fissi nelle caselle.</td><td><strong>Richiesta specifica:</strong> Mostra il mese corrente. Ogni giorno ha una miniatura con peso, calorie e flag annotazioni.</td></tr>
+        <tr><td>20</td><td><strong>pz_diario_giornaliero.htm</strong></td><td>Pulsanti di aggiunta/rimozione righe e sezioni pasti.</td><td><strong>Layout Unico Diario:</strong> Unica grande pagina con Colazione, Pranzo, Cena, Fuori Pasto, righe gialle e righe verdi.</td></tr>
+        <tr><td>21</td><td><strong>pz_diario_aggiorna_peso.htm</strong></td><td>Campo di testo numerico per i kg e pulsante Conferma.</td><td>Interfaccia di pop-up simulata (cliccando sulla bilancia) per l'aggiornamento manuale del peso corporeo.</td></tr>
+        <tr><td>22</td><td><strong>pz_diario_elimina_riga.htm</strong></td><td>Pulsante Conferma eliminazione e dati nascosti di rinvio.</td><td>Schermata di passaggio che conferma la cancellazione di un alimento inserito per errore in un pasto.</td></tr>
+        <tr><td>23</td><td><strong>pz_ricerca_alimenti.htm</strong></td><td>Form con campo di input testuale per il nome del cibo.</td><td>Interfaccia di ricerca sulla Tabella Alimenti per popolare le righe del diario senza perdere la data di lavoro.</td></tr>
+        <tr><td>24</td><td><strong>pz_risultati_alimenti.htm</strong></td><td>Lista testuale di alimenti trovati con valori nutrizionali.</td><td>Tabella che espone i risultati del database con un link "Seleziona" posizionato su ogni riga di alimento.</td></tr>
+        <tr><td>25</td><td><strong>pz_quantita_alimento_inserisci.htm</strong></td><td>Form con input numerico in grammi e pulsante Inserisci.</td><td>Layout intermedio per digitare la quantità consumata. Nel caso di liquidi simula la densità dell'acqua.</td></tr>
+        <tr><td>26</td><td><strong>pz_archivio_referti.htm</strong></td><td>Elenco cronologico di link contrassegnati da data e medico.</td><td>Indice storico di consultazione di tutti i referti dietologici rilasciati al paziente.</td></tr>
+        <tr><td>27</td><td><strong>pz_visualizza_referto.htm</strong></td><td>Mappatura dei campi dell'Allegato 1 in sola lettura.</td><td>Schermata di visualizzazione del referto clinico con diagnosi, obiettivi ed elenco dei macronutrienti prescritto.</td></tr>
+        <tr><td>28</td><td><strong>pz_annotazioni_thread.htm</strong></td><td>Area di testo per digitare e storico dei messaggi inviati.</td><td>Interfaccia del thread di discussione e comunicazione diretta (botta-e-risposta) con il Kitchen Coach.</td></tr>
+    </table>
+
+    <h3> AREA 4: CIRCUITO MEDICO NUTRIZIONISTA - MN (11 layout)</h3>
+    <table border="1" cellpadding="5">
+        <tr><th>#</th><th>Nome File (.htm)</th><th>Campi Form / Parametri Simulati</th><th>Descrizione Interfaccia di Prototipo</th></tr>
+        <tr><td>29</td><td><strong>mn_dashboard.htm</strong></td><td>Elenco testuale delle attività e delle notifiche interne.</td><td>Pannello di controllo e menu principale per le funzioni del medico.</td></tr>
+        <tr><td>30</td><td><strong>mn_modifica_scheda.htm</strong></td><td>Area di testo estesa per scrivere la propria biografia.</td><td>Form di redazione della propria scheda professionale visibile al pubblico per ricevere prenotazioni.</td></tr>
+        <tr><td>31</td><td><strong>mn_elenco_prenotazioni.htm</strong></td><td>Tabella delle visite attive con link per aprire la cartella.</td><td>Lista delle richieste dei pazienti. Sblocca la visibilità totale sui dati clinici del PZ prima della visita.</td></tr>
+        <tr><td>32</td><td><strong>mn_visualizza_anagrafica_pz.htm</strong></td><td>Dati fissi anagrafici dell'utente selezionato per la visita.</td><td><strong>Fase Visita Sbloccata:</strong> Layout di ispezione della scheda anagrafica del paziente corrente.</td></tr>
+        <tr><td>33</td><td><strong>mn_storico_referti_pz.htm</strong></td><td>Archivio storico dei vecchi documenti del paziente.</td><td><strong>Fase Visita Sbloccata:</strong> Layout per consultare l'anamnesi remota e i precedenti percorsi dietetici.</td></tr>
+        <tr><td>34</td><td><strong>mn_ispezione_diario_pz.htm</strong></td><td>Visualizzazione del diario e delle annotazioni del PZ.</td><td><strong>Fase Visita Sbloccata:</strong> Layout per esaminare la compliance alimentare quotidiana del paziente prima di visitarlo.</td></tr>
+        <tr><td>35</td><td><strong>mn_compila_referto.htm</strong></td><td>Form con tutti i campi rossi dell'Allegato 1.</td><td>Modulo strutturale per redigere il nuovo referto. L'invio simula la chiusura e la revoca dei permessi sui diari.</td></tr>
+        <tr><td>36</td><td><strong>mn_elenco_visite_concluse.htm</strong></td><td>Tabella delle visite d'archivio già refertate in passato.</td><td>Registro storico delle prestazioni effettuate dal medico all'interno de l'Ultima Cena.</td></tr>
+        <tr><td>37</td><td><strong>mn_cartella_paziente_scaduta.htm</strong></td><td>Messaggio di errore testuale di accesso negato.</td><td><strong>Fase Post-Referto (Blocco):</strong> Schermata di avviso se il medico prova ad accedere ai diari di visite concluse.</td></tr>
+        <tr><td>38</td><td><strong>mn_visualizza_anagrafica_storica.htm</strong></td><td>Scheda anagrafica di base in sola lettura.</td><td>Interfaccia ristretta che permette al medico di consultare solo l'anagrafica fissa dei pazienti storici.</td></tr>
+        <tr><td>39</td><td><strong>mn_visualizza_singolo_referto_storico.htm</strong></td><td>Campi del referto compilato in passato bloccati.</td><td>Layout d'archivio per riaprire e consultare un referto già emesso e firmato digitalmente dal medico.</td></tr>
+    </table>
+
+    <h3> AREA 5: CIRCUITO KITCHEN COACH - KC (12 layout)</h3>
+    <table border="1" cellpadding="5">
+        <tr><th>#</th><th>Nome File (.htm)</th><th>Campi Form / Parametri Simulati</th><th>Descrizione Interfaccia di Prototipo</th></tr>
+        <tr><td>40</td><td><strong>kc_dashboard.htm</strong></td><td>Centro notifiche dinamico basato sui 3 casi d'uso.</td><td>Hub principale del coach per ricevere avvisi su modifiche diari, nuove note o referti dei PZ.</td></tr>
+        <tr><td>41</td><td><strong>kc_modifica_scheda.htm</strong></td><td>Area di testo per inserire il messaggio di presentazione.</td><td>Form strutturale per aggiornare la propria scheda professionale visibile ai pazienti.</td></tr>
+        <tr><td>42</td><td><strong>kc_elenco_pazienti_assegnati.htm</strong></td><td>Tabella degli utenti attivi con link di navigazione.</td><td>Lista di tutti i pazienti correntemente in carico al coach per l'attività di monitoraggio.</td></tr>
+        <tr><td>43</td><td><strong>kc_visualizza_anagrafica_pz.htm</strong></td><td>Scheda anagrafica del paziente in sola lettura.</td><td>Interfaccia per consultare le informazioni personali e anagrafiche dei propri iscritti.</td></tr>
+        <tr><td>44</td><td><strong>kc_visualizza_referti_pz.htm</strong></td><td>Elenco storico dei referti emessi per l'utente.</td><td>Indice per accedere ai documenti clinici scritti dai medici per quel determinato paziente.</td></tr>
+        <tr><td>45</td><td><strong>kc_visualizza_singolo_referto.htm</strong></td><td>Visualizzazione statica dei limiti nutrizionali prescritti.</td><td>Layout in sola lettura per verificare gli obiettivi e i tetti calorici stabiliti dal medico (righe verdi).</td></tr>
+        <tr><td>46</td><td><strong>kc_ispezione_diario_pz.htm</strong></td><td>Mappatura del diario giornaliero in modalità bloccata.</td><td>Interfaccia di monitoraggio che mostra il diario del PZ in modalità read-only per scovare le criticità.</td></tr>
+        <tr><td>47</td><td><strong>kc_gestione_annotazioni.htm</strong></td><td>Form con area di testo per inviare note e consigli.</td><td>Interfaccia del thread associato alla pagina del diario per inserire messaggi motivazionali e avvisare il PZ.</td></tr>
+        <tr><td>48</td><td><strong>kc_storico_sostituzioni_paziente.htm</strong></td><td>Elenco cronologico dei vecchi coach assegnati al PZ.</td><td>Layout di consultazione per analizzare la storia e i cambi di coach effettuati dall'utente in passato.</td></tr>
+        <tr><td>49</td><td><strong>kc_log_notifiche_ricevute.htm</strong></td><td>Tabella cronologica di riepilogo di tutti gli avvisi del sistema.</td><td>Registro storico interno al profilo del coach contenente la traccia di tutte le notifiche arrivate.</td></tr>
+        <tr><td>50</td><td><strong>kc_notifica_abbandono_paziente.htm</strong></td><td>Dati del PZ che ha cambiato coach e motivazione testuale.</td><td>Schermata di avviso specifica che si attiva quando un utente revoca l'incarico a questo coach.</td></tr>
+        <tr><td>51</td><td><strong>kc_notifica_nuovo_paziente.htm</strong></td><td>Dati anagrafici dell'utente e link alla sua cartella.</td><td>Schermata di avviso specifica generata quando un nuovo paziente seleziona questo KC dal catalogo.</td></tr>
+    </table>
+
+</body>
+</html>
