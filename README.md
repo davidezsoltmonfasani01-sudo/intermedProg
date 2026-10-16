@@ -2,7 +2,8 @@ Diagramma Navigazione
 (https://drive.google.com/file/d/1U-FWnjdfrfJFzupBRbnUzSBOBJXWlecL/view?usp=sharing)
 
 
-# bozza ER
+# Bozza ER 
+## Entità
 * Scheda Anagrafica: ID, Username, Password, Ruolo (DS, MN, KC, PZ), Cognome, Nome, Codice Fiscale, Data Nascita, Stato Account (Inoperativo, Attivo, Sospeso).
 * Schede professionali: ID, descrizione, ... (boh)
 
@@ -11,10 +12,11 @@ Diagramma Navigazione
 * Pasto prescritto: ID, Tipologia (Colazione, Pranzo, Cena, Fuori Pasto), Energia, Proteine, Lipidi, Glucidi, liquidi
 * Prenotazione: ID, Data Prenotazione , Stato (Attiva, Conclusa). 
 * Pagina Diario: ID, Data Pagina (riferimento), Data Compilazione , Peso Mattutino.
-* Pasto: ID, Tipo Pasto (Colazione, Pranzo, Cena, Fuori Pasto), Quantità (g).
+* Pasto: ID, Tipo Pasto (Colazione, Pranzo, Cena, Fuori Pasto), annotazione 
+> da leggere se solo del KC o anche di altri ruoli
 * Porzione: ID, quantità 
 > come li conteggiamo i liquidi?
 * Alimento: ID, Codice Alimento, Alimento, Energia, Proteine, Lipidi, Glucidi, liquido (si no).
 * Annotazione: ID, Testo, Data Inserimento .
 * Storico Assegnazione KC: ID, Data Sostituzione, Motivazione.
-* ?Notifica
+* Notifica: ID, messaggio, path risorsa (Schede, Pagine diario, ecc)
