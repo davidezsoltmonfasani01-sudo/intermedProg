@@ -29,6 +29,3 @@ Diagramma Navigazione
 * Annotazione: ID, Testo, Data Inserimento.
 * Storico Assegnazione KC: ID, Data inizio, Data Sostituzione, Motivazione.
 * Notifica: ID, messaggio, path risorsa (Schede, Pagine diario, ecc), Stato (visualizzata si,no attiva/disattivata)
-
-
-* Referto ID, 
