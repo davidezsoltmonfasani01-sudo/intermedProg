@@ -8,11 +8,12 @@ Diagramma Navigazione
 * Schede professionali: ID, descrizione, ... (boh)
 * Prenotazione ID, Data Prenotazione, Data Visita,Stato (Confermata/In approvazione/Annullata/Rifiutata), Note
 * Visita: ID, Data Visita, Data fine, Altezza, Peso Visita, Circonferenza Vita,Anamnesi Prossima, Anamnesi Alimentare, VALUTAZIONE ESAMI RECENTI, Diagnosi, Obiettivi,Metabolismo Basale stimato (MB), Fabbisogno Energetico Totale (TDEE), Apporto Calorico Prescritto, Carboidrati Prescritti, Proteine Prescritte, Grassi Prescritti, Idrazione Prescritta,Schema Alimentare, %Colazione %Pranzo %Cena, Note PRESCRIZIONE DIETETICA,
->Dobbiamo capire come rendere i dati autocoerenti e quali mettere, ad esempio i macro nutrienti che fanno la % del fabbisogno calorico totale, sarebbe ridondante mettere il peso dei macronutrienti e la % calorica, ma allo stesso tempo i totali dell'energia totale deve combaciare, inoltre se va stuttorata nel modo dell'allegato 1 vanno inseriti tot text per ogni sotto area tipo sotto anamnesi c'è sia Anamnesi Prossima: e Anamnesi alimentare , c'è da fare un altra entità giusto per ordine 
+>Dobbiamo capire come rendere i dati autocoerenti e quali mettere, ad esempio i macro nutrienti che fanno la % del fabbisogno calorico totale, sarebbe ridondante mettere il peso dei macronutrienti e la % calorica, ma allo stesso tempo i totali dell'energia totale deve combaciare, inoltre se va stuttorata nel modo dell'allegato 1 vanno inseriti tot text per ogni sotto area tipo sotto anamnesi c'è sia Anamnesi Prossima: e Anamnesi alimentare , c'è da fare un altra entità giusto per ordine, c'è da vedere se inserire anche obbiettivo e diagnosi così o se lasciarle direttamente nella tambella essendo che ci devono essere per forza, mentre altre no
 > Non sappiamo se mettere o meno data inzio che puo' non coincidere con data visita  questa tabella riguarda i referti
 >c'è da vedere se magari è meglio separare visite e referti, anche se la relazione sarebbe 1 a 1.
+
 >Quando MN compila un nuovo Referto Dietologico per PZ anche questo fa pensare che un medico possa fare un referto senza visita ma non ha senso 
->Probabilmente c'è da vedere se inserire i dati tipo Anamnesi Alimentare etc come entità, collegate al referto, ognuna con le sue categorie specifiche, c'è da vedere se inserire anche obbiettivo e diagnosi così o se lasciarle direttamente nella tambella essendo che ci devono essere per forza, mentre altre no
+
 ~~Pasto prescritto: ID, Tipologia (Colazione, Pranzo, Cena, Fuori Pasto), Energia, Proteine, Lipidi, Glucidi, liquidi~~ 
 >Cancellato in quanto deve essere prensente nell'entità visita/referto
 
