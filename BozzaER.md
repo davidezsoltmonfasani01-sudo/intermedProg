@@ -4,7 +4,7 @@ Diagramma Navigazione
 
 # Bozza ER 
 ## Entità
-* Scheda Anagrafica: ID, Username, Password, Ruolo (DS, MN, KC, PZ), Cognome, Nome, Codice Fiscale, Data Nascita, Stato Account (Inoperativo, Attivo, Sospeso).
+* Persona (Scheda Anagrafica): ID, Username, Password, Ruolo (DS, MN, KC, PZ), Cognome, Nome, Codice Fiscale, Data Nascita, Stato Account (Inoperativo, Attivo, Sospeso).
 * Schede professionali: ID, descrizione, ... (boh)
 * Prenotazione ID, Data Prenotazione, Data Visita,Stato (Confermata/In approvazione/Annullata/Rifiutata/Conclusa), Note
 * Visita: ID, Data Visita, Data fine, Altezza, Peso Visita, Circonferenza Vita,Anamnesi Prossima, Anamnesi Alimentare, VALUTAZIONE ESAMI RECENTI, Diagnosi, Obiettivi,Metabolismo Basale stimato (MB), Fabbisogno Energetico Totale (TDEE), Apporto Calorico Prescritto, Carboidrati Prescritti, Proteine Prescritte, Grassi Prescritti, Idrazione Prescritta,Schema Alimentare, %Colazione %Pranzo %Cena, Note PRESCRIZIONE DIETETICA,
@@ -33,9 +33,19 @@ Diagramma Navigazione
 * Associazione KC_PZ ID, ID_KC, ID_PZ, Data inizio, Data Sostituzione, Motivazione.
 >la associazione MN/KC alla  scheda professionale la si fa con una chiave esterna, (un campo nullable ?) o una tabella esterna? 
 ## Relazioni
+* Persona (MN/KC) (0,N) — COMPILARE — (1,1) Scheda Professionale
+* Persona (PZ) (1,1) — EFFETTUARE — (0,N) Prenotazione:
+* Persona (DS/MN) (0,N) — GESTIRE — (0,N) Prenotazione:
+> Può aver senso la gesione degli stati o si modifica e basta ? 
+* Prenotazione (0,1) — PORTARE — (1,1) Visita
 * Pagina Diario (1,1)-RIFERIRE-(1.N) Visita/Referto
 * Pagina Diario (4,4)-AVERE-(1.1) Pasto 
+* Persona (PZ/MN) (0,N) — EFFETTUARE — (1,1) Visita 
+* Persona (PZ) (0,N) — POSSEDERE — (1,1) Pagina Diario:
 >I 4 pasti li generiamo sempre nel database al momento della creazione della pagina del diario, i dati all'inizio saranno tutti nulli (c'è solo ora)
 * Pasto (0,N)-COMPORRE-(0,M) Alimento
-* Notifica (0,N)  
+* Notifica (1,1) <-Avere-> (0,N) Persona
+* Notifica (0,1)<-RIFERIRE->(2,2) Visita/Referto (uno al PZ 1 al KC)
+* Notifica (0,1)<-RIFERIRE->(1,N) Annotazione (se avviene una modifica viene inviata una nuova notifica)
+
 >Da completare
