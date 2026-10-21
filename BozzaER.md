@@ -5,7 +5,8 @@ Diagramma Navigazione
 # Bozza ER 
 ## Entità
 * Scheda Anagrafica ID, Cognome, Nome, Codice Fiscale, Data Nascita
-* Profilo : ID, Username, Password, Stato Account (Inoperativo, Attivo, Sospeso).
+* Profilo : ID, Username, Password
+* Stato Profilo: ID, Stato, Data_inizio, Data_fine
 * Ruolo: ID (MN,DS,PZ,KC), nome (medico nutrizionista, paziente, ...)
 * Schede professionali: ID, descrizione, Data_Conseguimento titolo, ....
 * Prenotazione ID, Data Prenotazione, Data Visita,Stato (Confermata/In approvazione/Annullata/Rifiutata/Conclusa), Note
@@ -39,15 +40,16 @@ Diagramma Navigazione
 * Profilo (1,1) AVERE (1,N) Scheda Anagrafica
 >[NOTA]: ho dei dubbi riguardo alla cardinalità inferiore se far far completare la scheda anagrafica nel mentre si crea il profilo o meno 
 >se la scheda si completa in un secondo momento mettiamo 0 al posto che 1
+* Profilo (1,1) AVERE (1,N) Stato Profilo
+>[NOTA]: Lo stato attivo è il più recente/data_fine=null
 * Profilo (1,1) AVERE (0,N) Ruolo 
 >[NOTA]: se la stessa persona fisica deve entrare nel sistema con un ruolo diverso, avrà un altro account 
-* Profilo (MN) (0,N) — COMPILARE — (1,1) Scheda Professionale
-* Profilo (KC) (0,N) — COMPILARE — (1,1) Scheda Professionale
+* Profilo (MN) (0,1) — COMPILARE — (1,1) Scheda Professionale
+* Profilo (KC) (0,1) — COMPILARE — (1,1) Scheda Professionale
 >[NOTA]: È da vedere se ha senso associare la Scheda Professionale al profilo con il determinato ruolo, o se alla persona in se (scheda anagrafica)
 * Profilo (PZ) (0,N) — EFFETTUARE — (1,1) Prenotazione
 
-* Profilo (DS) (0,N) — GESTIRE — (0,N) Prenotazione
-* Profilo (MN) (0,N) — GESTIRE — (0,N) Prenotazione
+* Profilo (MN) (0,N) — GESTIRE — (0,1) Prenotazione
 > [Nota]: Per la gestione degli stati, ha senso usare l'attributo "Stato" direttamente dentro l'entità Prenotazione. DS e MN modificano semplicemente quel campo senza bisogno di tabelle esterne.
 
 * Profilo (PZ) (0,N) — ASSOCIAZIONE MN_PZ — (0,N) Profilo (MN)
@@ -66,7 +68,7 @@ Diagramma Navigazione
 ### Area Diario e Pasti
 * Profilo (PZ) (0,N) — POSSEDERE — (1,1) Pagina Diario
 
-* Pagina Diario (0,N) — RIFERIRE — (1,1) Visita/Referto
+* Pagina Diario (1,1) — RIFERIRE — (0,N) Visita/Referto
 
 * Pagina Diario (4,4) — AVERE — (1,1) Pasto 
 > [Nota]: I 4 pasti li generiamo sempre nel database al momento della creazione della pagina del diario, i dati all'inizio saranno tutti nulli (c'è solo ora).
@@ -89,6 +91,6 @@ Diagramma Navigazione
 
 * Notifica (0,1) — RIFERIRE — (2,2) Visita/Referto 
 
-* Notifica (0,1) — RIFERIRE — (1,N) Annotazione
+* Notifica (0,1) — RIFERIRE — (1,1) Annotazione
 >ok capo
 fdsdsfs
