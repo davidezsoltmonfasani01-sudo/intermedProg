@@ -16,9 +16,7 @@ Diagramma Navigazione
 
 >Quando MN compila un nuovo Referto Dietologico per PZ anche questo fa pensare che un medico possa fare un referto senza visita ma non ha senso 
 
-~~Pasto prescritto: ID, Tipologia (Colazione, Pranzo, Cena, Fuori Pasto), Energia, Proteine, Lipidi, Glucidi, liquidi~~ 
->Cancellato in quanto deve essere prensente nell'entità visita/referto
- 
+
 * Pagina Diario: ID, Data Pagina (riferimento), Data Compilazione , Peso.
 * Pasto: ID, Tipo Pasto (Colazione, Pranzo, Cena, Fuori Pasto), Ora
 > PZ legge le Annotazioni di KC ed in
