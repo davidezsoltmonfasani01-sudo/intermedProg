@@ -1,5 +1,5 @@
-Diagramma Navigazione
-(https://drive.google.com/file/d/1U-FWnjdfrfJFzupBRbnUzSBOBJXWlecL/view?usp=sharing)
+Diagramma ER
+(https://drive.google.com/file/d/1W7C1_XV7h6Do1bgBAUJzBjz6726JGnNg/view?usp=drive_link)
 
 
 # Bozza ER 
