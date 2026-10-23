@@ -4,7 +4,7 @@ Diagramma Navigazione
 
 # Bozza ER 
 ## Entità
-* Scheda Anagrafica ID, Cognome, Nome, Codice Fiscale, Data Nascita
+*giy
 * Profilo : ID, Username, Password, Stato Account (Inoperativo, Attivo, Sospeso).
 * Ruolo: ID (MN,DS,PZ,KC), nome (medico nutrizionista, paziente, ...)
 * Schede professionali: ID, descrizione, Data_Conseguimento titolo, ....
@@ -29,9 +29,6 @@ Diagramma Navigazione
 * Notifica: ID, messaggio, path risorsa (Schede, Pagine diario, ecc), Stato (visualizzata si,no attiva/disattivata)
 * Tipo notifica ID, tipo (nuova annotazione, modifica annotazione, cancellazione, nuovo referto)
 ---
-###  Tabbelle da Relazioni 
-* Associazione MN_PZ ID, ID_MN, ID_PZ, Data_Inizio, Data_fine, Note
-* Associazione KC_PZ ID, ID_KC, ID_PZ, Data inizio, Data Sostituzione, Motivazione.
 >la associazione MN/KC alla  scheda professionale la si fa con una chiave esterna, (un campo nullable ?) o una tabella esterna? 
 ## Relazioni Modello ER
 
@@ -41,8 +38,8 @@ Diagramma Navigazione
 >se la scheda si completa in un secondo momento mettiamo 0 al posto che 1
 * Profilo (1,1) AVERE (0,N) Ruolo 
 >[NOTA]: se la stessa persona fisica deve entrare nel sistema con un ruolo diverso, avrà un altro account 
-* Profilo (MN) (0,N) — COMPILARE — (1,1) Scheda Professionale
-* Profilo (KC) (0,N) — COMPILARE — (1,1) Scheda Professionale
+* Profilo (MN) (0,1) — COMPILARE — (1,1) Scheda Professionale
+* Profilo (KC) (0,1) — COMPILARE — (1,1) Scheda Professionale
 >[NOTA]: È da vedere se ha senso associare la Scheda Professionale al profilo con il determinato ruolo, o se alla persona in se (scheda anagrafica)
 * Profilo (PZ) (0,N) — EFFETTUARE — (1,1) Prenotazione
 
@@ -50,10 +47,10 @@ Diagramma Navigazione
 * Profilo (MN) (0,N) — GESTIRE — (0,N) Prenotazione
 > [Nota]: Per la gestione degli stati, ha senso usare l'attributo "Stato" direttamente dentro l'entità Prenotazione. DS e MN modificano semplicemente quel campo senza bisogno di tabelle esterne.
 
-* Profilo (PZ) (0,N) — ASSOCIAZIONE MN_PZ — (0,N) Profilo (MN)
+* Profilo (PZ) (0,N) — ASSOCIAZIONE MN_PZ — (0,M) Profilo (MN)
 
 > [Attributi della relazione]: ID, Data_Inizio, Data_fine, Note
-* Profilo (PZ) (0,N) — ASSOCIAZIONE KC_PZ — (0,N) Profilo (KC)
+* Profilo (PZ) (0,N) — ASSOCIAZIONE KC_PZ — (0,M) Profilo (KC)
 
 > [Attributi della relazione]: ID Data inizio, Data_fine, Motivazione.
 
