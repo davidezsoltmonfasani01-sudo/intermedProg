@@ -88,6 +88,4 @@ Diagramma ER
 
 * Notifica (0,1) — RIFERIRE — (2,2) Visita/Referto 
 
-* Notifica (0,1) — RIFERIRE — (1,1) Annotazione
->ok capo
- fdsdsfs
+* Notifica (0,1) — RIFERIRE — (1,N) Annotazione
