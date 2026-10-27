@@ -90,4 +90,4 @@ Diagramma ER
 
 * Notifica (0,1) — RIFERIRE — (1,1) Annotazione
 >ok capo
-fdsdsfs
+ fdsdsfs
