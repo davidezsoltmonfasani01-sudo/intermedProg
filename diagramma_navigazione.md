@@ -58,7 +58,7 @@ Il nucleo interattivo dell'applicazione, basato sulla gestione rigida del tempo 
 
 ## 1. Autenticazione e Accessi (Comuni)
 Pagine di ingresso e gestione della sessione per tutti gli utenti del sistema.
-* **index.jsp / login.jsp**: Schermata di login globale (reindirizza alla dashboard corretta in base al ruolo).
+* **login.jsp_a**: Schermata di login globale (reindirizza alla dashboard corretta in base al ruolo).
 * **registrazione.jsp**: Form di auto-registrazione per il Paziente, DS la usa per genere credenziali.
 * **attesa-approvazione.jsp**: Schermata di blocco per i pazienti registrati ma non ancora abilitati dal DS.
 
