@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Descrizione</title>
+</head>
+
+<body>
+    <H1>Descrizione del Progetto, funzionalità di ogni singola pagina</H1>
+    <h2>Area utente non registrato</h2>
+    <ul>
+        <li>
+            <h4>index.htm</h4>
+            <p>Pagina iniziale del sito contiente poche info di base</p>
+        </li>
+        <li>
+            <h4>dispatch_home.jsp</h4>
+            <p>Pagina di reindirizzamento alla login o alla corrispettiva homepage, a seconda dello stato di
+                autenticazione dell'utente, in paricolare un paziente con un account non ancora attivo, viene
+                reindizzato in una pagia di attesa</p>
+        </li>
+        <li>
+            <h4>login.jsp</h4>
+            <p>Pagina di login, contiene il form per l'autenticazione degli utenti registrati</p>
+        </li>
+        </li>
+        <li>
+            <h4>a_login.jsp</h4>
+            <p>Pagina di action che gestisce il login degli utenti</p>
+        </li>
+        <li>
+            <h4>dispatch_registrazione_pz.jsp</h4>
+            <p>Pagina di reindirizzamento che permette di accedere alla pagina di registrazione agli utenti non
+                registrati per registrasi come paziente, e nel caso di utenti gia registrati in sessione reindirizza
+                alla dispace_login che li reiderizzerà alle respettive login</p>
+        </li>
+        <li>
+            <h4>registrazione_pz.jsp</h4>
+            <p>Pagina con form di registrazione per i pazienti</p>
+        </li>
+        </li>
+        <li>
+            <h4>a_registrazione_pz.jsp</h4>
+            <p>Pagina di action che gestisce la registrazione dei pazienti</p>
+        </li>
+    </ul>
+    <h2>Area utente registrato</h2>
+    <ul>
+        <li>
+            <h4>attesa_attivazione.jsp</h4>
+            <p>Pagina di attesa per gli utenti che hanno effettuato la registrazione ma non hanno ancora l'account
+                attivo</p>
+        </li>
+        <li>
+            <h4>home_(ruolo).jsp</h4>
+            <p>Pagine di homepage per gli utenti registrati, a seconda del loro ruolo hanno diversi collegamenti
+                (diversi per ogni ruolo), in particolare tutte le pagine di homepage hanno stampata la scheda anagrafica
+                dell'utente corrente, lo stato dell'account e il ruolo assegnato</p>
+        </li>
+        <li>
+            <h4>lista_pazienti.jsp</h4>
+
+            <p>Pagina che mostra l'elenco dei pazienti associati ad un determinato KC (esclusiva per i KC), con relativa
+                colorazione per indicare lo stato di della associazione</p>
+        </li>
+        </li>
+        <li>
+            <h4>info_paziente.jsp</h4>
+            <p>Pagina che mostra la scheda anagrafica di un paziente, accessibile da KC e MN, in particolare i KC
+                visualizzano anche le informazioni relative allo stato della loro associazione con il paziente, con la
+                relativa nota di motivazione nel caso di terminazione dell'associazione da parte del paziente, l'MN non
+                ha invece più acesso a questa pagina relativa ad uno specifico utente se non ha una prenotazione attiva
+                con esso</p>
+        </li>
+        <li>
+            <h4>v_referto.jsp</h4>
+            <p>Pagina che mostra il referto medico di una determinata visita, accessibile da KC. MN e PZ, in particolare
+                gli MN hanno accesso ad un link per modificare il relativo referto, o una nota che intima a compilarlo
+                nel caso in cui non fosse compilato</p>
+        </li>
+        <li>
+            <h4>compila_referto.jsp</h4>
+            <p>Pagina con form di compilazione del referto medico associato a una determinata prenotazione di una visita</p>
+        </li>
+        </li>
+        <li>
+            <h4>a_compila_referto.jsp</h4>
+            <p>Pagina di action che gestisce la compilazione dei referti medici</p>
+        </li>
+    </ul>
+<h1>Da completare</h1>
+    <!--- da completare -->
+</body>
+
+</html>
