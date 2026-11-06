@@ -82,15 +82,49 @@
         </li>
         <li>
             <h4>compila_referto.jsp</h4>
-            <p>Pagina con form di compilazione del referto medico associato a una determinata prenotazione di una visita</p>
+            <p>Pagina con form di compilazione del referto medico associato a una determinata prenotazione di una visita
+            </p>
         </li>
         </li>
         <li>
             <h4>a_compila_referto.jsp</h4>
             <p>Pagina di action che gestisce la compilazione dei referti medici</p>
         </li>
+        <li>
+            <h4>pagina_diario.jsp</h4>
+            <p>Pagina che mostra la pagina per compilare (PZ) visualizzare (KC, MN, PZ) il diario alimentare, in
+                particolare: ha 2 form con il selettore di data, per decidere la data corrispondente al diario e la data
+                di compilazione, premette al paziente di inserire le informazioni sul peso del corrispondente giorno,
+                calcola il bmi con le informazioni di altezza contenute nel referto della visita corrispondente;
+                permette di inserire e rimuovere porzioni di alimenti ad un relativo pasto ( in particolare per inserire
+                un nuovo alimento/porzione viene prima indirizzato alla pagina lista_alimenti.jsp e successivamente alla
+                pagina compilazione_porzione.jsp per inserire la quantità), mostra le informazioni relative ai
+                macronutrienti, energia e totale per pasto e totale giornaliero, di riferimento dal referto e relativa
+                alla giornata singola, ha un collegamento per visulizzare le annotazioni e scriverle nella pagina
+                annotazioni.jsp, collegamento per visualizzare il referto associato.
+            </p>
+        </li>
+             <li>
+            <h4>a_pagina_diario.jsp</h4>
+                <p>Pagina di action che gestisce L'inserimento delle porzioni nel diario alimentare, la rimozione, e l'inserimento della data di compilazione e del peso associato</p>
+        </li>
+        <li>
+            <h4>lista_alimenti.jsp</h4>
+            <p>Pagina che mostra la lista degli alimenti, con la possibilità di filtrare per nome, e
+                visualizzare le informazioni nutrizionali di ogni alimento, per 100g</p>
+        </li>
+        <li>
+            <h4>compilazione_porzione.jsp</h4>
+            <p>Pagina con form di compilazione della porzione di alimento (scelto da lista_alimenti.jsp) che verra quindi inserina nella pagina del diario alimentare
+                (input hidden per id del diario e tipo pasto)
+            </p>
+    
     </ul>
-<h1>Da completare</h1>
+
+
+
+    <h1>Da completare</h1>
+    <h2>rimuovere a_compilazione_porzione.jsp e sostituirla con a_pagina_diario.jsp</h2>
     <!--- da completare -->
 </body>
 
