@@ -1,0 +1,42 @@
+
+.grid  {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 20px;
+}
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 18px 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+.task-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 12px;
+}
+.task-list li {
+    padding: 6px 0;
+    font-family: monospace;
+    font-size: 14px;
+    color: #34495e;
+    border-bottom: 1px solid #f1f2f6;
+}
+.task-list li:last-child {
+    border-bottom: none;
+}
+.area-title {
+    color: #2c3e50;
+    font-family: sans-serif;
+}
+.style-top-30 {
+    margin-top: 30px;
+}
+.style-top-40 {
+    margin-top: 40px;
+}

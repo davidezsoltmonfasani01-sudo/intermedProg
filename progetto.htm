@@ -5,284 +5,395 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Descrizione</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <H1>Descrizione del Progetto, funzionalità di ogni singola pagina</H1>
+    <h1>Descrizione del progetto e funzionalità di ogni pagina</h1>
     <h2>Area utente non registrato</h2>
-    <ul>
-        <li>
+    <ul class="grid">
+        <li class="card">
             <h4>index.htm</h4>
-            <p>Pagina iniziale del sito contiente poche info di base</p>
+            <p>Pagina iniziale del sito, contenente alcune informazioni di base</p>
         </li>
-        <li>
+        <li class="card">
             <h4>dispatch_home.jsp</h4>
-            <p>Pagina di reindirizzamento alla login o alla corrispettiva homepage, a seconda dello stato di
-                autenticazione dell'utente, in paricolare un paziente con un account non ancora attivo, viene
-                reindizzato in una pagia di attesa</p>
+            <p>Pagina di reindirizzamento alla pagina di login o alla homepage corrispondente, in base allo stato di
+                autenticazione dell'utente. In particolare, un paziente con un account non ancora attivo viene
+                reindirizzato a una pagina di attesa.</p>
         </li>
-        <li>
+        <li class="card">
             <h4>login.jsp</h4>
             <p>Pagina di login, contiene il form per l'autenticazione degli utenti registrati</p>
         </li>
-        </li>
-        <li>
+
+        <li class="card">
             <h4>a_login.jsp</h4>
             <p>Pagina di action che gestisce il login degli utenti</p>
         </li>
-        <li>
+        <li class="card">
             <h4>dispatch_registrazione_pz.jsp</h4>
-            <p>Pagina di reindirizzamento che permette di accedere alla pagina di registrazione agli utenti non
-                registrati per registrasi come paziente, e nel caso di utenti gia registrati in sessione reindirizza
-                alla dispace_login che li reiderizzerà alle respettive login</p>
+            <p>Pagina di reindirizzamento che consente agli utenti non registrati di accedere alla registrazione come
+                pazienti. Se l'utente ha già effettuato l'accesso, viene reindirizzato alla homepage corrispondente al
+                proprio ruolo.</p>
         </li>
-        <li>
+        <li class="card">
             <h4>registrazione_pz.jsp</h4>
             <p>Pagina con form di registrazione per i pazienti</p>
         </li>
-        </li>
-        <li>
+
+        <li class="card">
             <h4>a_registrazione_pz.jsp</h4>
             <p>Pagina di action che gestisce la registrazione dei pazienti</p>
         </li>
     </ul>
     <h2>Area utente registrato</h2>
-    <ul>
-        <li>
+    <ul class="grid">
+        <li class="card">
             <h4>attesa_attivazione.jsp</h4>
             <p>Pagina di attesa per gli utenti che hanno effettuato la registrazione ma non hanno ancora l'account
                 attivo</p>
         </li>
-        <li>
+        <li class="card">
             <h4>home_(ruolo).jsp</h4>
-            <p>Pagine di homepage per gli utenti registrati, a seconda del loro ruolo hanno diversi collegamenti
-                (diversi per ogni ruolo), in particolare tutte le pagine di homepage hanno stampata la scheda anagrafica
-                dell'utente corrente, lo stato dell'account e il ruolo assegnato</p>
+            <p>Pagine iniziali degli utenti registrati. I collegamenti variano in base al ruolo; tutte mostrano la
+                scheda anagrafica dell'utente corrente, lo stato dell'account e il ruolo assegnato.</p>
         </li>
-        <li>
+        <li class="card">
             <h4>lista_pazienti.jsp</h4>
 
-            <p>Pagina che mostra l'elenco dei pazienti associati ad un determinato KC (esclusiva per i KC), con relativa
-                colorazione per indicare lo stato di della associazione</p>
+            <p>Pagina che mostra l'elenco dei pazienti associati a un determinato KC (riservata ai KC), con una
+                colorazione che indica lo stato dell'associazione.</p>
         </li>
-        </li>
-        <li>
+
+        <li class="card">
             <h4>info_paziente.jsp</h4>
-            <p>Pagina che mostra la scheda anagrafica di un paziente, accessibile da KC e MN, in particolare i KC
-                visualizzano anche le informazioni relative allo stato della loro associazione con il paziente, con la
-                relativa nota di motivazione nel caso di terminazione dell'associazione da parte del paziente, l'MN non
-                ha invece più acesso a questa pagina relativa ad uno specifico utente se non ha una prenotazione attiva
-                con esso</p>
+            <p>Pagina che mostra la scheda anagrafica di un paziente, accessibile a KC e MN. I KC visualizzano anche lo
+                stato dell'associazione con il paziente e l'eventuale motivazione della sua terminazione. Un MN può
+                accedere alla scheda solo se ha una prenotazione attiva con il paziente.</p>
         </li>
-        <li>
+        <li class="card">
             <h4>v_referto.jsp</h4>
-            <p>Pagina che mostra il referto medico di una determinata visita, accessibile da KC. MN e PZ, in particolare
-                gli MN hanno accesso ad un link per modificare il relativo referto, o una nota che intima a compilarlo
-                nel caso in cui non fosse compilato</p>
+            <p>Pagina che mostra il referto medico di una visita, accessibile a KC, MN e PZ. Gli MN possono modificare
+                il referto oppure, se non è ancora stato compilato, visualizzano un avviso che li invita a farlo.</p>
         </li>
-        <li>
+        <li class="card">
             <h4>compila_referto.jsp</h4>
-            <p>Pagina con form di compilazione del referto medico associato a una determinata prenotazione di una visita
-            </p>
+            <p>Pagina con il modulo per compilare il referto medico associato a una prenotazione.</p>
         </li>
-        </li>
-        <li>
+
+        <li class="card">
             <h4>a_compila_referto.jsp</h4>
             <p>Pagina di action che gestisce la compilazione dei referti medici</p>
         </li>
-         <li>
+        <li class="card">
             <h4>lista_visite.jsp</h4>
-            <p>visualizza lo storico, delle visite</p>
+            <p>Pagina che mostra lo storico delle visite.</p>
         </li>
-        <li>
+        <li class="card">
             <h4>pagina_diario.jsp</h4>
-            <p>Pagina che mostra la pagina per compilare (PZ) visualizzare (KC, MN, PZ) il diario alimentare, in
-                particolare: ha 2 form con il selettore di data, per decidere la data corrispondente al diario e la data
-                di compilazione, premette al paziente di inserire le informazioni sul peso del corrispondente giorno,
-                calcola il bmi con le informazioni di altezza contenute nel referto della visita corrispondente;
-                permette di inserire e rimuovere porzioni di alimenti ad un relativo pasto ( in particolare per inserire
-                un nuovo alimento/porzione viene prima indirizzato alla pagina lista_alimenti.jsp e successivamente alla
-                pagina compilazione_porzione.jsp per inserire la quantità), mostra le informazioni relative ai
-                macronutrienti, energia e totale per pasto e totale giornaliero, di riferimento dal referto e relativa
-                alla giornata singola, ha un collegamento per visulizzare le annotazioni e scriverle nella pagina
-                annotazioni.jsp, collegamento per visualizzare il referto associato.
+            <p>Pagina che consente al paziente di compilare il diario alimentare e a KC, MN e PZ di consultarlo. Include
+                moduli per selezionare la giornata del diario e la data di compilazione; permette al paziente di
+                registrare il peso giornaliero e calcola il BMI usando l'altezza riportata nel referto della visita.
+                Consente inoltre di aggiungere o rimuovere porzioni dai pasti: per aggiungerne una, l'utente passa da
+                lista_alimenti.jsp a compilazione_porzione.jsp, dove inserisce la quantità. Mostra i macronutrienti,
+                l'energia e i totali per pasto e per giornata, confrontandoli con i valori di riferimento del referto.
+                Include collegamenti alle annotazioni e al referto associato.
             </p>
         </li>
-        <li>
+        <li class="card">
             <h4>a_pagina_diario.jsp</h4>
             <p>Pagina di action che gestisce l'inserimento della data di compilazione e del peso associato</p>
         </li>
-        <li>
+        <li class="card">
             <h4>lista_alimenti.jsp</h4>
-            <p>Pagina che mostra la lista degli alimenti, con la possibilità di filtrare per nome, e
-                visualizzare le informazioni nutrizionali di ogni alimento, per 100g</p>
+            <p>Pagina che mostra l'elenco degli alimenti, consente di filtrare per nome e visualizza le informazioni
+                nutrizionali per 100 g.</p>
         </li>
-        <li>
+        <li class="card">
             <h4>compilazione_porzione.jsp</h4>
-            <p>Pagina con form di compilazione della porzione di alimento (scelto da lista_alimenti.jsp) che verra
-                quindi inserina nella pagina del diario alimentare
-                (input hidden per id del diario e tipo pasto)
+            <p>Pagina con il modulo per inserire nel diario alimentare la porzione dell'alimento scelto in
+                lista_alimenti.jsp. Include campi nascosti per l'ID del diario e il tipo di pasto.
             </p>
 
 
         </li>
-        <li>
+        <li class="card">
             <h4>a_compilazione_porzione.jsp</h4>
-            <p>Pagina che gestisce l'inserimento della porzione di alimento nel diario alimentare, e la rimozione della
-                stessa
+            <p>Pagina che gestisce l'inserimento e la rimozione delle porzioni di alimenti dal diario alimentare.
             </p>
 
 
         </li>
-        <li>
+        <li class="card">
             <h4>annotazioni.jsp</h4>
-            <p>Pagina che mostra una chat di annotazioni relativa ad una determinata pagina del diario, con possibilità
-                di scrivere una nuova annotazione, come al paziente o al kc associato ad paziente a cui corrisponde la
-                pagina del diario </p>
+            <p>Pagina che mostra le annotazioni relative a una giornata del diario e consente al paziente o al KC a lui
+                associato di scriverne di nuove.</p>
         </li>
-        <li>
+        <li class="card">
             <h4>a_w_annotazioni.jsp</h4>
-            <p>Pagina action che permette di scrivere nuove annotazioni </p>
+            <p>Pagina action che permette di scrivere nuove annotazioni.</p>
         </li>
-        <li>
-            <h4> lista_schede_professionali_MN.jsp</h4>
-            <p>Pagina che mostra la lista di prewiew delle schede professionali dei medici nutrizionisti,lpulsante che
-                manda alla pagina v_scheda_professionale_mn.jsp per visualizzarne i dettagli</p>
+        <li class="card">
+            <h4>lista_schede_professionali_MN.jsp</h4>
+            <p>Pagina che mostra un'anteprima delle schede professionali dei medici nutrizionisti, con un pulsante che
+                apre v_scheda_professionale_MN.jsp per visualizzarne i dettagli.</p>
         </li>
-        <li>
-            <h4> v_scheda_professionale_MN.jsp</h4>
-            <p>Pagina che mostra la scheda professionale di un medico nutrizionista, link di reindiziamento alla pagina
-                di prenota visita al realativo medico</p>
+        <li class="card">
+            <h4>v_scheda_professionale_MN.jsp</h4>
+            <p>Pagina che mostra la scheda professionale di un medico nutrizionista e consente di accedere alla pagina
+                di prenotazione di una visita con quel medico.</p>
         </li>
-        <li>
-            <h4> prenota_visita.jsp</h4>
-            <p>Pagina che mostra il form per la prenotazione di una visita da parte di un paziente, al medico
-                nutrizionista selezionato nella pagina lista_schede_professionali_MN.jsp (quindi con un link alla pagina
-                v_scheda_professionale_MN.jsp)</p>
+        <li class="card">
+            <h4>prenota_visita.jsp</h4>
+            <p>Pagina con il modulo che consente al paziente di prenotare una visita con il medico nutrizionista
+                selezionato dalla pagina v_scheda_professionale_MN.jsp.</p>
         </li>
-        </li>
-        <li>
-            <h4> a_prenota_visita.jsp</h4>
+
+        <li class="card">
+            <h4>a_prenota_visita.jsp</h4>
             <p>Pagina che gestisce l'inserimento della prenotazione di una visita nel sistema, in particolare impedendo
                 di prenotare una visita prima che siano passati 30 giorni dalla precedente</p>
         </li>
-          <li>
-            <h4> dettaglio_prenotazione.jsp</h4>
-            <p>Pagina il dettagglio della visita, cola possibilià da parte del medico di rifiutarla accettarla, e all'utente di cancellarla</p>
+        <li class="card">
+            <h4>dettaglio_prenotazione.jsp</h4>
+            <p>Pagina che mostra i dettagli della visita e consente al medico di rifiutare o accettare la prenotazione
+                e all'utente di annullarla.</p>
         </li>
-            <li>
-            <h4> a_m_stato_prenotazione.jsp</h4>
+        <li class="card">
+            <h4>a_m_stato_prenotazione.jsp</h4>
             <p>Pagina action che gestisce la modifica dello stato di una prenotazione</p>
         </li>
-        <li>
-            <h4> lista_schede_professionali_KC.jsp</h4>
-            <p>Pagina che mostra la lista di prewiew delle schede professionali dei kitchen coach ,lpulsante che
-                manda alla pagina v_scheda_professionale_KC.jsp per visualizzarne i dettagli</p>
+        <li class="card">
+            <h4>lista_schede_professionali_KC.jsp</h4>
+            <p>Pagina che mostra un'anteprima delle schede professionali dei Kitchen Coach, con un pulsante che apre
+                v_scheda_professionale_KC.jsp per visualizzarne i dettagli.</p>
         </li>
-        <li>
-            <h4> v_scheda_professionale_KC.jsp</h4>
-            <p>Pagina che mostra la scheda professionale di un kitchen coach, con possibilità di renderlo come KC attivo
+        <li class="card">
+            <h4>v_scheda_professionale_KC.jsp</h4>
+            <p>Pagina che mostra la scheda professionale di un Kitchen Coach e consente al paziente di selezionarlo
+                come KC attivo.</p>
+        </li>
+        <li class="card">
+            <h4>a_richiesta_associazione.jsp</h4>
+            <p>Pagina action che permette di associare un Kitchen Coach a un paziente e reindirizza il paziente alla
+                pagina del Kitchen Coach corrente.
             </p>
         </li>
-        <li>
-            <h4> a_richiesta_associazione.jsp</h4>
-            <p>Pagina action che permette di associare un kitchen coach a un paziente, reainderizza il
-                paziente alla pagina del kitchen coach corrente
-            </p>
-        </li>
-        <li>
+        <li class="card">
             <h4>KC_associato.jsp</h4>
-            <p>Pagina che mostra la scheda professionale di un kitchen coach attivo al momento di un detenminato
-                paziente, con possibilità di terminare l'associazione motivando tramite text area,
+            <p>Pagina che mostra la scheda professionale del Kitchen Coach attualmente associato a un determinato
+                paziente e consente di terminare l'associazione inserendo una motivazione nell'area di testo.
             </p>
         </li>
-        <li>
-            <h4> a_rimuovi_associazione.jsp</h4>
-            <p>Pagina action che permette di rimuovere l'associazione dal kitchen coach corrente del paziente, in
-                particolare reainderizza il
-                paziente alla pagina della lista schede professionali KC, oppure alla pagina della scheda professionale
-                di un KC specifico, nel caso in cui un paziente abbia provato in precendeza ad associarsi a tale KC, ma
-                bloccato dal sistema dal fatto che aveva già un KC attivo, (salvato tramite variabili di request) </p>
+        <li class="card">
+            <h4>a_rimuovi_associazione.jsp</h4>
+            <p>Pagina action che rimuove l'associazione con il Kitchen Coach corrente e reindirizza il paziente alla
+                lista delle schede professionali KC oppure, se in precedenza aveva tentato di associarsi a uno specifico
+                KC ma l'operazione era stata bloccata perché aveva già un KC attivo, alla scheda di quel KC. Il KC
+                selezionato in precedenza viene salvato in variabili di request.</p>
         </li>
-        <li>
-            <h4> registrazione_collaboratori.jsp</h4>
-            <p>pagina che permette di registrare nuovi collaboratori agli utenti alla DS</p>
+        <li class="card">
+            <h4>registrazione_collaboratori.jsp</h4>
+            <p>Pagina che consente agli utenti con ruolo DS di registrare nuovi collaboratori.</p>
         </li>
-        <li>
-            <h4> a_registrazione_collaboratori.jsp</h4>
-            <p>Pagina action che gestire l'inserimento dei dati dei collaboratori nel sistema</p>
+        <li class="card">
+            <h4>a_registrazione_collaboratori.jsp</h4>
+            <p>Pagina action che gestisce l'inserimento dei dati dei collaboratori nel sistema.</p>
         </li>
-        <li>
-            <h4> compilazione_scheda_professionale.jsp</h4>
+        <li class="card">
+            <h4>compilazione_scheda_professionale.jsp</h4>
             <p>Pagina che permette di compilare la scheda professionale ai KC e ai MN tramite un form</p>
         </li>
-        <li>
-            <h4> a_compilazione_scheda_professionale.jsp</h4>
-            <p>Pagina action che gestire l'inserimento dei dati della scheda professionale nel sistema</p>
+        <li class="card">
+            <h4>a_compilazione_scheda_professionale.jsp</h4>
+            <p>Pagina action che gestisce l'inserimento dei dati della scheda professionale nel sistema.</p>
         </li>
-              <li>
-            <h4> lista_richieste_pz.jsp</h4>
-            <p>Pagina che permette alla DS di visualizzare le rischieste di attivazione account pazienti, con un pulsante accetta o rifiuta per ogni richiesta</p>
+        <li class="card">
+            <h4>lista_richieste_pz.jsp</h4>
+            <p>Pagina che consente alla DS di visualizzare le richieste di attivazione degli account dei pazienti, con
+                un pulsante per accettare o rifiutare ciascuna richiesta.</p>
         </li>
-        <li>
-            <h4> a_gestione_richieste.jsp</h4>
-            <p>Pagina action che gestisce l'approvazione o il rifiuto delle richieste di attivazione account pazienti</p>
+        <li class="card">
+            <h4>a_gestione_richieste.jsp</h4>
+            <p>Pagina action che gestisce l'approvazione o il rifiuto delle richieste di attivazione degli account dei
+                pazienti.</p>
         </li>
-        <li>
-            <h4> lista_utenti.jsp</h4>
-            <p>Pagina che permette di visualizzare la lista degli utenti registrati nel sistema, in particolare ha la possibilità di filtrare per ruolo, stato dell'account, data di nascita e ha la possibilità di  cercare un utente specifico tramite una "barra di ricerca"</p>
+        <li class="card">
+            <h4>lista_utenti.jsp</h4>
+            <p>Pagina che mostra l'elenco degli utenti registrati e consente di filtrare per ruolo, stato dell'account
+                o data di nascita, oppure di cercare un utente specifico tramite la barra di ricerca.</p>
         </li>
-         <li>
+        <li class="card">
             <h4>info_utente.jsp</h4>
-            <p>Pagina che permette di visualizzare i dettagli di un utente specifico, permettendo di agire sullo stato dell'account</p>
+            <p>Pagina che permette di visualizzare i dettagli di un utente specifico, permettendo di agire sullo stato
+                dell'account</p>
         </li>
-         <li>
+        <li class="card">
             <h4>a_gestione_utente.jsp</h4>
             <p>Pagina action che permette di gestire lo stato dell'account di un utente</p>
         </li>
-   <li>
+        <li class="card">
             <h4>lista_associazioni.jsp</h4>
-            <p>Pagina che visualizza la lista delle associazioni tra pazienti e kitchen coaches  con la possibilità di filtrare la pagina </p>
+            <p>Pagina che mostra l'elenco delle associazioni tra pazienti e Kitchen Coach e consente di filtrare i
+                risultati.</p>
         </li>
-          <li>
+        <li class="card">
             <h4>a_filtra_lista_associazioni.jsp</h4>
-            <p>Pagina  action  che restituisce la lista delle associazioni filtrata in base ai parametri di ricerca inseriti nella pagina lista_associazioni.jsp
+            <p>Pagina action che restituisce la lista delle associazioni filtrata in base ai parametri di ricerca
+                inseriti nella pagina lista_associazioni.jsp
             </p>
         </li>
-         <li>
+        <li class="card">
             <h4>info_associazione.jsp</h4>
-            <p>Pagina  che permette di visualizzare nel dettaglio le informazioni relative ad una specifica associazione tra un paziente e un kitchen coach,e nel caso di associazione terminata mostra anche la motivazione della terminazione</p>
+            <p>Pagina che permette di visualizzare nel dettaglio le informazioni relative a una specifica associazione
+                tra un paziente e un Kitchen Coach e, se l'associazione è terminata, ne mostra anche la motivazione.
+            </p>
         </li>
-           <li>
+        <li class="card">
             <h4>statistiche.jsp</h4>
-            <p>Pagina che permette di visualizzare statistiche della piattaforma e dei singoli utenti alla DS</p>
-        </li>
-             <li>
-            <h4>statistiche.jsp</h4>
-            <p>Pagina che permette di visualizzare statistiche della piattaforma e dei singoli utenti alla DS</p>
+            <p>Pagina che consente alla DS di visualizzare le statistiche della piattaforma e dei singoli utenti.</p>
             <!--- da valutare se separare in 2 pagine separate 1 per quella generale e 1 per quella utente -->
         </li>
-         <li>
+        <li class="card">
             <h4>a_statistiche.jsp</h4>
-            <p>Pagina di action gestire i filtri sulle statistiche</p>
-            <!--- da valutare se separare in 2 pagine separate 1 per quella generale e 1 per quella utente -->
+            <p>Pagina action che gestisce i filtri sulle statistiche.</p>
         </li>
-           <li>
+        <li class="card">
             <h4>notifiche.jsp</h4>
-            <p>Pagina che mostra le notifiche agli utenti, con la possibilita di essere inoltrato alla pagina a cui la notifica si riferisce, segnare come visualizzato, e rimuovere</p>
+            <p>Pagina che mostra le notifiche agli utenti e consente di aprire la pagina a cui si riferiscono, segnarle
+                come visualizzate o rimuoverle.</p>
         </li>
-             <li>
+        <li class="card">
             <h4>a_notifiche.jsp</h4>
-            <p>Pagina  action  che gestisce le notifiche agli utenti, permettendo di segnarle come visualizzate e di rimuoverle, renderizzando l'utente alla pagina a cui la notifica si riferisce, e nel caso di rimozione invare il messaggi  di conferma rimozione</p>
+            <p>Pagina action che gestisce le notifiche, consentendo di segnarle come visualizzate o rimuoverle. Dopo
+                aver aperto una notifica, reindirizza l'utente alla pagina a cui si riferisce; dopo la rimozione, mostra
+                un messaggio di conferma.</p>
         </li>
     </ul>
+    <h1>Suddivisione dei Circuiti di Lavoro</h1>
+<div class="grid">
 
-
-
-    <h1>Necessita revisione, e alcune modifiche al diagramma di navigazione in particolare riguarlo i link di ritorno alla pagina 
+    <div class="card">
+        <h2 class="area-title">Diario Alimentare e Monitoraggio</h2>
+        <h3>Pagine di Presentazione</h3>
+        <ul class="task-list">
+            <li>pagina_diario.jsp</li>
+            <li>lista_alimenti.jsp</li>
+            <li>compilazione_porzione.jsp</li>
+            <li>annotazioni.jsp</li>
+        </ul>
         
-    </h1>
-    <h1> puoò essere utile una volta finite le pagine raggruppare le pagine in categorie di lavoro in modo da poter lavorare in maniera modulare e spuedo separata</h1>
+        <h4 class="section-divider">Logiche e Action</h4>
+        <ul class="task-list">
+            <li>a_pagina_diario.jsp</li>
+            <li>a_compilazione_porzione.jsp</li>
+            <li>a_w_annotazioni.jsp</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2 class="area-title">Visite e Referti Medici</h2>
+        <h3>Pagine di Presentazione</h3>
+        <ul class="task-list">
+            <li>lista_schede_professionali_MN.jsp</li>
+            <li>v_scheda_professionale_MN.jsp</li>
+            <li>prenota_visita.jsp</li>
+            <li>lista_visite.jsp</li>
+            <li>dettaglio_prenotazione.jsp</li>
+            <li>compila_referto.jsp</li>
+            <li>v_referto.jsp</li>
+        </ul>
+        
+        <h4 class="section-divider">Logiche e Action</h4>
+        <ul class="task-list">
+            <li>a_prenota_visita.jsp</li>
+            <li>a_m_stato_prenotazione.jsp</li>
+            <li>a_compila_referto.jsp</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2 class="area-title">Relazioni e Abbinamento Coach</h2>
+        <h3>Pagine di Presentazione</h3>
+        <ul class="task-list">
+            <li>lista_schede_professionali_KC.jsp</li>
+            <li>v_scheda_professionale_KC.jsp</li>
+            <li>KC_associato.jsp</li>
+            <li>lista_pazienti.jsp</li>
+            <li>info_paziente.jsp</li>
+        </ul>
+        
+        <h4 class="section-divider">Logiche e Action</h4>
+        <ul class="task-list">
+            <li>a_richiesta_associazione.jsp</li>
+            <li>a_rimuovi_associazione.jsp</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2 class="area-title">Accesso, Identità e Onboarding</h2>
+        <h3>Pagine di Presentazione</h3>
+        <ul class="task-list">
+            <li>login.jsp</li>
+            <li>registrazione_pz.jsp</li>
+            <li>compilazione_scheda_professionale.jsp</li>
+            <li>attesa_attivazione.jsp</li>
+        </ul>
+        
+        <h4 class="section-divider">Logiche e Action</h4>
+        <ul class="task-list">
+            <li>a_login.jsp</li>
+            <li>a_registrazione_pz.jsp</li>
+            <li>a_compilazione_scheda_professionale.jsp</li>
+            <li>dispatch_home.jsp</li>
+            <li>dispatch_registrazione_pz.jsp</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2 class="area-title">Amministrazione e Log di Sistema</h2>
+        <h3>Pagine di Presentazione</h3>
+        <ul class="task-list">
+            <li>registrazione_collaboratori.jsp</li>
+            <li>lista_richieste_pz.jsp</li>
+            <li>lista_utenti.jsp</li>
+            <li>info_utente.jsp</li>
+            <li>lista_associazioni.jsp</li>
+            <li>info_associazione.jsp</li>
+            <li>statistiche.jsp</li>
+        </ul>
+        
+        <h4 class="section-divider">Logiche e Action</h4>
+        <ul class="task-list">
+            <li>a_registrazione_collaboratori.jsp</li>
+            <li>a_gestione_richieste.jsp</li>
+            <li>a_gestione_utente.jsp</li>
+            <li>a_filtra_lista_associazioni.jsp</li>
+            <li>a_statistiche.jsp</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2 class="area-title">Dashboard Globali e Centro Notifiche</h2>
+        <h3>Pagine di Presentazione</h3>
+        <ul class="task-list">
+            <li>index.htm</li>
+            <li>home_(paziente).jsp</li>
+            <li>home_(nutrizionista).jsp</li>
+            <li>home_(kitchen_coach).jsp</li>
+            <li>home_(dietary_supervisor).jsp</li>
+            <li>notifiche.jsp</li>
+        </ul>
+        
+        <h4 class="section-divider">Logiche e Action</h4>
+        <ul class="task-list">
+            <li>a_notifiche.jsp</li>
+        </ul>
+    </div>
+
+</div>
+
 
 </body>
 
