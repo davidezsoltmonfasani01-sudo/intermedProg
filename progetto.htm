@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>Descrizione del progetto e funzionalità di ogni pagina</h1>
+    <h1>Descrizione del progetto e funzionalita' di ogni pagina</h1>
     <h2>Area utente non registrato</h2>
     <ul class="grid">
         <li class="card">
@@ -34,7 +34,7 @@
         <li class="card">
             <h4>dispatch_registrazione_pz.jsp</h4>
             <p>Pagina di reindirizzamento che consente agli utenti non registrati di accedere alla registrazione come
-                pazienti. Se l'utente ha già effettuato l'accesso, viene reindirizzato alla homepage corrispondente al
+                pazienti. Se l'utente ha gia' effettuato l'accesso, viene reindirizzato alla homepage corrispondente al
                 proprio ruolo.</p>
         </li>
         <li class="card">
@@ -69,13 +69,13 @@
         <li class="card">
             <h4>info_paziente.jsp</h4>
             <p>Pagina che mostra la scheda anagrafica di un paziente, accessibile a KC e MN. I KC visualizzano anche lo
-                stato dell'associazione con il paziente e l'eventuale motivazione della sua terminazione. Un MN può
+                stato dell'associazione con il paziente e l'eventuale motivazione della sua terminazione. Un MN puo'
                 accedere alla scheda solo se ha una prenotazione attiva con il paziente.</p>
         </li>
         <li class="card">
             <h4>v_referto.jsp</h4>
             <p>Pagina che mostra il referto medico di una visita, accessibile a KC, MN e PZ. Gli MN possono modificare
-                il referto oppure, se non è ancora stato compilato, visualizzano un avviso che li invita a farlo.</p>
+                il referto oppure, se non e' ancora stato compilato, visualizzano un avviso che li invita a farlo.</p>
         </li>
         <li class="card">
             <h4>compila_referto.jsp</h4>
@@ -96,7 +96,7 @@
                 moduli per selezionare la giornata del diario e la data di compilazione; permette al paziente di
                 registrare il peso giornaliero e calcola il BMI usando l'altezza riportata nel referto della visita.
                 Consente inoltre di aggiungere o rimuovere porzioni dai pasti: per aggiungerne una, l'utente passa da
-                lista_alimenti.jsp a compilazione_porzione.jsp, dove inserisce la quantità. Mostra i macronutrienti,
+                lista_alimenti.jsp a compilazione_porzione.jsp, dove inserisce la quantita'. Mostra i macronutrienti,
                 l'energia e i totali per pasto e per giornata, confrontandoli con i valori di riferimento del referto.
                 Include collegamenti alle annotazioni e al referto associato.
             </p>
@@ -190,7 +190,7 @@
             <h4>a_rimuovi_associazione.jsp</h4>
             <p>Pagina action che rimuove l'associazione con il Kitchen Coach corrente e reindirizza il paziente alla
                 lista delle schede professionali KC oppure, se in precedenza aveva tentato di associarsi a uno specifico
-                KC ma l'operazione era stata bloccata perché aveva già un KC attivo, alla scheda di quel KC. Il KC
+                KC ma l'operazione era stata bloccata perche' aveva gia' un KC attivo, alla scheda di quel KC. Il KC
                 selezionato in precedenza viene salvato in variabili di request.</p>
         </li>
         <li class="card">
@@ -247,7 +247,7 @@
         <li class="card">
             <h4>info_associazione.jsp</h4>
             <p>Pagina che permette di visualizzare nel dettaglio le informazioni relative a una specifica associazione
-                tra un paziente e un Kitchen Coach e, se l'associazione è terminata, ne mostra anche la motivazione.
+                tra un paziente e un Kitchen Coach e, se l'associazione e' terminata, ne mostra anche la motivazione.
             </p>
         </li>
         <li class="card">
@@ -272,127 +272,127 @@
         </li>
     </ul>
     <h1>Suddivisione dei Circuiti di Lavoro</h1>
-<div class="grid">
+    <div class="grid">
 
-    <div class="card">
-        <h2 class="area-title">Diario Alimentare e Monitoraggio</h2>
-        <h3>Pagine di Presentazione</h3>
-        <ul class="task-list">
-            <li>pagina_diario.jsp</li>
-            <li>lista_alimenti.jsp</li>
-            <li>compilazione_porzione.jsp</li>
-            <li>annotazioni.jsp</li>
-        </ul>
-        
-        <h4 class="section-divider">Logiche e Action</h4>
-        <ul class="task-list">
-            <li>a_pagina_diario.jsp</li>
-            <li>a_compilazione_porzione.jsp</li>
-            <li>a_w_annotazioni.jsp</li>
-        </ul>
+        <div class="card">
+            <h2 class="area-title">Diario Alimentare e Monitoraggio</h2>
+            <h3>Pagine di Presentazione</h3>
+            <ul class="task-list">
+                <li>pagina_diario.jsp</li>
+                <li>lista_alimenti.jsp</li>
+                <li>compilazione_porzione.jsp</li>
+                <li>annotazioni.jsp</li>
+            </ul>
+
+            <h4 class="section-divider">Action</h4>
+            <ul class="task-list">
+                <li>a_pagina_diario.jsp</li>
+                <li>a_compilazione_porzione.jsp</li>
+                <li>a_w_annotazioni.jsp</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2 class="area-title">Visite e Referti Medici</h2>
+            <h3>Pagine di Presentazione</h3>
+            <ul class="task-list">
+                <li>prenota_visita.jsp</li>
+                <li>lista_visite.jsp</li>
+                <li>dettaglio_prenotazione.jsp</li>
+                <li>compila_referto.jsp</li>
+                <li>v_referto.jsp</li>
+            </ul>
+
+            <h4 class="section-divider">Action</h4>
+            <ul class="task-list">
+                <li>a_prenota_visita.jsp</li>
+                <li>a_m_stato_prenotazione.jsp</li>
+                <li>a_compila_referto.jsp</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2 class="area-title">Staff Professionale e Relazioni</h2>
+            <h3>Pagine di Presentazione</h3>
+            <ul class="task-list">
+                <li>lista_schede_professionali_KC.jsp</li>
+                <li>v_scheda_professionale_KC.jsp</li>
+                <li>lista_schede_professionali_MN.jsp</li>
+                <li>v_scheda_professionale_MN.jsp</li>
+                <li>KC_associato.jsp</li>
+                <li>lista_associazioni.jsp</li>
+                <li>info_associazione.jsp</li>
+            </ul>
+            <h4 class="section-divider">Action</h4>
+            <ul class="task-list">
+                <li>a_richiesta_associazione.jsp</li>
+                <li>a_rimuovi_associazione.jsp</li>
+                <li>a_filtra_lista_associazioni.jsp</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2 class="area-title">Utenze, Dashboard e Moderazione</h2>
+            <h3>Pagine di Presentazione</h3>
+            <ul class="task-list">
+                <li>home_PZ.jsp</li>
+                <li>home_MN.jsp</li>
+                <li>home_KC.jsp</li>
+                <li>home_DS.jsp</li>
+                <li>lista_pazienti.jsp</li>
+                <li>info_paziente.jsp</li>
+                <li>lista_richieste_pz.jsp</li>
+                <li>lista_utenti.jsp</li>
+                <li>info_utente.jsp</li>
+            </ul>
+
+            <h4 class="section-divider">Action</h4>
+            <ul class="task-list">
+                <li>a_gestione_richiesta.jsp</li>
+                <li>a_gestione_utente.jsp</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2 class="area-title">Accesso ,Registrazione, Compilazione Schede Professionali, e Dispatch </h2>
+            <h3>Pagine di Presentazione</h3>
+            <ul class="task-list">
+                <li>login.jsp</li>
+                <li>registrazione_pz.jsp</li>
+                <li>registrazione_collaboratori.jsp</li>
+                <li>compilazione_scheda_professionale.jsp</li>
+                <li>attesa_attivazione.jsp</li>
+
+            </ul>
+
+            <h4 class="section-divider">Action</h4>
+            <ul class="task-list">
+                <li>a_login.jsp</li>
+                <li>a_registrazione_pz.jsp</li>
+                <li>a_registrazione_collaboratori.jsp</li>
+                <li>a_compilazione_scheda_professionale.jsp</li>
+                <li>dispatch_home.jsp</li>
+                <li>dispatch_registrazione_pz.jsp</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2 class="area-title">Amministrazione e Log di Sistema</h2>
+            <h3>Pagine di Presentazione</h3>
+            <ul class="task-list">
+                <li>index.htm</li>
+                <li>statistiche.jsp</li>
+                <li>notifiche.jsp</li>
+            </ul>
+
+            <h4 class="section-divider">Action</h4>
+            <ul class="task-list">
+                <li>a_statistiche.jsp</li>
+                <li>a_notifiche.jsp</li>
+            </ul>
+        </div>
+
+
+
     </div>
-
-    <div class="card">
-        <h2 class="area-title">Visite e Referti Medici</h2>
-        <h3>Pagine di Presentazione</h3>
-        <ul class="task-list">
-            <li>lista_schede_professionali_MN.jsp</li>
-            <li>v_scheda_professionale_MN.jsp</li>
-            <li>prenota_visita.jsp</li>
-            <li>lista_visite.jsp</li>
-            <li>dettaglio_prenotazione.jsp</li>
-            <li>compila_referto.jsp</li>
-            <li>v_referto.jsp</li>
-        </ul>
-        
-        <h4 class="section-divider">Logiche e Action</h4>
-        <ul class="task-list">
-            <li>a_prenota_visita.jsp</li>
-            <li>a_m_stato_prenotazione.jsp</li>
-            <li>a_compila_referto.jsp</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h2 class="area-title">Relazioni e Abbinamento Coach</h2>
-        <h3>Pagine di Presentazione</h3>
-        <ul class="task-list">
-            <li>lista_schede_professionali_KC.jsp</li>
-            <li>v_scheda_professionale_KC.jsp</li>
-            <li>KC_associato.jsp</li>
-            <li>lista_pazienti.jsp</li>
-            <li>info_paziente.jsp</li>
-        </ul>
-        
-        <h4 class="section-divider">Logiche e Action</h4>
-        <ul class="task-list">
-            <li>a_richiesta_associazione.jsp</li>
-            <li>a_rimuovi_associazione.jsp</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h2 class="area-title">Accesso, Identità e Onboarding</h2>
-        <h3>Pagine di Presentazione</h3>
-        <ul class="task-list">
-            <li>login.jsp</li>
-            <li>registrazione_pz.jsp</li>
-            <li>compilazione_scheda_professionale.jsp</li>
-            <li>attesa_attivazione.jsp</li>
-        </ul>
-        
-        <h4 class="section-divider">Logiche e Action</h4>
-        <ul class="task-list">
-            <li>a_login.jsp</li>
-            <li>a_registrazione_pz.jsp</li>
-            <li>a_compilazione_scheda_professionale.jsp</li>
-            <li>dispatch_home.jsp</li>
-            <li>dispatch_registrazione_pz.jsp</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h2 class="area-title">Amministrazione e Log di Sistema</h2>
-        <h3>Pagine di Presentazione</h3>
-        <ul class="task-list">
-            <li>registrazione_collaboratori.jsp</li>
-            <li>lista_richieste_pz.jsp</li>
-            <li>lista_utenti.jsp</li>
-            <li>info_utente.jsp</li>
-            <li>lista_associazioni.jsp</li>
-            <li>info_associazione.jsp</li>
-            <li>statistiche.jsp</li>
-        </ul>
-        
-        <h4 class="section-divider">Logiche e Action</h4>
-        <ul class="task-list">
-            <li>a_registrazione_collaboratori.jsp</li>
-            <li>a_gestione_richieste.jsp</li>
-            <li>a_gestione_utente.jsp</li>
-            <li>a_filtra_lista_associazioni.jsp</li>
-            <li>a_statistiche.jsp</li>
-        </ul>
-    </div>
-
-    <div class="card">
-        <h2 class="area-title">Dashboard Globali e Centro Notifiche</h2>
-        <h3>Pagine di Presentazione</h3>
-        <ul class="task-list">
-            <li>index.htm</li>
-            <li>home_(paziente).jsp</li>
-            <li>home_(nutrizionista).jsp</li>
-            <li>home_(kitchen_coach).jsp</li>
-            <li>home_(dietary_supervisor).jsp</li>
-            <li>notifiche.jsp</li>
-        </ul>
-        
-        <h4 class="section-divider">Logiche e Action</h4>
-        <ul class="task-list">
-            <li>a_notifiche.jsp</li>
-        </ul>
-    </div>
-
-</div>
 
 
 </body>
