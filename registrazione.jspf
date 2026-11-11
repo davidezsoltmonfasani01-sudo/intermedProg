@@ -1,0 +1,98 @@
+<tr>
+            <td align="center" bgcolor="#f1f5f4">
+                <br><br>
+                <form action="#" method="post">
+                    <table width="65%" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+                        <tr>
+                            <td align="center" bgcolor="#dcebe7">
+                                <table width="100%" border="0" cellpadding="16" cellspacing="0">
+                                    <tr>
+                                        <td align="center">
+                                            <h2>Crea il tuo account</h2>
+                                            <p>Inserisci le tue credenziali per registrarti</p>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <table width="70%" border="0" cellpadding="12" cellspacing="0">
+                                    <tr>
+                                        <td>
+                                            <b>Codice fiscale</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" id="codice_fiscale" name="codice_fiscale" size="30"
+                                                maxlength="16"  required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>Nome</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" id="nome" name="nome" size="30"
+                                                 required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>Cognome</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" id="cognome" name="cognome" size="30"
+                                                 required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>Data di nascita</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="date" id="data_nascita" name="data_nascita"
+                                                 required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>Username</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" id="username" name="username" size="30"
+                                                 required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>Password</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="password" id="password" name="password" size="30"
+                                                required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">
+                                            <input type="submit" value="Registrati"
+                                                style="background-color: #176b63; color: white; border: 0; border-radius: 6px; padding: 12px 32px; font-size: 16px; cursor: pointer;">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+    
+
+             

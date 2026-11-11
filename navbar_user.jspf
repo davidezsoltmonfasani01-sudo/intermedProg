@@ -1,0 +1,13 @@
+    <tr>
+      <td colspan="2" bgcolor="#124f49">
+        <table width="100%" border="0" cellpadding="12" cellspacing="0">
+          <tr align="center">
+            <td> <a href="#" style="color: white;">Link1</a></td>
+            <td> <a href="#" style="color: white;">Link2</a></td>
+            <td> <a href="#" style="color: white;">Link3</a></td>
+            <td> <a href="logout.jsp" style="color: white;">Logout</a></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+</thead>
