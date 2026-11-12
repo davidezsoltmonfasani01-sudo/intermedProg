@@ -23,7 +23,7 @@ import="java.sql.*" %>
 </c:if>
 
 
-<sql:query var="rset_controllo">
+<sql:query var="rset_controllo_CF">
 SELECT CF
   FROM Utente
  WHERE UPPER(CF) = ?
@@ -32,13 +32,26 @@ SELECT CF
 
 
   
-<c:if test="${rset_controllo.rowCount > 0}">
+<c:if test="${rset_controllo_CF.rowCount > 0}">
   <c:set var="errmsg" scope="request">Questo Codice Fiscale risulta gia' registrato</c:set>
   <jsp:forward page="registrazione_pz.jsp"/>
 </c:if>
  
+<sql:query var="rset_controllo_U">
+SELECT Username
+  FROM Utente
+ WHERE UPPER(Username) = ?
+ <sql:param value="${fn:toUpperCase(param.username)}"/>
+</sql:query>
 
+
+  
+<c:if test="${rset_controllo_U.rowCount > 0}">
+  <c:set var="errmsg" scope="request">Questo Username risulta gia' registrato</c:set>
+  <jsp:forward page="registrazione_pz.jsp"/>
+</c:if>
  
+
 
 <sql:update var="righe_inserite">
 INSERT INTO Utente (CF, Cognome, Nome, Data_Nascita, Password, Stato, Ruolo, Username)
@@ -51,8 +64,8 @@ VALUES (?, ?, ?, ?, ?, 1, 'PZ', ?)
   <sql:param value="${param.username}"/>
 </sql:update>
 
+<c:set var="user_userid" value="${param.username}" scope="session"/>
+<c:set var="user_role"   value="PZ"  scope="session"/>
+<c:set var="user_status"   value='1'  scope="session"/>
 
-
-
-<c:set var="msg" scope="request">Registrazione completata con successo! Ora puoi accedere.</c:set>
-<jsp:forward page="dispatch_home.jsp"/>
+<jsp:forward page="dispatch_home.jsp"/> 
