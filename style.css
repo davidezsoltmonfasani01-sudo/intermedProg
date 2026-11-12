@@ -60,3 +60,26 @@
     color: red;
     font-family: sans-serif;
 }
+.nNon_letta {
+    background-color: #ffffff;
+    font-weight: bold;
+}
+.nLetta {
+    background-color: #176b636e;
+    font-weight: normal;
+}
+.btn-icona {
+    background: none;       /* Toglie lo sfondo grigio */
+    border: none;           /* Toglie il bordo */
+    padding: 0;             /* Toglie lo spazio interno */
+    cursor: pointer;        /* Fa comparire la manina al passaggio del mouse */
+    display: inline-flex;   /* Allinea perfettamente l'icona */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Effetto opzionale al passaggio del mouse */
+.btn-icona:hover {
+    opacity: 0.75;
+    transform: scale(1.05);
+}
