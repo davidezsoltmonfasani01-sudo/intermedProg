@@ -68,18 +68,28 @@
     background-color: #176b636e;
     font-weight: normal;
 }
+.nLetta  .card {
+    background: #176b636e;
+}
 .btn-icona {
-    background: none;       /* Toglie lo sfondo grigio */
-    border: none;           /* Toglie il bordo */
-    padding: 0;             /* Toglie lo spazio interno */
-    cursor: pointer;        /* Fa comparire la manina al passaggio del mouse */
-    display: inline-flex;   /* Allinea perfettamente l'icona */
+    background: none;       
+    border: none;           
+    padding: 0;             
+    cursor: pointer;        
+    display: inline-flex;   
     align-items: center;
     justify-content: center;
 }
 
-/* Effetto opzionale al passaggio del mouse */
-.btn-icona:hover {
-    opacity: 0.75;
-    transform: scale(1.05);
+#sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+#sticky-bot {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    background-color: #ffffff;
+    border-top: 2px solid #ccc; 
 }
