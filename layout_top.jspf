@@ -4,52 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ambulatorio Dietologia L'Ultima Cena</title>
-      <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
   </head>
   <body bgcolor="#f1f5f4">
-    <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#f1f5f4">
-      <thead id="sticky-header">
-        <tr>
-          <td colspan="2" bgcolor="#176b63">
-            <table width="100%" border="0" cellpadding="16" cellspacing="0">
-              <tr>
-                <td width="100" align="left">
-                  <a href="index.jsp">
-                    <img width="80" height="80"
-                    src="panda.png"
-                    title="Universita' di Pavia"
-                    alt="Logo Universita' di Pavia" id="logo">
-                  </a>
-                </td>
-                <td>
-                </td>
-                <td align="left">
+    <div class="maxwidth" id="sticky-header">
+      <div class ="topbar" >
+        <div>
 
-                  <h1 class="title">Ambulatorio Dietologia</h1>
-                  <p  class="title"><em>L'Ultima Cena</em> Cura, ascolto e benessere</p>
+          <a href="index.jsp">
+            <img 
+            src="panda.png"
+            title="Universita' di Pavia"
+            alt="Logo Universita' di Pavia" id="logo">
+          </a>
+        </div>
+        <div>
+          <h1 class="title">Ambulatorio Dietologia</h1>
+          <p  class="title"><em>L'Ultima Cena</em> Cura, ascolto e benessere</p>
+        </div>
+        <div>
+          <a href="notifiche.jsp">
+            <img width="40" height="40"
+            src="notifiche.svg"
+            title="Notifiche"
+            alt="Notifiche" id="notifiche">
+            <p  class="rmsg">22</p>
+          </a>
+        </div>
+      </div>
 
-                </td>
-                <td>
-                  <a href="notifiche.jsp">
-                    <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                      <tr>
-                        <td align="center">
-                          <img width="40" height="40"
-                          src="notifiche.svg"
-                          title="Notifiche"
-                          alt="Notifiche" id="notifiche">
-
-                        </td>
-                      </tr>
-                      <tr>
-                        <td align="center">
-                          <p  class="rmsg">22</p>
-                        </td>
-                      </table>
-                    </a>
-                  </td>
-
-                </tr>
-              </table>
-            </td>
-          </tr>
