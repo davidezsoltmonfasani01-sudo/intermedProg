@@ -10,19 +10,18 @@
 <c:remove var="user_role"   scope="session"/>
 
 <sql:query var="rset_controllo">
-SELECT Username, Password, Ruolo, Stato
-  FROM Utente
+SELECT ID, CF, Nome, Cognome, Data_nascita, Sesso, Username, Password, Ruolo, ID_stato
+  FROM Utenti
  WHERE Username = ?
  <sql:param value="${param.form_username}"/>
  and Password = ?
  <sql:param value="${param.form_password}"/>
 </sql:query> 
 <c:if test="${rset_controllo.rowCount == 1}">
-  <c:set var="user_userid" value="${param.form_username}" scope="session"/>
-  <c:set var="user_role" value="${rset_controllo.rows[0].Ruolo}" scope="session"/>
-  <c:set var="user_status" value="${rset_controllo.rows[0].Stato}" scope="session"/>
+  <c:set var="user" value="${rset_controllo.rows[0]}" scope="session"/>
   <jsp:forward page="dispatch_home.jsp"/>
 </c:if>
+
 
   
 
