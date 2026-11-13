@@ -1,11 +1,7 @@
-    <tr>
-      <td colspan="2" bgcolor="#124f49">
-        <table width="100%" border="0" cellpadding="12" cellspacing="0">
-          <tr align="center">
-            <td ><a href="dispatch_home.jsp" style="color: white;"><b >Login</b></a></td>
-            <td><a href="registrazione_pz.jsp" style="color: white;"><b>Registrati</b></a></td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-</thead>
+<div class="navbar">
+
+  <div class="nav-item"><a href="dispatch_home.jsp" ><b>Login</b></a></div>
+  <div class="nav-item"><a href="registrazione_pz.jsp" ><b>Registrati</b></a></div>
+
+</div>
+</div>

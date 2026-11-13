@@ -1,3 +1,42 @@
+
+.navbar {
+    background-color: #124f49;
+    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    
+}.topbar {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #176b63;
+}
+
+.topbar > div:first-child {
+    justify-self: start;
+}
+
+.topbar > div:nth-child(2) {
+    text-align: center;
+}
+
+.topbar > div:last-child {
+    justify-self: end;
+    text-align: center; 
+}
+
+.nav-item {
+    font-family: sans-serif;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.nav-item a {
+    color: white;          
+    display: block;        
+}
+
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
@@ -50,7 +89,7 @@
 
 #logo {
     height: 168px;
-    width: auto;
+    width: 168px;
 }
 .title {
     color: white;
@@ -68,9 +107,7 @@
     background-color: #176b636e;
     font-weight: normal;
 }
-.nLetta  .card {
-    background: #176b636e;
-}
+
 .btn-icona {
     background: none;       
     border: none;           
@@ -92,4 +129,9 @@
     z-index: 2;
     background-color: #ffffff;
     border-top: 2px solid #ccc; 
+}
+.maxwidth {
+    width: 100%;
+    margin: 0 auto; 
+    border-collapse: collapse; 
 }
