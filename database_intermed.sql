@@ -22,9 +22,9 @@ CREATE TABLE Utenti (
 );
 
 CREATE TABLE Schede_Professionali (
-    ID INT PRIMARY KEY NOT NULL,
+    ID INT PRIMARY KEY NOT NULL auto_increment,
     ID_utente INT NOT NULL UNIQUE,
-    descrizione TEXT NOT NULL,
+    Presentazione TEXT NOT NULL,
     data_certificazione DATE NOT NULL,
     numero_albo INT NOT NULL,
     FOREIGN KEY (ID_utente) REFERENCES Utenti(ID)

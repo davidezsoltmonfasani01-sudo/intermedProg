@@ -51,8 +51,9 @@ import="java.sql.*" %>
 
 
 
-<c:if test="${not empty errmsg}"><font color="red"><b>${errmsg}</b></font><br/></c:if>
-<c:if test="${not empty param.page_msg}"><font color="red"><b>${param.page_msg}</b></font><br/></c:if>
+<c:if test="${not empty errmsg}">
+  <span style="color:red;"><b>${errmsg}</b></span><br/>
+</c:if>
 
 <%@ include file="layout_bottom.jspf" %>
   
