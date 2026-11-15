@@ -10,7 +10,7 @@
 <c:remove var="user_role"   scope="session"/>
 
 <sql:query var="rset_controllo">
-SELECT ID, CF, Nome, Cognome, Data_nascita, Username, Password, Ruolo, ID_stato
+SELECT ID, CF, Nome, Cognome, Data_nascita, Username, Ruolo, ID_stato
   FROM Utenti
  WHERE Username = ?
  <sql:param value="${param.form_username}"/>
@@ -18,13 +18,10 @@ SELECT ID, CF, Nome, Cognome, Data_nascita, Username, Password, Ruolo, ID_stato
  <sql:param value="${param.form_password}"/>
 </sql:query> 
 <c:if test="${rset_controllo.rowCount == 1}">
-  <c:set var="user_userid" value="${rset_controllo.rows[0].ID}" scope="session"/>
-  <c:set var="user_role" value="${rset_controllo.rows[0].Ruolo}" scope="session"/>
-  <c:set var="user_status" value="${rset_controllo.rows[0].ID_stato}" scope="session"/>
-  <c:set var="user_nome"   value="${rset_controllo.rows[0].Nome}"  scope="session"/>
-  <c:set var="user_cognome"   value="${rset_controllo.rows[0].Cognome}"  scope="session"/>
-  <c:set var="user_CF"   value="${rset_controllo.rows[0].CF}"  scope="session"/>
-  <c:set var="user_data"   value="${rset_controllo.rows[0].data_nascita}"  scope="session"/>
+  <c:set var="user" value="${rset_controllo.rows[0]}" scope="session"/>
+  <c:set var="user_userid" value="${user.ID}" scope="session"/>
+  <c:set var="user_role" value="${user.Ruolo}" scope="session"/>
+  <c:set var="user_status" value="${user.ID_stato}" scope="session"/>
   <jsp:forward page="dispatch_home.jsp"/>
 </c:if>
 
