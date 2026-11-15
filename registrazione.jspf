@@ -1,0 +1,79 @@
+
+                                    <tr>
+                                        <td>
+                                            <b>Codice fiscale</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" id="codice_fiscale" name="codice_fiscale" size="30"
+                                                maxlength="16"  required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>Nome</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" id="nome" name="nome" size="30"
+                                                 required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>Cognome</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" id="cognome" name="cognome" size="30"
+                                                 required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>Data di nascita</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="date" id="data_nascita" name="data_nascita"
+                                                 required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>Username</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="text" id="username" name="username" size="30"
+                                                 required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <b>Password</b>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <input type="password" id="password" name="password" size="30"
+                                                required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center">
+                                            <input type="submit" value="Crea Account"
+                                                style="background-color: #176b63; color: white; border: 0; border-radius: 6px; padding: 12px 32px; font-size: 16px; cursor: pointer;">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+    
+
+             

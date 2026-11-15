@@ -57,7 +57,7 @@ VALUES (?, ?, ?, ?, ?, 1, 'PZ', ?)
 SELECT ID, CF, Cognome, Nome, Data_Nascita, ID_stato, Ruolo, Username, Stato
   FROM Utenti , Stati 
  WHERE 
-  ID_stato = ID_status
+  ID_stato = ID_Status
   AND Username = ?
  <sql:param value="${param.username}"/>
 </sql:query>

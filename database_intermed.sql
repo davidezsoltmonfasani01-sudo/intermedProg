@@ -18,7 +18,7 @@ CREATE TABLE Utenti (
     Password VARCHAR(255) NOT NULL,
     ID_stato INT NOT NULL,
     Ruolo VARCHAR(50) NOT NULL,
-    FOREIGN KEY (ID_stato) REFERENCES Stati(ID_Stato)
+    FOREIGN KEY (ID_stato) REFERENCES Stati(ID_Status)
 );
 
 CREATE TABLE Schede_Professionali (
