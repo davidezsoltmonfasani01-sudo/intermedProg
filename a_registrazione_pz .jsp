@@ -54,16 +54,15 @@ VALUES (?, ?, ?, ?, ?, 1, 'PZ', ?)
 </sql:update>
 
 <sql:query var="rset_controllo">
-SELECT ID, CF, Cognome, Nome, Data_Nascita, ID_stato, Ruolo, Username
-  FROM Utenti
- WHERE Username = ?
+SELECT ID, CF, Cognome, Nome, Data_Nascita, ID_stato, Ruolo, Username, Stato
+  FROM Utenti , Stati 
+ WHERE 
+  ID_stato = ID_status
+  AND Username = ?
  <sql:param value="${param.username}"/>
 </sql:query>
  
 <c:set var="user" value="${rset_controllo.rows[0]}" scope="session"/>
-<c:set var="user_userid" value="${user.ID}" scope="session"/>
-<c:set var="user_role"   value="PZ"  scope="session"/>
-<c:set var="user_status"   value='1'  scope="session"/>
 
 
 <jsp:forward page="dispatch_home.jsp"/>  

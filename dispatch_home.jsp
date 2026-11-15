@@ -7,19 +7,19 @@
 <%@ taglib uri="http://it.unipv.bmilab.uploadtags"      prefix="upload" %>
 
     <c:choose>
-  <c:when test="${not empty user_userid && user_role == 'MN'}">
+  <c:when test="${not empty user.ID && user.Ruolo == 'MN'}">
     <jsp:forward page="home_mn.jsp" />
   </c:when>
-  <c:when test="${not empty user_userid && user_role == 'PZ' && user_status != 1}">
+  <c:when test="${not empty user.ID && user.Ruolo == 'PZ' && user.ID_stato != 1}">
     <jsp:forward page="home_pz.jsp" />
   </c:when>
-  <c:when test="${not empty user_userid && user_role == 'KC'}">
+  <c:when test="${not empty user.ID && user.Ruolo == 'KC'}">
     <jsp:forward page="home_kc.jsp" />
   </c:when>
-  <c:when test="${not empty user_userid && user_role == 'DS'}">
+  <c:when test="${not empty user.ID && user.Ruolo == 'DS'}">
     <jsp:forward page="home_ds.jsp" />
   </c:when>
-  <c:when test="${not empty user_userid && user_role == 'PZ' && user_status == 1}">
+  <c:when test="${not empty user.ID && user.Ruolo == 'PZ' && user.ID_stato == 1}">
     <jsp:forward page="attesa_attivazione.jsp" />
   </c:when>
   <c:otherwise>

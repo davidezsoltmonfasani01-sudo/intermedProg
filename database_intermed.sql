@@ -3,7 +3,7 @@
 -- ================================================================
 
 CREATE TABLE Stati (
-    ID_Stato INT PRIMARY KEY,
+    ID_Status INT PRIMARY KEY,
     Stato VARCHAR(50) NOT NULL
 );
 
@@ -139,7 +139,7 @@ CREATE TABLE Associazioni_KC_PZ (
 -- Dati iniziali
 -- ================================================================
 
-INSERT INTO Stati (ID_Stato, Stato) VALUES
+INSERT INTO Stati (ID_Status, Stato) VALUES
 (1, 'Attesa'),
 (2, 'Attivo'),
 (10, 'visualizzata'),

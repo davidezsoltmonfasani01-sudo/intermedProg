@@ -6,22 +6,20 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://it.unipv.bmilab.uploadtags"      prefix="upload" %>
 
-<c:remove var="user_userid" scope="session"/>
-<c:remove var="user_role"   scope="session"/>
+<c:remove var="user" scope="session"/>
 
 <sql:query var="rset_controllo">
-SELECT ID, CF, Nome, Cognome, Data_nascita, Username, Ruolo, ID_stato
-  FROM Utenti
- WHERE Username = ?
+SELECT ID, CF, Nome, Cognome, Data_nascita, Username, Ruolo, ID_stato, Stato
+  FROM Utenti U, Stati S
+ WHERE 
+ U.ID_stato = S.ID_stato
+ AND Username = ?
  <sql:param value="${param.form_username}"/>
- and Password = ?
+ AND Password = ?
  <sql:param value="${param.form_password}"/>
 </sql:query> 
 <c:if test="${rset_controllo.rowCount == 1}">
   <c:set var="user" value="${rset_controllo.rows[0]}" scope="session"/>
-  <c:set var="user_userid" value="${user.ID}" scope="session"/>
-  <c:set var="user_role" value="${user.Ruolo}" scope="session"/>
-  <c:set var="user_status" value="${user.ID_stato}" scope="session"/>
   <jsp:forward page="dispatch_home.jsp"/>
 </c:if>
 
