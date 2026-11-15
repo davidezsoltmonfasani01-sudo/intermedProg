@@ -14,7 +14,7 @@ import="java.sql.*" %>
 <tr>
             <td align="center" bgcolor="#f1f5f4">
                 <br><br>
-                <form action="#" method="post">
+                <form action="a_registrazione_collaboratori.jsp" method="post">
                     <table width="65%" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
                         <tr>
                             <td align="center" bgcolor="#dcebe7">
