@@ -6,7 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://it.unipv.bmilab.uploadtags"      prefix="upload" %>
 <c:if test="${empty param.data_certificazione ||
-              empty param.numero_albo ||
+              (user.Ruolo == 'MN' && empty param.numero_albo) ||
               empty param.messaggio_presentazione}">
   <c:set var="errmsg" scope="request">Tutti i campi sono obbligatori</c:set>
   <jsp:forward page="compilazione_scheda_professionale.jsp"/>
@@ -28,7 +28,12 @@ VALUES (?, ?, ?, ?)
   <sql:param value="${user.ID}"/>
   <sql:param value="${param.messaggio_presentazione}"/>
   <sql:param value="${param.data_certificazione}"/>
-  <sql:param value="${param.numero_albo}"/>
+  <c:choose> <c:when test="${user.Ruolo == 'MN'}">
+    <sql:param value="${param.numero_albo}"/> </c:when>
+    <c:otherwise> <sql:param value="${null}"/> </c:otherwise>
+  </c:choose>
+  
+  
 </sql:update>
 
 <sql:update var="riga_scheda_professionale">
@@ -37,9 +42,10 @@ SET ID_Stato = 2
 WHERE ID = ?
   <sql:param value="${user.ID}"/>
 </sql:update>
-<jsp:forward page="dispatch_home.jsp"/>
-<c:set target="${user}" property="ID_stato" value="2"/>
+
+<c:set target="${user}" property="ID_stato" value="${2}"/>
 <c:set target="${user}" property="Stato" value="Attivo"/>
+<jsp:forward page="dispatch_home.jsp"/>
 </c:if>
 
 <sql:update var="riga_scheda_professionale">
@@ -48,7 +54,13 @@ SET Presentazione = ?, data_certificazione = ?, numero_albo = ?
 WHERE ID_utente = ?
   <sql:param value="${param.messaggio_presentazione}"/>
   <sql:param value="${param.data_certificazione}"/>
-  <sql:param value="${param.numero_albo}"/>
+  
+  <c:choose> <c:when test="${user.Ruolo == 'MN'}">
+    <sql:param value="${param.numero_albo}"/> </c:when>
+    <c:otherwise> <sql:param value="${null}"/> </c:otherwise>
+  </c:choose>
+  
+ 
   <sql:param value="${user.ID}"/>
 </sql:update>
 

@@ -26,7 +26,7 @@
                     </table>
                 </td>
             </tr>
-            </thead>
+           </thead>
         </c:otherwise>
     </c:choose>
 
@@ -62,17 +62,20 @@
                                             name="data_certificazione" required>
                                     </td>
                                 </tr>
-                                <tr>
+                                <c:if test="${user.Ruolo == 'MN' }">
+                              	<tr>
                                     <td>
                                         <b>Numero Albo</b>
                                     </td>
                                 </tr>
+                              
                                 <tr>
                                     <td>
                                         <input type="text" id="numero_albo" name="numero_albo"
                                             size="30" required>
                                     </td>
                                 </tr>
+                                </c:if>
                                 <tr>
                                     <td>
                                         <b>Messaggio Di Presentazione</b>
@@ -101,7 +104,8 @@
             <br><br>
         </td>
     </tr>
+
 <c:if test="${not empty errmsg}">
   <span style="color:red;"><b>${errmsg}</b></span><br/>
 </c:if>
- <%@ include file="layout_bottom.jspf" % >
+<%@ include file="layout_bottom.jspf" %>
