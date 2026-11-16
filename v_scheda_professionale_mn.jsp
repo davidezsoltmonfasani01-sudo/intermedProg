@@ -25,7 +25,8 @@ import="java.sql.*" %>
             FROM Utenti , Schede_Professionali
             WHERE Utenti.ID = ID_utente
             AND Utenti.Ruolo = 'MN'
-          	AND Utenti.ID = ?
+          	AND ID_stato = 2
+            AND Utenti.ID = ?
             <sql:param value="${param.id_mn}"/>
         </sql:query>
 
