@@ -16,8 +16,10 @@ import="java.sql.*" %>
 
     <sql:query var="rset_mn">
       SELECT ID, CF, Cognome, Nome, Data_Nascita
-      FROM Utenti
-      WHERE Ruolo='MN'
+      FROM Utenti, Schede_Professionali
+      WHERE Utenti.ID = ID_utente
+      AND Ruolo='MN'
+      AND ID_stato = 2
       AND (Cognome LIKE ?
       OR Nome LIKE ?)
       ORDER BY Cognome, Nome
