@@ -14,10 +14,10 @@ import="java.sql.*" %>
 
   <%@ include file="navbar_pz.jspf" %>
 
-    <sql:query var="rset_utenti">
+    <sql:query var="rset_mn">
       SELECT ID, CF, Cognome, Nome, Data_Nascita
       FROM Utenti
-      WHERE Ruolo='KC'
+      WHERE Ruolo='MN'
       AND (Cognome LIKE ?
       OR Nome LIKE ?)
       ORDER BY Cognome, Nome
@@ -31,23 +31,23 @@ import="java.sql.*" %>
 
         <br><br>
 
-        <h2>Lista Kitchen Coach Disponibili</h2>
+        <h2>Lista Medici Nutrizionisti Disponibili</h2>
 
-        <p>Visualizza e cerca i Kitchen Coach registrati</p>
+        <p>Visualizza e cerca i Medici Nutrizionisti registrati</p>
 
         <br>
 
-        <form action="lista_schede_professionali_kc.jsp" method="get">
+        <form action="lista_schede_professionali_mn.jsp" method="get">
 
           <input type="text"
                  name="cerca"
                  size="35"
-                 placeholder="Cerca per CF, nome, cognome o username"
+                 placeholder="Cerca per cognome o nome"
                  value="${param.cerca}">
 
           <input type="submit" value="Cerca" style="background-color: #176b63; color: white; border: 0; border-radius: 6px; padding: 3px 16px; font-size: 13px; line-height: 1; cursor: pointer;">
 
-          <a href="lista_utenti.jsp">Mostra tutti</a>
+          <a href="lista_schede_professionali_mn.jsp">Mostra tutti</a>
 
         </form>
 
@@ -62,18 +62,18 @@ import="java.sql.*" %>
             <th>Dettagli</th>
           </tr>
 
-          <c:forEach items="${rset_utenti.rows}" var="utente">
+          <c:forEach items="${rset_mn.rows}" var="mn">
 
             <tr>
 
-              <td>${utente.Cognome}</td>
+              <td>${mn.Cognome}</td>
 
-              <td>${utente.Nome}</td>
+              <td>${mn.Nome}</td>
 
-              <td>${utente.Data_Nascita}</td>          
+              <td>${mn.Data_Nascita}</td>          
 
               <td>
-                <a href="v_scheda_professionale_kc.jsp?id_utente=${utente.ID}">
+                <a href="v_scheda_professionale_mn.jsp?id_mn=${mn.ID}">
                   Visualizza
                 </a>
               </td>
@@ -81,10 +81,10 @@ import="java.sql.*" %>
 
           </c:forEach>
 
-          <c:if test="${rset_utenti.rowCount == 0}">
+          <c:if test="${rset_mn.rowCount == 0}">
             <tr>
-              <td colspan="8">
-                Nessun Kitchen Coach trovato
+              <td colspan="4" align="center">
+                Nessun Medico Nutrizionista trovato
               </td>
             </tr>
           </c:if>

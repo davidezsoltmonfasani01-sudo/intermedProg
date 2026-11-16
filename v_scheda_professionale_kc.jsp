@@ -12,7 +12,7 @@ import="java.sql.*" %>
 <%@ include file="layout_top.jspf" %>
 
 <c:choose>
-    <c:when test="${empty param.id_utente}">
+    <c:when test="${empty param.id_kc}">
         <jsp:forward page="lista_schede_professionali_kc.jsp"/>
     </c:when>
 
@@ -20,12 +20,13 @@ import="java.sql.*" %>
 
         <%@ include file="navbar_pz.jspf" %>
 
-        <sql:query var="rset_utente">
+        <sql:query var="rset_kc">
             SELECT Utenti.ID, CF, Cognome, Nome, Data_Nascita, Presentazione, data_certificazione
             FROM Utenti , Schede_Professionali
             WHERE Utenti.ID = ID_utente
-              AND Utenti.ID = ?
-            <sql:param value="${param.id_utente}"/>
+            AND Utenti.Ruolo = 'KC'
+          	AND Utenti.ID = ?
+            <sql:param value="${param.id_kc}"/>
         </sql:query>
 
         <tr>
@@ -35,15 +36,15 @@ import="java.sql.*" %>
 
                 <c:choose>
 
-                    <c:when test="${rset_utente.rowCount == 1}">
-                        <c:set var="kc" value="${rset_utente.rows[0]}"/>
+                    <c:when test="${rset_kc.rowCount == 1}">
+                        <c:set var="kc" value="${rset_kc.rows[0]}"/>
 
                         
                         <table width="650" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
                             
                             
                             <tr bgcolor="#2e6f65">
-                                <td align="center" cellpadding="15">
+                                <td align="center">
                                     <br>
                                     <span style="color: white;" ><h3>${kc.Nome} ${kc.Cognome}</h3></span>
                                     <span style="color:#d1e5e1;"><i>Kitchen Coach Certificato</i></span>
@@ -108,8 +109,16 @@ import="java.sql.*" %>
                                     </table>
                                 </td>
                             </tr>
+							<tr>
+                            <td align="center">
+                              <form action="#" method="post">
+                                <input type="hidden" name="id_kc" value="${kc.ID}">
+                                <input type="submit" value="Associa Questo Kitchen Coach" style="background-color: #176b63; color: white; border: 0; border-radius: 6px; padding: 12px 32px; font-size: 16px; cursor: pointer;">
+                              </form>
+                              <br>
+                            </td>
+                          </tr>
 
-                            
                             <tr bgcolor="#e6efed">
                                 <td align="center">
                                     <br>
