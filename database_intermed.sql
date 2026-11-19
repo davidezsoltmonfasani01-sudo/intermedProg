@@ -3,7 +3,7 @@
 -- ================================================================
 
 CREATE TABLE Stati (
-    ID_Status INT PRIMARY KEY,
+    ID_Stato INT PRIMARY KEY,
     Stato VARCHAR(50) NOT NULL
 );
 
@@ -17,7 +17,7 @@ CREATE TABLE Utenti (
     username VARCHAR(50) NOT NULL UNIQUE,
     Password VARCHAR(255) NOT NULL,
     ID_stato INT NOT NULL,
-    Ruolo VARCHAR(50) NOT NULL,
+    Ruolo CHAR(2) NOT NULL,
     FOREIGN KEY (ID_stato) REFERENCES Stati(ID_Status)
 );
 
@@ -31,7 +31,7 @@ CREATE TABLE Schede_Professionali (
 );
 
 CREATE TABLE Tipi_Notifiche (
-    ID_tipo INT PRIMARY KEY,
+    ID_tipo INT PRIMARY KEY ,
     Descrizione VARCHAR(50) NOT NULL,
     Messaggio TEXT NOT NULL,
     Risorsa VARCHAR(50) NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE Tipi_Notifiche (
 );
 
 CREATE TABLE Prenotazioni (
-    ID_prenotazione INT PRIMARY KEY,
+    ID_prenotazione INT PRIMARY KEY AUTO_INCREMENT,
     ID_pz INT NOT NULL,
     ID_mn INT NOT NULL,
     Data_prenotazione DATETIME NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE Prenotazioni (
 );
 
 CREATE TABLE Visite (
-    ID_visita INT PRIMARY KEY,
+    ID_visita INT PRIMARY KEY AUTO_INCREMENT,
     Data_visita DATETIME NOT NULL,
     Data_fine DATETIME,
     ID_prenotazione INT NOT NULL,
@@ -81,19 +81,21 @@ CREATE TABLE Visite (
 );
 
 CREATE TABLE Pagine_Diario (
-    ID_pagina INT PRIMARY KEY,
+    ID_pagina INT PRIMARY KEY AUTO_INCREMENT,
     ID_pz INT NOT NULL,
     ID_visita INT NOT NULL,
     Data_pagina DATETIME NOT NULL,
     Data_compilazione DATETIME  NULL,
     Peso_giornaliero INT  NULL,
+    ID_stato INT  NOT NULL
     FOREIGN KEY (ID_pz) REFERENCES Utenti(ID),
     FOREIGN KEY (ID_visita) REFERENCES Visite(ID_visita)
+      FOREIGN KEY (ID_stato) REFERENCES Stati(ID_stato)
 );
 
 
 CREATE TABLE Porzioni (
-    ID_porzione INT PRIMARY KEY,
+    ID_porzione INT PRIMARY KEY AUTO_INCREMENT,
     ID_alimento INT NOT NULL,
     Tipo_pasto VARCHAR(50) NOT NULL,
     Quantita INT NOT NULL,
@@ -101,7 +103,7 @@ CREATE TABLE Porzioni (
 );
 
 CREATE TABLE Annotazioni_Diario (
-    ID_annotazione INT PRIMARY KEY,
+    ID_annotazione INT PRIMARY KEY AUTO_INCREMENT,
     ID_pagina INT NOT NULL,
     Data_ultima_modifica DATETIME NOT NULL,
     Testo TEXT NOT NULL,
@@ -111,7 +113,7 @@ CREATE TABLE Annotazioni_Diario (
 );
 
 CREATE TABLE Notifiche (
-    ID_notifica INT PRIMARY KEY,
+    ID_notifica INT PRIMARY KEY AUTO_INCREMENT,
     ID_risorsa INT NOT NULL,
     ID_tipo INT NOT NULL,
     ID_stato INT NOT NULL,
@@ -123,7 +125,7 @@ CREATE TABLE Notifiche (
 );
 
 CREATE TABLE Associazioni_KC_PZ (
-    ID_associazione INT PRIMARY KEY,
+    ID_associazione INT PRIMARY KEY AUTO_INCREMENT,
     ID_pz INT NOT NULL,
     ID_kc INT NOT NULL,
     Data_inizio DATETIME NOT NULL,
@@ -139,6 +141,7 @@ CREATE TABLE Associazioni_KC_PZ (
 -- Dati iniziali
 -- ================================================================
 
+  
 INSERT INTO Stati (ID_Status, Stato) VALUES
 (1, 'Attesa'),
 (2, 'Attivo'),

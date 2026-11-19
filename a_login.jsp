@@ -9,11 +9,10 @@
 <c:remove var="user" scope="session"/>
 
 <sql:query var="rset_controllo">
-SELECT ID, CF, Nome, Cognome, Data_nascita, Username, Ruolo, ID_stato, Stato
-  FROM Utenti U, Stati S
- WHERE 
- U.ID_stato = S.ID_stato
- AND Username = ?
+SELECT U.ID, U.CF, U.Nome, U.Cognome, U.Data_nascita, U.Username, U.Ruolo, U.ID_stato, S.Stato
+  FROM Utenti U
+INNER JOIN Stati S ON U.ID_stato = S.ID_stato
+ WHERE Username = ?
  <sql:param value="${param.form_username}"/>
  AND Password = ?
  <sql:param value="${param.form_password}"/>
