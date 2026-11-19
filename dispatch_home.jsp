@@ -10,19 +10,22 @@
   <c:when test="${not empty user.ID && user.Ruolo == 'MN'}">
     <c:if test="${user.ID_stato == 1}">
     <jsp:forward page="compilazione_scheda_professionale.jsp" />
-  </c:if>
+    </c:if>
   <jsp:forward page="home_mn.jsp" />
   </c:when>
   <c:when test="${not empty user.ID && user.Ruolo == 'PZ'}">
     <c:if test="${user.ID_stato == 1}">
     <jsp:forward page="attesa_attivazione.jsp" />
-  </c:if>
+    </c:if>
+    <c:if test="${user.ID_stato == 3}">
+    <jsp:forward page="lista_schede_professionali_kc.jsp" />
+    </c:if>
   <jsp:forward page="home_pz.jsp" />
   </c:when>
   <c:when test="${not empty user.ID && user.Ruolo == 'KC'}">
     <c:if test="${user.ID_stato == 1}">
     <jsp:forward page="compilazione_scheda_professionale.jsp" />
-  </c:if>
+    </c:if>
   <jsp:forward page="home_kc.jsp" />
   </c:when>
   <c:when test="${not empty user.ID && user.Ruolo == 'DS'}">
