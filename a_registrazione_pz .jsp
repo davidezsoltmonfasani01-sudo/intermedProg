@@ -24,10 +24,7 @@ import="java.sql.*" %>
 
 
   
-<c:if test="${rset_controllo_CF.rowCount > 0}">
-  <c:set var="errmsg" scope="request">Questo Codice Fiscale risulta gia' registrato</c:set>
-  <jsp:forward page="registrazione_pz.jsp"/>
-</c:if>
+
  
 <sql:query var="rset_controllo_U">
 SELECT Username
@@ -56,19 +53,16 @@ VALUES (?, ?, ?, ?, ?, 1, 'PZ', ?)
   <sql:param value="${param.username}"/>
 </sql:update>
 
-<sql:query var="rset_controllo_ID">
-SELECT ID
-  FROM Utenti
- WHERE Username = ?
+<sql:query var="rset_controllo">
+SELECT ID, CF, Cognome, Nome, Data_Nascita, ID_stato, Ruolo, Username, Stato
+  FROM Utenti , Stati 
+ WHERE 
+  ID_stato = ID_Status
+  AND Username = ?
  <sql:param value="${param.username}"/>
 </sql:query>
  
-<c:set var="user_userid" value="${rset_controllo_ID.rows[0].ID}" scope="session"/>
-<c:set var="user_role"   value="PZ"  scope="session"/>
-<c:set var="user_status"   value='1'  scope="session"/>
-<c:set var="user_nome"   value="${param.nome}"  scope="session"/>
-<c:set var="user_cognome"   value="${param.cognome}"  scope="session"/>
-<c:set var="user_CF"   value="${fn:toUpperCase(param.codice_fiscale)}"  scope="session"/>
-<c:set var="user_data"   value="${param.data_nascita}"  scope="session"/>
+<c:set var="user" value="${rset_controllo.rows[0]}" scope="session"/>
+
 
 <jsp:forward page="dispatch_home.jsp"/>  

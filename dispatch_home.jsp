@@ -7,20 +7,26 @@
 <%@ taglib uri="http://it.unipv.bmilab.uploadtags"      prefix="upload" %>
 
     <c:choose>
-  <c:when test="${not empty user_userid && user_role == 'MN'}">
-    <jsp:forward page="home_mn.jsp" />
+  <c:when test="${not empty user.ID && user.Ruolo == 'MN'}">
+    <c:if test="${user.ID_stato == 1}">
+    <jsp:forward page="compilazione_scheda_professionale.jsp" />
+  </c:if>
+  <jsp:forward page="home_mn.jsp" />
   </c:when>
-  <c:when test="${not empty user_userid && user_role == 'PZ' && user_status != 1}">
-    <jsp:forward page="home_pz.jsp" />
-  </c:when>
-  <c:when test="${not empty user_userid && user_role == 'KC'}">
-    <jsp:forward page="home_kc.jsp" />
-  </c:when>
-  <c:when test="${not empty user_userid && user_role == 'DS'}">
-    <jsp:forward page="home_ds.jsp" />
-  </c:when>
-  <c:when test="${not empty user_userid && user_role == 'PZ' && user_status == 1}">
+  <c:when test="${not empty user.ID && user.Ruolo == 'PZ'}">
+    <c:if test="${user.ID_stato == 1}">
     <jsp:forward page="attesa_attivazione.jsp" />
+  </c:if>
+  <jsp:forward page="home_pz.jsp" />
+  </c:when>
+  <c:when test="${not empty user.ID && user.Ruolo == 'KC'}">
+    <c:if test="${user.ID_stato == 1}">
+    <jsp:forward page="compilazione_scheda_professionale.jsp" />
+  </c:if>
+  <jsp:forward page="home_kc.jsp" />
+  </c:when>
+  <c:when test="${not empty user.ID && user.Ruolo == 'DS'}">
+    <jsp:forward page="home_ds.jsp" />
   </c:when>
   <c:otherwise>
     <jsp:forward page="login.jsp" />

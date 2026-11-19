@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direzione Sanitaria - Monitoraggio Piattaforma</title>
+    <style>
+        :root {
+            --bg-body: #f8fafc;
+            --bg-card: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --primary: #0d9488;
+            --primary-hover: #0f766e;
+            --primary-light: #f0fdfa;
+            --blue: #2563eb;
+            --blue-light: #eff6ff;
+            --amber: #d97706;
+            --amber-light: #fffbeb;
+            --rose: #e11d48;
+            --rose-light: #fff1f2;
+            --emerald: #059669;
+            --purple: #7c3aed;
+            --purple-light: #f5f3ff;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+        header {
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        .header-inner {
+            height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .brand { display: flex; align-items: center; gap: 12px; }
+        .brand-icon {
+            background: var(--primary);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .brand h1 { font-size: 18px; font-weight: 700; }
+        .brand p { font-size: 12px; color: var(--text-muted); }
+        .controls { display: flex; gap: 10px; align-items: center; }
+        select, input[type="text"] {
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 7px 12px;
+            font-size: 13px;
+            color: var(--text-main);
+            background: #fff;
+            outline: none;
+        }
+        select:focus, input[type="text"]:focus { border-color: var(--primary); }
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn:hover { background: var(--primary-hover); }
+        main { padding: 32px 0; display: flex; flex-direction: column; gap: 32px; }
+        .section-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+        }
+        .kpi-card {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .kpi-label { font-size: 13px; font-weight: 500; color: var(--text-muted); }
+        .kpi-value { font-size: 30px; font-weight: 700; margin: 4px 0 8px 0; }
+        .kpi-sub { font-size: 12px; font-weight: 500; }
+        .kpi-badge {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        .card-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+        }
+        .card-header h3 { font-size: 15px; font-weight: 600; }
+        .pill {
+            font-size: 11px;
+            background: #f1f5f9;
+            color: #475569;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 600;
+        }
+        .table-wrap { max-height: 320px; overflow-y: auto; padding: 0 20px 12px 20px; }
+        .table-wrap-full { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+            padding: 12px 8px;
+            border-bottom: 1px solid var(--border);
+        }
+        td {
+            padding: 12px 8px;
+            font-size: 13.5px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        tr:last-child td { border-bottom: none; }
+        .full-table th, .full-table td { padding: 14px 20px; }
+        .full-table th { background: #f8fafc; }
+        .full-table tr:hover td { background: #f8fafc; }
+        .text-right { text-align: right; }
+        .font-bold { font-weight: 600; }
+        .strike { text-decoration: line-through; color: var(--rose); }
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 8px;
+            border-radius: 5px;
+            margin-right: 6px;
+        }
+        .card-footer {
+            background: #f8fafc;
+            padding: 12px 20px;
+            border-top: 1px solid var(--border);
+            font-size: 12px;
+            color: var(--text-muted);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 0 0 12px 12px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-inner">
+        <div class="brand">
+            <div class="brand-icon">+</div>
+            <div>
+                <h1>Direzione Sanitaria</h1>
+                <p>Monitoraggio Utilizzo & Audit Piattaforma</p>
+            </div>
+        </div>
+        <div class="controls">
+            <select id="periodFilter" onchange="updatePeriod()">
+                <option value="30">Ultimi 30 giorni</option>
+                <option value="90">Ultimo Trimestre</option>
+                <option value="365">Anno Corrente (2026)</option>
+                <option value="all" selected>Tutto lo storico</option>
+            </select>
+            <button class="btn" onclick="window.print()">Stampa / Salva PDF</button>
+        </div>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- DATI GLOBALI -->
+    <section>
+        <div class="section-title">Panoramica Dati Globali</div>
+        <div class="kpi-grid">
+            <div class="card kpi-card">
+                <div>
+                    <div class="kpi-label">Totale Visite Effettuate</div>
+                    <div class="kpi-value" id="kpi-visite">1.284</div>
+                    <div class="kpi-sub" style="color: var(--emerald);">+12% rispetto al periodo precedente</div>
+                </div>
+                <div class="kpi-badge" style="background: var(--blue-light); color: var(--blue);">🩺</div>
+            </div>
+            <div class="card kpi-card">
+                <div>
+                    <div class="kpi-label">Pagine Diario Compilate</div>
+                    <div class="kpi-value" id="kpi-diario">8.940</div>
+                    <div class="kpi-sub" style="color: var(--emerald);">Media 24 pagine / paziente</div>
+                </div>
+                <div class="kpi-badge" style="background: var(--primary-light); color: var(--primary);">📖</div>
+            </div>
+            <div class="card kpi-card">
+                <div>
+                    <div class="kpi-label">Annotazioni Inserite</div>
+                    <div class="kpi-value" id="kpi-note">3.412</div>
+                    <div class="kpi-sub" style="color: var(--text-muted);">Inserite dai Kitchen Coach</div>
+                </div>
+                <div class="kpi-badge" style="background: var(--amber-light); color: var(--amber);">📝</div>
+            </div>
+            <div class="card kpi-card">
+                <div>
+                    <div class="kpi-label">Sostituzioni Kitchen Coach</div>
+                    <div class="kpi-value" id="kpi-cambi">19</div>
+                    <div class="kpi-sub" style="color: var(--rose);">Tasso di sostituzione: 4,8%</div>
+                </div>
+                <div class="kpi-badge" style="background: var(--rose-light); color: var(--rose);">🔄</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- METRICHE PER SINGOLO UTENTE -->
+    <section>
+        <div class="section-title">Metriche per Singolo Utente</div>
+        <div class="details-grid">
+
+            <!-- Medici Nutrizionisti -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Medici Nutrizionisti</h3>
+                    <span class="pill">Visite parziali</span>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Medico</th>
+                                <th class="text-right">Visite</th>
+                                <th class="text-right">Quota</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-bold">Dott.ssa Elena Rossi</td>
+                                <td class="text-right font-bold">412</td>
+                                <td class="text-right" style="color: var(--text-muted);">32,1%</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">Dott. Marco Bianchi</td>
+                                <td class="text-right font-bold">358</td>
+                                <td class="text-right" style="color: var(--text-muted);">27,9%</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">Dott.ssa Giulia Verdi</td>
+                                <td class="text-right font-bold">290</td>
+                                <td class="text-right" style="color: var(--text-muted);">22,6%</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">Dott. Luca Neri</td>
+                                <td class="text-right font-bold">224</td>
+                                <td class="text-right" style="color: var(--text-muted);">17,4%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Pazienti -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Pazienti (Diario Alimentare)</h3>
+                    <input type="text" placeholder="Cerca paziente..." onkeyup="filterTable(this, 'table-pazienti')">
+                </div>
+                <div class="table-wrap">
+                    <table id="table-pazienti">
+                        <thead>
+                            <tr>
+                                <th>Paziente</th>
+                                <th class="text-right">Pagine</th>
+                                <th class="text-right">Ultimo invio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-bold">Chiara Fontana</td>
+                                <td class="text-right font-bold" style="color: var(--primary);">64</td>
+                                <td class="text-right" style="color: var(--text-muted); font-size: 12px;">Oggi, 14:20</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">Alessandro Gallo</td>
+                                <td class="text-right font-bold" style="color: var(--primary);">51</td>
+                                <td class="text-right" style="color: var(--text-muted); font-size: 12px;">Ieri</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">Francesca Conti</td>
+                                <td class="text-right font-bold" style="color: var(--primary);">39</td>
+                                <td class="text-right" style="color: var(--text-muted); font-size: 12px;">15 Nov 2026</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">Matteo De Luca</td>
+                                <td class="text-right font-bold" style="color: var(--primary);">12</td>
+                                <td class="text-right" style="color: var(--rose); font-size: 12px;">10 giorni fa</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Kitchen Coach -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Kitchen Coach</h3>
+                    <span class="pill">Annotazioni</span>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Kitchen Coach</th>
+                                <th class="text-right">Note</th>
+                                <th class="text-right">Pazienti</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-bold">Sofia Marchetti</td>
+                                <td class="text-right font-bold" style="color: var(--amber);">1.120</td>
+                                <td class="text-right" style="color: var(--text-muted);">45</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">Davide Rinaldi</td>
+                                <td class="text-right font-bold" style="color: var(--amber);">985</td>
+                                <td class="text-right" style="color: var(--text-muted);">38</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">Martina Leone</td>
+                                <td class="text-right font-bold" style="color: var(--amber);">760</td>
+                                <td class="text-right" style="color: var(--text-muted);">31</td>
+                            </tr>
+                            <tr>
+                                <td class="font-bold">Andrea Villa</td>
+                                <td class="text-right font-bold" style="color: var(--amber);">547</td>
+                                <td class="text-right" style="color: var(--text-muted);">22</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- STORICO SOSTITUZIONI -->
+    <section>
+        <div class="card">
+            <div class="card-header" style="flex-wrap: wrap;">
+                <div>
+                    <h3 style="font-size: 16px;">Storico Completo Sostituzioni Kitchen Coach</h3>
+                    <p style="font-size: 12px; color: var(--text-muted);">Registro cronologico dei cambi coach e relative motivazioni addotte dai pazienti</p>
+                </div>
+                <input type="text" style="width: 260px;" placeholder="Filtra per paziente, coach o motivo..." onkeyup="filterTable(this, 'table-sostituzioni')">
+            </div>
+            <div class="table-wrap-full">
+                <table class="full-table" id="table-sostituzioni">
+                    <thead>
+                        <tr>
+                            <th>Data Cambio</th>
+                            <th>Paziente</th>
+                            <th>Coach Precedente</th>
+                            <th>Nuovo Coach</th>
+                            <th>Motivazione Addotta dal Paziente</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="white-space: nowrap; color: var(--text-muted);">14 Nov 2026</td>
+                            <td class="font-bold">Lorenzo Moretti</td>
+                            <td class="strike">Andrea Villa</td>
+                            <td class="font-bold" style="color: var(--emerald);">Sofia Marchetti</td>
+                            <td>
+                                <span class="tag" style="background: var(--amber-light); color: var(--amber);">Orari</span>
+                                Incompatibilità con gli orari lavorativi per le call settimanali di revisione.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="white-space: nowrap; color: var(--text-muted);">02 Nov 2026</td>
+                            <td class="font-bold">Sara Barbieri</td>
+                            <td class="strike">Martina Leone</td>
+                            <td class="font-bold" style="color: var(--emerald);">Davide Rinaldi</td>
+                            <td>
+                                <span class="tag" style="background: var(--blue-light); color: var(--blue);">Esigenze specifiche</span>
+                                Richiesta di un coach con maggiore esperienza nella preparazione di pasti proteici per sportivi.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="white-space: nowrap; color: var(--text-muted);">19 Ott 2026</td>
+                            <td class="font-bold">Roberto Ferraro</td>
+                            <td class="strike">Davide Rinaldi</td>
+                            <td class="font-bold" style="color: var(--emerald);">Martina Leone</td>
+                            <td>
+                                <span class="tag" style="background: var(--purple-light); color: var(--purple);">Empatia</span>
+                                Mancanza di sintonia comunicativa nell'approccio motivazionale.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="white-space: nowrap; color: var(--text-muted);">05 Ott 2026</td>
+                            <td class="font-bold">Valentina Testa</td>
+                            <td class="strike">Andrea Villa</td>
+                            <td class="font-bold" style="color: var(--emerald);">Sofia Marchetti</td>
+                            <td>
+                                <span class="tag" style="background: #f1f5f9; color: #475569;">Altro</span>
+                                Il paziente preferisce interfacciarsi con una figura femminile per motivi personali.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="card-footer">
+                <span>Mostrando 4 di 19 sostituzioni totali</span>
+                <span>Audit aggiornato in tempo reale</span>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script>
+    function filterTable(input, tableId) {
+        const filter = input.value.toLowerCase();
+        const rows = document.getElementById(tableId).getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+        for (let i = 0; i < rows.length; i++) {
+            const text = rows[i].textContent || rows[i].innerText;
+            rows[i].style.display = text.toLowerCase().indexOf(filter) > -1 ? '' : 'none';
+        }
+    }
+
+    function updatePeriod() {
+        const val = document.getElementById('periodFilter').value;
+        const data = {
+            '30':  { v: '142',   d: '1.120', n: '430',   c: '2' },
+            '90':  { v: '410',   d: '3.250', n: '1.190', c: '6' },
+            '365': { v: '1.150', d: '7.890', n: '3.020', c: '16' },
+            'all': { v: '1.284', d: '8.940', n: '3.412', c: '19' }
+        };
+        document.getElementById('kpi-visite').innerText = data[val].v;
+        document.getElementById('kpi-diario').innerText = data[val].d;
+        document.getElementById('kpi-note').innerText   = data[val].n;
+        document.getElementById('kpi-cambi').innerText  = data[val].c;
+    }
+</script>
+
+</body>
+</html>

@@ -27,7 +27,7 @@ import="java.sql.*" %>
         <table width="100%" height="300" border="0" cellpadding="14" cellspacing="0">
           <tr>
             <td  align="center">
-              <h1 id="inizio" align="center">Ciao ${user_nome}</h1>
+              <h1 id="inizio" align="center">Ciao ${user.Username}</h1>
               <p align="center">Account registrato con successo e in attesa di attivazione</p>
             </td>
           </tr>

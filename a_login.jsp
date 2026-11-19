@@ -6,15 +6,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://it.unipv.bmilab.uploadtags"      prefix="upload" %>
 
-<c:remove var="user_userid" scope="session"/>
-<c:remove var="user_role"   scope="session"/>
+<c:remove var="user" scope="session"/>
 
 <sql:query var="rset_controllo">
-SELECT ID, CF, Nome, Cognome, Data_nascita, Sesso, Username, Password, Ruolo, ID_stato
-  FROM Utenti
+SELECT U.ID, U.CF, U.Nome, U.Cognome, U.Data_nascita, U.Username, U.Ruolo, U.ID_stato, S.Stato
+  FROM Utenti U
+INNER JOIN Stati S ON U.ID_stato = S.ID_stato
  WHERE Username = ?
  <sql:param value="${param.form_username}"/>
- and Password = ?
+ AND Password = ?
  <sql:param value="${param.form_password}"/>
 </sql:query> 
 <c:if test="${rset_controllo.rowCount == 1}">

@@ -17,21 +17,21 @@ CREATE TABLE Utenti (
     username VARCHAR(50) NOT NULL UNIQUE,
     Password VARCHAR(255) NOT NULL,
     ID_stato INT NOT NULL,
-    Ruolo VARCHAR(50) NOT NULL,
-    FOREIGN KEY (ID_stato) REFERENCES Stati(ID_Stato)
+    Ruolo CHAR(2) NOT NULL,
+    FOREIGN KEY (ID_stato) REFERENCES Stati(ID_Status)
 );
 
 CREATE TABLE Schede_Professionali (
     ID_scheda INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     ID_utente INT NOT NULL UNIQUE,
-    descrizione TEXT NOT NULL,
+    Presentazione TEXT NOT NULL,
     data_certificazione DATE NOT NULL,
     numero_albo INT NULL,
     FOREIGN KEY (ID_utente) REFERENCES Utenti(ID)
 );
 
 CREATE TABLE Tipi_Notifiche (
-    ID_tipo INT PRIMARY KEY,
+    ID_tipo INT PRIMARY KEY ,
     Descrizione VARCHAR(50) NOT NULL,
     Messaggio TEXT NOT NULL,
     Risorsa VARCHAR(50) NOT NULL,
@@ -87,8 +87,10 @@ CREATE TABLE Pagine_Diario (
     Data_pagina DATETIME NOT NULL,
     Data_compilazione DATETIME  NULL,
     Peso_giornaliero INT  NULL,
+    ID_stato INT  NOT NULL
     FOREIGN KEY (ID_pz) REFERENCES Utenti(ID),
     FOREIGN KEY (ID_visita) REFERENCES Visite(ID_visita)
+      FOREIGN KEY (ID_stato) REFERENCES Stati(ID_stato)
 );
 
 
@@ -139,7 +141,8 @@ CREATE TABLE Associazioni_KC_PZ (
 -- Dati iniziali
 -- ================================================================
 
-INSERT INTO Stati (ID_Stato, Stato) VALUES
+  
+INSERT INTO Stati (ID_Status, Stato) VALUES
 (1, 'Attesa'),
 (2, 'Attivo'),
 (10, 'visualizzata'),
