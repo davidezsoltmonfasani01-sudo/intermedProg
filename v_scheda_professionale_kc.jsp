@@ -12,13 +12,32 @@ import="java.sql.*" %>
 <%@ include file="layout_top.jspf" %>
 
 <c:choose>
-    <c:when test="${empty param.id_kc}">
+    <c:when test="${empty param.ID_kc}">
         <jsp:forward page="lista_schede_professionali_kc.jsp"/>
     </c:when>
 
     <c:otherwise>
 
-        <%@ include file="navbar_pz.jspf" %>
+        <c:choose>
+        <c:when test="${ user.ID_stato == 2}">
+            <jsp:include page="navbar_pz.jspf" />
+        </c:when>
+        <c:otherwise>
+            <tr>
+                <td colspan="2" bgcolor="#124f49">
+                    <table width="100%" border="0" cellpadding="12" cellspacing="0">
+                        <tr align="center">
+                            <td><a href="index.jsp"
+                                    style="color: white;"><b>Home</b></a></td>
+                            <td><a href="logout.jsp"
+                                    style="color: white;"><b>Logout</b></a></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+           </thead>
+        </c:otherwise>
+    </c:choose>
 
         <sql:query var="rset_kc">
             SELECT Utenti.ID, CF, Cognome, Nome, Data_Nascita, Presentazione, data_certificazione
@@ -27,7 +46,7 @@ import="java.sql.*" %>
             AND Utenti.Ruolo = 'KC'
           	AND ID_stato = 2
             AND Utenti.ID = ?
-            <sql:param value="${param.id_kc}"/>
+            <sql:param value="${param.ID_kc}"/>
         </sql:query>
 
         <tr>

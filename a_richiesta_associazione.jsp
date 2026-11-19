@@ -26,7 +26,7 @@ import="java.sql.*" %>
         <c:choose>
             
             <c:when test="${Controllo_kc.rowCount > 0}">
-                <c:set var="errmsg" value="Hai già un Kitchen Coach associato. Per associarne un altro, devi prima disassociare quello attuale." scope="request"/>
+                <c:set var="errmsg" value="Hai gia' un Kitchen Coach associato. Per associarne un altro, devi prima disassociare quello attuale." scope="request"/>
                 <jsp:forward page="kc_associato.jsp"/>
             </c:when>
 
@@ -37,8 +37,14 @@ import="java.sql.*" %>
                     <sql:param value="${user.ID}"/>
                     <sql:param value="${param.id_kc}"/>
                 </sql:update>
-
-                <c:set var="okmsg" value="Kitchen Coach associato con successo!" scope="request"/>
+              <sql:update var="righe_modificate">
+                    UPDATE Utenti
+                    SET ID_stato = 2
+                    WHERE ID = ?
+                    <sql:param value="${User.ID}"/>
+                </sql:update>
+				
+         
                 <jsp:forward page="kc_associato.jsp"/>
             </c:otherwise>
         </c:choose>

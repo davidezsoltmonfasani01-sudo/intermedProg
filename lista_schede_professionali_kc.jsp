@@ -10,9 +10,28 @@ import="java.sql.*" %>
 <%@ taglib uri="http://it.unipv.bmilab.uploadtags" prefix="upload" %>
 
 <%@ include file="layout_top.jspf" %>
+<c:choose>
+        <c:when test="${ user.ID_stato == 2}">
+            <jsp:include page="navbar_pz.jspf" />
+        </c:when>
+        <c:otherwise>
+            <tr>
+                <td colspan="2" bgcolor="#124f49">
+                    <table width="100%" border="0" cellpadding="12" cellspacing="0">
+                        <tr align="center">
+                            <td><a href="index.jsp"
+                                    style="color: white;"><b>Home</b></a></td>
+                            <td><a href="logout.jsp"
+                                    style="color: white;"><b>Logout</b></a></td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+           </thead>
+        </c:otherwise>
+    </c:choose>
 
 
-  <%@ include file="navbar_pz.jspf" %>
 
     <sql:query var="rset_kc">
       SELECT Utenti.ID, CF, Cognome, Nome, Data_Nascita
@@ -37,7 +56,10 @@ import="java.sql.*" %>
 
         <p>Visualizza e cerca i Kitchen Coach registrati</p>
 
-        <br>
+        <c:if test="${user.ID_stato == 3}">
+          <b>Seleziona un Kitchen Coach per sbloccare le altre funzionalita'</b>
+        </c:if>
+        <br><br>
 
         <form action="lista_schede_professionali_kc.jsp" method="get">
 
