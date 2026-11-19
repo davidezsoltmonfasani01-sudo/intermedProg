@@ -41,10 +41,11 @@ import="java.sql.*" %>
                     UPDATE Utenti
                     SET ID_stato = 2
                     WHERE ID = ?
-                    <sql:param value="${User.ID}"/>
+                    <sql:param value="${user.ID}"/>
                 </sql:update>
 				
-         
+         		<c:set target="${user}" property="ID_stato" value="${2}"/>
+				<c:set target="${user}" property="Stato" value="Attivo"/>
                 <jsp:forward page="kc_associato.jsp"/>
             </c:otherwise>
         </c:choose>

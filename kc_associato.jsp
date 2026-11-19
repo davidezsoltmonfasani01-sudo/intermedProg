@@ -114,7 +114,7 @@ import="java.sql.*" %>
                         </table>
                       </fieldset>
                       <br>
-                      <form action="#" method="post">
+                      <form action="a_rimuovi_associazione.jsp" method="post">
                       <fieldset>
                         <legend><b><span style="color:#8B0000;">Motivazione Sostituzione Kitchen Coach</span></b></legend>
                         <table width="100%" border="0" cellpadding="10" cellspacing="0">
