@@ -22,11 +22,11 @@ CREATE TABLE Utenti (
 );
 
 CREATE TABLE Schede_Professionali (
-    ID INT PRIMARY KEY NOT NULL,
+    ID_scheda INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
     ID_utente INT NOT NULL UNIQUE,
     descrizione TEXT NOT NULL,
     data_certificazione DATE NOT NULL,
-    numero_albo INT NOT NULL,
+    numero_albo INT NULL,
     FOREIGN KEY (ID_utente) REFERENCES Utenti(ID)
 );
 
@@ -39,7 +39,7 @@ CREATE TABLE Tipi_Notifiche (
 );
 
 CREATE TABLE Prenotazioni (
-    ID_prenotazione INT PRIMARY KEY,
+    ID_prenotazione AUTO_INCREMENT INT PRIMARY KEY,
     ID_pz INT NOT NULL,
     ID_mn INT NOT NULL,
     Data_prenotazione DATETIME NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE Prenotazioni (
 );
 
 CREATE TABLE Visite (
-    ID_visita INT PRIMARY KEY,
+    ID_visita INT AUTO_INCREMENT PRIMARY KEY,
     Data_visita DATETIME NOT NULL,
     Data_fine DATETIME,
     ID_prenotazione INT NOT NULL,
@@ -81,7 +81,7 @@ CREATE TABLE Visite (
 );
 
 CREATE TABLE Pagine_Diario (
-    ID_pagina INT PRIMARY KEY,
+    ID_pagina INT AUTO_INCREMENT PRIMARY KEY ,
     ID_pz INT NOT NULL,
     ID_visita INT NOT NULL,
     Data_pagina DATETIME NOT NULL,
@@ -93,7 +93,7 @@ CREATE TABLE Pagine_Diario (
 
 
 CREATE TABLE Porzioni (
-    ID_porzione INT PRIMARY KEY,
+    ID_porzione INT AUTO_INCREMENT PRIMARY KEY,
     ID_alimento INT NOT NULL,
     Tipo_pasto VARCHAR(50) NOT NULL,
     Quantita INT NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE Porzioni (
 );
 
 CREATE TABLE Annotazioni_Diario (
-    ID_annotazione INT PRIMARY KEY,
+    ID_annotazione INT AUTO_INCREMENT PRIMARY KEY,
     ID_pagina INT NOT NULL,
     Data_ultima_modifica DATETIME NOT NULL,
     Testo TEXT NOT NULL,
@@ -111,7 +111,7 @@ CREATE TABLE Annotazioni_Diario (
 );
 
 CREATE TABLE Notifiche (
-    ID_notifica INT PRIMARY KEY,
+    ID_notifica INT AUTO_INCREMENT PRIMARY KEY,
     ID_risorsa INT NOT NULL,
     ID_tipo INT NOT NULL,
     ID_stato INT NOT NULL,
@@ -123,7 +123,7 @@ CREATE TABLE Notifiche (
 );
 
 CREATE TABLE Associazioni_KC_PZ (
-    ID_associazione INT PRIMARY KEY,
+    ID_associazione INT AUTO_INCREMENT PRIMARY KEY,
     ID_pz INT NOT NULL,
     ID_kc INT NOT NULL,
     Data_inizio DATETIME NOT NULL,
@@ -261,3 +261,10 @@ INSERT INTO Annotazioni_Diario (ID_annotazione, ID_pagina, Data_ultima_modifica,
 INSERT INTO Notifiche (ID_notifica, ID_risorsa, ID_tipo, ID_stato, ID_utente, Data_ora) VALUES
 (1, 1, 2, 10, 1, '2025-01-10 09:00:00'),
 (2, 1, 1, 11, 1, '2025-01-20 10:45:00');
+<
+INSERT INTO Schede_Professionali (ID_utente, Presentazione, data_certificazione, numero_albo)
+VALUES 
+(5, 'Sono il dottor Pivetta e sono braverrimo', '2001-09-11 00:00:00', 12),
+(14, 'Sono Aldo Castronni, Kitchen Coach certificato. Collaboro con medici dietologi e biologi nutrizionisti per aiutarti a mettere in pratica il tuo piano alimentare senza stress. Dalla riorganizzazione della dispensa alle sessioni di cucina pratica a domicilio o online, ti offro gli strumenti concreti per cucinare sano, risparmiare tempo e mantenere i risultati nel tempo.', '2010-06-17 00:00:00', 1),
+(15, 'Sono il Kitchen Coach Ciburri e se vuole le faccio la spesa.', '2011-07-13 00:00:00', NULL),
+(17, 'Vuoi andare piu veloce ? Devi depilarti! (anche perdere 35 kg di grasso), e'' una legge dell''aerodinamica, togli i peli, togli l''attrito, e mi vai piu veloce, mi guadagni 2 secondi al KM, in maratona guadagni 1 minuto e mezzo', '2023-01-17 00:00:00', NULL);

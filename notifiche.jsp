@@ -7,32 +7,33 @@ import="java.sql.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://it.unipv.bmilab.uploadtags"      prefix="upload" %>
-
-<c:set var="user_username" value="Giovanni" />
+<c:if test="${empty user}">
+        <jsp:forward page="login.jsp"/>
+</c:if>
 
 
 <sql:query var="notifiche">
-    SELECT n.ID_notifica, n.Data, t.Messaggio, n.ID_stato, t.Descrizione, s.Stato, n.Risorsa
+    SELECT n.ID_notifica, n.Data_ora, t.Messaggio, n.ID_stato, t.Descrizione, s.Stato, t.Risorsa
     FROM Notifiche n
     INNER JOIN Tipi_Notifiche t ON n.ID_tipo = t.ID_tipo
-    INNER JOIN Stati s ON n.ID_stato = s.ID_stato
-    INNER JOIN Utenti u ON n.CF = u.CF
-    WHERE u.Username = ?
+    INNER JOIN Stati s ON n.ID_stato = s.ID_stato	
+    INNER JOIN Utenti u ON n.ID_utente = u.ID
+    WHERE u.ID = ?
     <c:if test="${not empty vAll && vAll == 'false'}">
         AND n.ID_stato = '11'
     </c:if>
-    ORDER BY n.Data DESC
-    <sql:param value="${user_username}" />
+    ORDER BY n.Data_ora DESC
+    <sql:param value="${user.ID}" />
 </sql:query>
 
 
 <sql:query var="not_viewed_n">
     SELECT count(*) as not_viewed_count
     FROM Notifiche n
-    INNER JOIN Stati s ON n.ID_stato = s.ID_stato
-    INNER JOIN Utenti u ON n.CF = u.CF
-    WHERE u.Username = ? AND n.ID_stato = '11'
-    <sql:param value="${user_username}" />
+    INNER JOIN Stati s ON n.ID_stato = s.ID_stato	
+    INNER JOIN Utenti u ON n.ID_utente = u.ID
+    WHERE u.ID = ? AND n.ID_stato = '11'
+    <sql:param value="${user.ID}" />
 </sql:query>
 
 <%@ include file="layout_top.jspf" %>
@@ -58,7 +59,7 @@ import="java.sql.*" %>
                         <td>
                            
                             <form action="a_notifiche.jsp" method="post">
-                                <input type="hidden" name="user_username" value="${user_username}" />
+                                <input type="hidden" name="user_ID" value="${user.ID}" />
                                 
                                 <button class="card" type="submit" title="Elimina tutte le notifiche" value="all_delete" name="all_action">
                                     Elimina tutte
@@ -91,7 +92,7 @@ import="java.sql.*" %>
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Data</th>
+                                        <th>Data e ora</th>
                                         <th>Tipo</th>
                                         <th>Messaggio</th>
                                         <th>Azioni</th>
@@ -100,7 +101,7 @@ import="java.sql.*" %>
                                 <tbody>
                                     <c:forEach var="n" items="${notifiche.rows}">
                                         <tr class="${n.ID_stato == '11' ? 'nNon_letta' : (n.ID_stato == '10' ? 'nLetta' : '')}">
-                                            <td>${n.Data}</td>
+                                            <td>${n.Data_ora}</td>
                                             <td>${n.Descrizione}</td>
                                             <td>${n.Messaggio}</td>
                                             <td>
