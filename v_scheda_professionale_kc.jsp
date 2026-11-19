@@ -112,7 +112,7 @@ import="java.sql.*" %>
                             </tr>
 							<tr>
                             <td align="center">
-                              <form action="#" method="post">
+                              <form action="a_richiesta_associazione.jsp" method="post">
                                 <input type="hidden" name="id_kc" value="${kc.ID}">
                                 <input type="submit" value="Associa Questo Kitchen Coach" style="background-color: #176b63; color: white; border: 0; border-radius: 6px; padding: 12px 32px; font-size: 16px; cursor: pointer;">
                               </form>
