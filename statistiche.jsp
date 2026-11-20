@@ -412,29 +412,3 @@
 </tr>
 
 <%@ include file="layout_bottom.jspf" %>
-{
-    "git.confirmSync": false,
-    "workbench.editor.empty.hint": "hidden",
-    "files.autoSave": "afterDelay",
-    "explorer.confirmDragAndDrop": false,
-    "rsp-ui.enableStartServerOnActivation": [
-        {
-            "id": "redhat.vscode-community-server-connector",
-            "name": "Community Server Connector",
-            "startOnActivation": true
-        }
-    ],
-    "rsp-ui.rsp.java.home": "/usr/lib/jvm/java-21-openjdk-amd64",
-    "files.associations": {
-        "*.jsp": "jsp",
-        "*.jspf": "jsp"
-        
-    },
-    "emmet.includeLanguages": {
-    "jsp": "html"
-},
-"git.autofetch": true,
-"editor.dropIntoEditor.preferences": [
-    
-],
-}
