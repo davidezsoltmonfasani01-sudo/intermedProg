@@ -129,7 +129,7 @@ CREATE TABLE Associazioni_KC_PZ (
     ID_pz INT NOT NULL,
     ID_kc INT NOT NULL,
     Data_inizio DATETIME NOT NULL,
-    Data_fine DATETIME,
+    Data_fine DATETIME NULL,
     ID_stato INT NOT NULL,
     Motivazione TEXT NULL,
     FOREIGN KEY (ID_pz) REFERENCES Utenti(ID),
