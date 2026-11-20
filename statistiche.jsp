@@ -118,9 +118,7 @@
                     (KC)</a>
                     <a href="?tab=pz"
                     class="tab-btn ${tab == 'pz' ? 'attiva' : ''}">Pazienti (PZ)</a>
-                    <a href="?tab=storico"
-                    class="tab-btn ${tab == 'storico' ? 'attiva' : ''}">Storico
-                    Sostituzioni KC</a>
+
                 </div>
                 <br>
 
@@ -172,6 +170,7 @@
                             LEFT JOIN Prenotazioni pr ON u.ID = pr.ID_mn
                             LEFT JOIN Visite v ON pr.ID_prenotazione =
                             v.ID_prenotazione
+
                             WHERE u.Ruolo = 'MN'
                             GROUP BY u.ID, u.Nome, u.Cognome, s.stato
                             ORDER BY tot_visite DESC
@@ -183,10 +182,7 @@
 
 
                         <h2>Statistiche Medici Nutrizionisti </h2>
-                        <b>MN Registrati Totali:</b> <code>${q_riepilogo_mn.tot_mn}</code>
-                        &nbsp;|&nbsp;
-                        <b>MN Attivi:</b> <code>${q_riepilogo_mn.attivi_mn}</code>
-                        &nbsp;|&nbsp;
+                        <b>MN Registrati:</b><small> Totali: ${q_riepilogo_mn.tot_mn} / Attivi: ${q_riepilogo_mn.attivi_mn}</small>
                         <b>Prenotazioni</b> <small>Totali: ${q_riepilogo_mn.tot_pren} / Attive: ${q_riepilogo_mn.pren_attive}</small>
                         &nbsp;|&nbsp;
                         <b>Visite </b> <small>Totali: ${q_riepilogo_mn.tot_visite} / Refertate: ${q_riepilogo_mn.visite_ref}</small>
@@ -256,12 +252,16 @@
                             COUNT(DISTINCT u.ID) AS tot_kc,
                             COUNT(DISTINCT CASE WHEN u.ID_stato = 2 THEN
                             u.ID END) AS attivi_kc,
+                            COUNT(DISTINCT a.ID_annotazione) AS
+                            num_annotazioni,
                             COUNT(DISTINCT assoc.ID_PZ) AS Pz_seguiti,
                             COUNT(DISTINCT CASE WHEN assoc.ID_stato = 2 THEN
                             assoc.ID_PZ END) AS assoc_attive
                             FROM Utenti u
                             LEFT JOIN Associazioni_KC_PZ assoc ON u.ID =
                             assoc.ID_KC
+                            LEFT JOIN Annotazioni_Diario a ON u.ID =
+                            a.ID_Scrittore
                             WHERE u.Ruolo = 'KC'
 
                         </sql:query>
@@ -285,18 +285,14 @@
                         </sql:query>
                         <c:set var="q_riepilogo_kc"
                         value="${q_riepilogo_kc.rows[0]}" />
-                        <h2>Statistiche Kitchen Coach (KC)</h2>
-                        <p>
-                            Totale KC registrati:
-                            <strong>${q_riepilogo_kc.tot_kc}</strong> |
-                            Attivi:
-                            <strong>${q_riepilogo_kc.attivi_kc}</strong> |
-                            Pazienti seguiti: <small>Totali:
-                            ${q_riepilogo_kc.Pz_seguiti} | Attive:
-                            ${q_riepilogo_kc.assoc_attive}</small>|
-                            Annotazioni totali inserite dai KC:
-                            <strong>${q_riepilogo_kc.num_annotazioni}</strong>
-                        </p>
+                        <h2>Statistiche Kitchen Coach</h2>
+                        <b>KC Registrati:</b><small> Totali: ${q_riepilogo_kc.tot_kc} / Attivi: ${q_riepilogo_kc.attivi_kc}</small>
+                        &nbsp;|&nbsp;
+                        <b>Pazienti seguiti:</b> <small>Totali: ${q_riepilogo_kc.Pz_seguiti} / Attive: ${q_riepilogo_kc.assoc_attive}</small>
+                        &nbsp;|&nbsp;
+                        <b>Annotazioni totali inserite dai KC: </b> <small>${q_riepilogo_kc.num_annotazioni}</small>
+                        <br>
+
 
                         <table border="1" cellpadding="6" cellspacing="0">
                             <thead>
@@ -331,17 +327,35 @@
                     <c:when test="${tab == 'pz'}">
                         <sql:query var="q_riepilogo_pz">
                             SELECT
-                            COUNT(*) AS tot_pz,
-                            COUNT(CASE WHEN ID_stato = 2 THEN 1 ELSE 0
-                            END) AS attivi_pz,
-                            COUNT(CASE WHEN ID_stato = 1 THEN 1 ELSE 0
-                            END) AS attesa_pz
-                            FROM Utenti WHERE Ruolo = 'PZ'
-                        </sql:query>
+                            COUNT(DISTINCT u.ID) AS tot_pz,
+                            COUNT(DISTINCT CASE WHEN u.ID_stato = 2 THEN
+                            u.ID END) AS attivi_pz,
+                            COUNT(DISTINCT CASE WHEN u.ID_stato = 1 THEN
+                            u.ID END) AS attesa_pz,
+                            COUNT(DISTINCT a.ID_annotazione) AS
+                            num_annotazioni,
+                            COUNT(DISTINCT pr.ID_prenotazione) AS tot_pren,
+                            COUNT(DISTINCT CASE WHEN pr.ID_stato = 4 THEN
+                            pr.ID_prenotazione END) AS pren_attive,
+                            COUNT(DISTINCT
+                            v.ID_visita ) AS tot_visite
+                            FROM Utenti u
+                            LEFT JOIN Associazioni_KC_PZ assoc ON u.ID =
+                            assoc.ID_PZ
+                            LEFT JOIN Annotazioni_Diario a ON u.ID =
+                            a.ID_Scrittore
+                            LEFT JOIN Prenotazioni pr ON u.ID = pr.ID_pz
+                            LEFT JOIN Visite v ON pr.ID_prenotazione =
+                            v.ID_prenotazione
+                            WHERE u.Ruolo = 'PZ'
 
+                        </sql:query>
+                        <c:set var="q_riepilogo_pz"
+                        value="${q_riepilogo_pz.rows[0]}" />
+
+                        <%--dettaglio pz è incompleta va modificata anche la tabella con altre statistiche--%>
                         <sql:query var="q_dettaglio_pz">
-                            SELECT u.ID, u.Nome, u.Cognome, s.stato AS
-                            stato_utente,
+                            SELECT u.ID, u.Nome, u.Cognome, s.stato,
                             COUNT(DISTINCT p.ID_pagina) AS
                             pagine_compilate,
                             COUNT(DISTINCT a.ID_annotazione) AS
@@ -363,20 +377,15 @@
                             ORDER BY pagine_compilate DESC
                         </sql:query>
 
-                        <h2>Statistiche Pazienti (PZ)</h2>
-                        <p>
-                            Totale PZ:
-                            <strong>${q_riepilogo_pz.rows[0].tot_pz}</strong>
-                            |
-                            Attivi:
-                            <strong>${q_riepilogo_pz.rows[0].attivi_pz}</strong>
-                            |
-                            In attesa:
-                            <strong>${q_riepilogo_pz.rows[0].attesa_pz}</strong>
-                            |
-                            Pagine Diario totali:
-                            <strong>${n_pag_completate}</strong>
-                        </p>
+                        <h2>Statistiche Pazienti </h2>
+                        <b>PZ Registrati</b> <small>Totali: ${q_riepilogo_pz.tot_pz} / Attivi: ${q_riepilogo_pz.attivi_pz} / In Attesa: ${q_riepilogo_pz.attesa_pz}</small> &nbsp;|&nbsp;
+                        <b>Annotazioni totali inserite dai PZ: </b> <small>${q_riepilogo_pz.num_annotazioni}</small>&nbsp;|&nbsp;
+                        <b>Prenotazioni</b> <small>Totali: ${q_riepilogo_pz.tot_pren} / Attive: ${q_riepilogo_pz.pren_attive}</small>
+                        &nbsp;|&nbsp;
+                        <b>Visite </b> <small>Totali: ${q_riepilogo_pz.tot_visite}</small>
+                        <br>
+
+
 
                         <table border="1" cellpadding="6"
                         cellspacing="0">
@@ -394,7 +403,7 @@
                             <tr>
                                 <td>${pz.Cognome} ${pz.Nome}
                                 </td>
-                                <td>${pz.stato_utente}</td>
+                                <td>${pz.stato}</td>
                                 <td align="center">
                                     <strong>${pz.pagine_compilate}</strong>
                                 </td>
