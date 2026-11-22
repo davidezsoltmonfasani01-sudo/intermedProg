@@ -165,6 +165,7 @@
                                 <th>Stato Account</th>
                                 <th class="text-center">Prenotazioni</th>
                                 <th class="text-center">Visite</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -178,11 +179,17 @@
                                     <td class="text-center">
                                         <small>Totali: ${mn.tot_visite} / Refertate: ${mn.visite_ref}</small>
                                     </td>
+                                    <td class="text-center">
+                                        <a href="info_utente.jsp?id_utente=${mn.ID}">
+                                            <img src="GoTo.svg" alt="Vai" height="40" width="50">
+                                        </a>
+                                    </td>
                                 </tr>
                             </c:forEach>
                         </tbody>
                     </table>
                 </div>
+
             </c:when>
             <%-- TAB 2: KITCHEN COACH --%>
             <c:when test="${tab == 'kc'}">
@@ -230,6 +237,7 @@
                                     <th>Stato Account</th>
                                     <th class="text-center">Associazioni con Pazienti</th>
                                     <th class="text-center">Annotazioni Inserite</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -243,6 +251,11 @@
                                         <td class="text-center">
                                             ${kc.num_annotazioni}
                                         </td>
+                                           <td class="text-center">
+                                        <a href="info_utente.jsp?id_utente=${kc.ID}">
+                                            <img src="GoTo.svg" alt="Vai" height="40" width="50">
+                                        </a>
+                                    </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -308,6 +321,7 @@
                                     <th class="text-center">Annotazioni inserite</th>
                                     <th class="text-center">Prenotazioni</th>
                                     <th class="text-center">Visite</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -321,6 +335,11 @@
                                             <small>Totali: ${pz.tot_pren} | Attive: ${pz.pren_attive}</small>
                                         </td>
                                         <td class="text-center">${pz.tot_visite}</td>
+                                           <td class="text-center">
+                                        <a href="info_utente.jsp?id_utente=${pz.ID}">
+                                            <img src="GoTo.svg" alt="Vai" height="40" width="50">
+                                        </a>
+                                    </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
