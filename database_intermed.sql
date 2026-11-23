@@ -52,8 +52,6 @@ CREATE TABLE Prenotazioni (
 
 CREATE TABLE Visite (
     ID_visita INT AUTO_INCREMENT PRIMARY KEY,
-    Data_visita DATETIME NOT NULL,
-    Data_fine DATETIME,
     ID_prenotazione INT NOT NULL,
     ID_stato INT NOT NULL,
     Altezza INT NOT NULL,

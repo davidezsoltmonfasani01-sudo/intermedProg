@@ -72,6 +72,16 @@ td[bgcolor="#124f49"] {
     gap: 20px;
 }
 
+.submit-btn {
+    background-color: #176b63;
+    color: white;
+    border: 0;
+    border-radius: 6px;
+    padding: 12px 32px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
 .card {
     background: #ffffff;
     border-radius: 12px;

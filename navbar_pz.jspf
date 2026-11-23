@@ -1,12 +1,17 @@
 <tr>
     <td colspan="2" bgcolor="#124f49" style="padding: 0;">
         <nav class="menu-contenitore" aria-label="Navigazione principale">
-            <div class="menu-scrollabile">
-                <a href="kc_associato.jsp">Kitchen Coach</a>
-                <a href="lista_schede_professionali_mn.jsp">Elenco Medici Nutrizionisti</a>
-                <a href="lista_schede_professionali_kc.jsp">Elenco Kitchen Coach</a>
-                <a href="lista_visite.jsp">Elenco Visite</a>
-                <a href="logout.jsp">Logout</a>
+            <div class="menu-links">
+                <div class="menu-scrollabile">
+                    <a href="kc_associato.jsp">Kitchen Coach</a>
+                    <a href="lista_schede_professionali_mn.jsp">Elenco Medici Nutrizionisti</a>
+                    <a href="lista_schede_professionali_kc.jsp">Elenco Kitchen Coach</a>
+                    <a href="lista_visite.jsp">Elenco Visite</a>
+                    <a href="pagina_diario.jsp">Diario Alimentare</a>
+                </div>
+                <div>
+                    <a href="logout.jsp">Logout</a>
+                </div>
             </div>
         </nav>
     </td>
