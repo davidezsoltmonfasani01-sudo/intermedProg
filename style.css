@@ -1,4 +1,3 @@
-
 /* BARRA DI NAVIGAZIONE */
 
 .menu-contenitore {
@@ -6,6 +5,12 @@
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
+}
+
+.menu-links {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
 }
 
 .menu-scrollabile {
@@ -18,7 +23,9 @@
     scrollbar-color: #dcebe7 #124f49;
 }
 
-.menu-scrollabile a {
+
+
+.menu-links a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -31,14 +38,9 @@
     text-decoration: none;
 }
 
-.menu-scrollabile a:hover,
-.menu-scrollabile a:focus-visible {
+.menu-links a:hover,
+.menu-links a:focus-visible {
     background-color: #176b63;
-}
-
-textarea {
-    box-sizing: border-box;
-    max-width: calc(100vw - 48px);
 }
 
 
