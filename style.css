@@ -1,9 +1,75 @@
+ 
+/* BARRA DI NAVIGAZIONE */
 
-.grid  {
+.menu-contenitore {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.menu-scrollabile {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: thin;
+    scrollbar-color: #dcebe7 #124f49;
+}
+
+.menu-scrollabile a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    min-height: 52px;
+    padding: 10px 20px;
+    color: white;
+    font-size: 17px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.menu-scrollabile a:hover,
+.menu-scrollabile a:focus-visible {
+    background-color: #176b63;
+}
+
+textarea {
+    box-sizing: border-box;
+    max-width: calc(100vw - 48px);
+}
+
+
+/* FINE BARRA DI NAVIGAZIONE*/
+
+
+body {
+    margin: 0;
+    color: #263b38;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    font-family: Georgia, "Times New Roman", serif;
+}
+
+p {
+    line-height: 1.5;
+}
+
+td[bgcolor="#176b63"],
+td[bgcolor="#124f49"] {
+    color: #fff;
+}
+
+.grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
     gap: 20px;
 }
+
 .card {
     background: #ffffff;
     border-radius: 12px;
@@ -11,15 +77,71 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 .card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
+
+.card-compact {
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.card-compact h3 {
+    margin: 0 0 4px 0;
+    font-size: 14px;
+}
+
+.card-compact p {
+    margin: 0;
+    line-height: 1.2;
+    font-size: 18px;
+}
+
+.card-compact small {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+}
+
+
+fieldset {
+    border: 1px solid #c5d8d5;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+fieldset legend {
+    color: #2e6f65;
+    font-weight: bold;
+    padding: 0 6px;
+}
+
+.tab-btn {
+    padding: 6px 12px;
+    text-decoration: none;
+    color: #2e6f65;
+    border: 1px solid #c5d8d5;
+    border-radius: 4px;
+    margin: 0 3px;
+}
+
+.tab-btn.attiva {
+    background-color: #2e6f65;
+    color: white;
+    font-weight: bold;
+}
+
 .task-list {
     list-style: none;
     padding-left: 0;
     margin-top: 12px;
 }
+
 .task-list li {
     padding: 6px 0;
     font-family: monospace;
@@ -27,16 +149,138 @@
     color: #34495e;
     border-bottom: 1px solid #f1f2f6;
 }
+
 .task-list li:last-child {
     border-bottom: none;
 }
+
 .area-title {
     color: #2c3e50;
     font-family: sans-serif;
 }
+
 .style-top-30 {
     margin-top: 30px;
 }
+
 .style-top-40 {
     margin-top: 40px;
+}
+
+#logo {
+    height: 168px;
+    width: auto;
+}
+
+.title {
+    color: white;
+    font-family: sans-serif;
+}
+
+.rmsg {
+    color: red;
+    font-family: sans-serif;
+}
+
+.nNon_letta {
+    background-color: #ffffff;
+    font-weight: bold;
+}
+
+.nLetta {
+    background-color: #176b636e;
+    font-weight: normal;
+}
+
+.btn-icona {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+#sticky-bot {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    background-color: #ffffff;
+    border-top: 2px solid #ccc;
+}
+
+table.maxwidth {
+    width: 100% !important;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+
+.scrollable-table {
+    width: 90%;
+    max-width: 1100px;
+    min-height: 150px;
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #d1e0dd;
+    border-radius: 6px;
+}
+
+.scrollable-table table {
+    width: 100%;
+    border: none;
+    border-collapse: collapse;
+}
+
+.scrollable-table th,
+.scrollable-table td {
+    padding: 8px 10px;
+    text-align: left;
+}
+
+.scrollable-table th:not(:last-child),
+.scrollable-table td:not(:last-child) {
+    border-right: 1px solid #e1ebe9;
+}
+
+.scrollable-table thead th {
+    background-color: #e6f0ee;
+    color: #2c423f;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    border-bottom: 2px solid #c5dad6;
+}
+
+.scrollable-table tbody tr:nth-child(odd) {
+    background-color: #f8faf9;
+}
+
+.scrollable-table tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.scrollable-table tbody tr {
+    transition: background-color 0.2s ease;
+    border-bottom: 1px solid #eef3f2;
+}
+
+.scrollable-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.scrollable-table tbody tr:hover {
+    background-color: #dfece9;
+}
+
+.text-center {
+    text-align: center !important;
 }
