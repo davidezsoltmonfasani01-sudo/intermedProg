@@ -1,7 +1,11 @@
-<div class="navbar">
-
-  <div class="nav-item"><a href="dispatch_home.jsp" ><b>Login</b></a></div>
-  <div class="nav-item"><a href="registrazione_pz.jsp" ><b>Registrati</b></a></div>
-
-</div>
-</div>
+<tr>
+  <td colspan="2" bgcolor="#124f49">
+    <nav class="menu-contenitore" aria-label="Navigazione principale">
+      <div class="menu-scrollabile">
+        <a href="dispatch_home.jsp" style="color: white;"><b >Login</b></a>
+        <a href="registrazione_pz.jsp" style="color: white;"><b>Registrati</b></a>
+      </div>
+    </nav>
+  </td>
+</tr>
+</thead>

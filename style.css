@@ -1,3 +1,50 @@
+
+/* BARRA DI NAVIGAZIONE */
+
+.menu-contenitore {
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.menu-scrollabile {
+    display: flex;
+    align-items: stretch;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: thin;
+    scrollbar-color: #dcebe7 #124f49;
+}
+
+.menu-scrollabile a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    min-height: 52px;
+    padding: 10px 20px;
+    color: white;
+    font-size: 17px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.menu-scrollabile a:hover,
+.menu-scrollabile a:focus-visible {
+    background-color: #176b63;
+}
+
+textarea {
+    box-sizing: border-box;
+    max-width: calc(100vw - 48px);
+}
+
+
+/* FINE BARRA DI NAVIGAZIONE*/
+
+
 body {
     margin: 0;
     color: #263b38;
@@ -175,24 +222,6 @@ table.maxwidth {
     border-collapse: collapse;
 }
 
-.navbar {
-    background-color: #124f49;
-    gap: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-}
-
-.nav-item {
-    font-family: sans-serif;
-    padding: 10px 20px;
-    text-align: center;
-}
-
-.nav-item a {
-    color: white;
-    display: block;
-    font-weight: bold;
-}
 
 .scrollable-table {
     width: 90%;

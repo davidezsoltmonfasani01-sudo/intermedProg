@@ -4,6 +4,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://it.unipv.bmilab.uploadtags" prefix="upload" %>
+<c:if test="${empty user}">
+    <jsp:forward page="login.jsp"/>
+</c:if>
 
 
 
@@ -69,6 +72,9 @@
 
 <%@ include file="layout_top.jspf" %>
 <%@ include file="navbar_ds.jspf" %>
+
+
+
 
 <tr valign="top">
     <td align="center">
@@ -251,11 +257,11 @@
                                         <td class="text-center">
                                             ${kc.num_annotazioni}
                                         </td>
-                                           <td class="text-center">
-                                        <a href="info_utente.jsp?id_utente=${kc.ID}">
-                                            <img src="GoTo.svg" alt="Vai" height="40" width="50">
-                                        </a>
-                                    </td>
+                                        <td class="text-center">
+                                            <a href="info_utente.jsp?id_utente=${kc.ID}">
+                                                <img src="GoTo.svg" alt="Vai" height="40" width="50">
+                                            </a>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
@@ -335,11 +341,11 @@
                                             <small>Totali: ${pz.tot_pren} | Attive: ${pz.pren_attive}</small>
                                         </td>
                                         <td class="text-center">${pz.tot_visite}</td>
-                                           <td class="text-center">
-                                        <a href="info_utente.jsp?id_utente=${pz.ID}">
-                                            <img src="GoTo.svg" alt="Vai" height="40" width="50">
-                                        </a>
-                                    </td>
+                                        <td class="text-center">
+                                            <a href="info_utente.jsp?id_utente=${pz.ID}">
+                                                <img src="GoTo.svg" alt="Vai" height="40" width="50">
+                                            </a>
+                                        </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

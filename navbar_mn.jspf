@@ -1,0 +1,13 @@
+<tr>
+  <td colspan="2" bgcolor="#124f49">
+    <nav class="menu-contenitore" aria-label="Navigazione principale">
+      <div class="menu-scrollabile">
+        <a href="lista_visite.jsp" style="color: white;">Elenco Visite</a>
+        <a href="#" style="color: white;">Link2</a>
+        <a href="compilazione_scheda_professionale.jsp" style="color: white;">Modifica Scheda Professionale</a>
+        <a href="logout.jsp" style="color: white;">Logout</a>
+             </div>
+        </nav>
+    </td>
+</tr>
+</thead>
