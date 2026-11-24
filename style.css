@@ -81,6 +81,7 @@ td[bgcolor="#124f49"] {
     font-size: 16px;
     cursor: pointer;
 }
+
 .submit-btn-small {
     background-color: #176b63;
     color: white;
@@ -90,6 +91,7 @@ td[bgcolor="#124f49"] {
     font-size: 8px;
     cursor: pointer;
 }
+
 .card {
     background: #ffffff;
     border-radius: 12px;
@@ -246,11 +248,28 @@ table.maxwidth {
 .scrollable-table {
     width: 90%;
     max-width: 1100px;
-    min-height: 150px;
+    min-height: auto;
     max-height: 300px;
     overflow-y: auto;
     border: 1px solid #d1e0dd;
     border-radius: 6px;
+}
+
+.header-table,
+.footer-table{
+    width: 90%;
+    max-width: 1100px;
+    border: 1px solid #d1e0dd;
+    border-radius: 6px;
+}
+
+.totale_d {
+    background-color: #2c3e50;
+    color: #c5dad6;
+}
+.consigliato_d{
+    background-color: #2e6f65;
+    color: #c5dad6
 }
 
 .scrollable-table table {
@@ -260,19 +279,32 @@ table.maxwidth {
 }
 
 .scrollable-table th,
-.scrollable-table td {
+.scrollable-table td .header-table th,
+.header-table td {
     padding: 8px 10px;
     text-align: left;
 }
 
 .scrollable-table th:not(:last-child),
-.scrollable-table td:not(:last-child) {
+.scrollable-table td:not(:last-child),
+.header-table th:not(:last-child),
+.header-table td:not(:last-child) {
     border-right: 1px solid #e1ebe9;
 }
 
 .scrollable-table thead th {
     background-color: #e6f0ee;
     color: #2c423f;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    border-bottom: 2px solid #c5dad6;
+}
+
+.header-table thead th {
+    background-color: #1e6b63;
+    color: #e6f0ee;
     font-weight: 600;
     position: sticky;
     top: 0;
@@ -304,8 +336,8 @@ table.maxwidth {
 .text-center {
     text-align: center !important;
 }
-.img-btn
-{
+
+.img-btn {
     width: 45px;
     height: 45px;
 }
