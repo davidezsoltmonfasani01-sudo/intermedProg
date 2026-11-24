@@ -94,7 +94,7 @@
                         <c:set var="d_info" value="${d_info.rows[0]}"/>
                         <%--stampo il contenuto della pagina --%>
                         <table>
-                            <thead>
+                            <tr>
                                 <th>
                                     <a href="v_referto.jsp">
                                         <img  class="img-btn"
@@ -110,7 +110,7 @@
                                     <form method="POST" action="a_pagina_diario.jsp">
                                         <input type="hidden" name="id_page" value="${d_info.id_pagina}">
                                         <input type="number" name="peso" step="0.1" min="0" max="500" placeholder="${d_visita.peso}" required>
-                                        <input type="submit" value="aggiungi peso"  class="submit-btn-small">
+                                        <input type="submit" value="aggiungi peso"  class="submit-btn- small">
                                     </form>
                                 </th>
                                 <th>
@@ -143,8 +143,23 @@
                                         </table>
                                     </a>
                                 </th>
-                            </thead>
+                           <tr>
                         </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                    <table>
+                    <thead>
+                    <th colspan=2>
+                    <h2>Alimento</h2>
+                    </th>
+                    <th>
+                    <h2>Quantita'</h2>
+                    <p>(g)</p>
+                    </th>
+                    </thead>
+                    </table>
                     </c:otherwise>
 
                 </c:choose>
