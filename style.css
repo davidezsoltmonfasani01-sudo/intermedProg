@@ -81,7 +81,15 @@ td[bgcolor="#124f49"] {
     font-size: 16px;
     cursor: pointer;
 }
-
+.submit-btn-small {
+    background-color: #176b63;
+    color: white;
+    border: 0;
+    border-radius: 6px;
+    padding: 2px 6px;
+    font-size: 8px;
+    cursor: pointer;
+}
 .card {
     background: #ffffff;
     border-radius: 12px;
@@ -299,5 +307,5 @@ table.maxwidth {
 .img-btn
 {
     width: 45px;
-    height: 55px;
+    height: 45px;
 }
