@@ -296,3 +296,8 @@ table.maxwidth {
 .text-center {
     text-align: center !important;
 }
+.img-btn
+{
+    width: 45px;
+    height: 55px;
+}

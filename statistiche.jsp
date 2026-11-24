@@ -187,7 +187,7 @@
                                     </td>
                                     <td class="text-center">
                                         <a href="info_utente.jsp?id_utente=${mn.ID}">
-                                            <img src="GoTo.svg" alt="Vai" height="40" width="50">
+                                            <img src="GoTo.svg" alt="Vai" class="img-btn">
                                         </a>
                                     </td>
                                 </tr>
@@ -259,7 +259,7 @@
                                         </td>
                                         <td class="text-center">
                                             <a href="info_utente.jsp?id_utente=${kc.ID}">
-                                                <img src="GoTo.svg" alt="Vai" height="40" width="50">
+                                                <img src="GoTo.svg" alt="Vai" class="img-btn">
                                             </a>
                                         </td>
                                     </tr>
@@ -343,7 +343,7 @@
                                         <td class="text-center">${pz.tot_visite}</td>
                                         <td class="text-center">
                                             <a href="info_utente.jsp?id_utente=${pz.ID}">
-                                                <img src="GoTo.svg" alt="Vai" height="40" width="50">
+                                                <img src="GoTo.svg" alt="Vai" class="img-btn">
                                             </a>
                                         </td>
                                     </tr>
