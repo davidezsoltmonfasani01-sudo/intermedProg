@@ -1,0 +1,107 @@
+<%-- MANCA ANCORA LA LOGICA PER VISUALIZZATO SI NO TRAMITE LE NOTIFICHE ASSOCIATE ALLA ANNOTAZIONE --%>
+<sql:query var="annotazioni_p">
+  SELECT a.*, u.Nome, u.Cognome, u.ruolo
+  FROM Annotazioni_Diario a
+  INNER JOIN Utenti u ON u.id = a.id_scrittore
+  WHERE a.ID_pagina = ?
+  ORDER BY a.Data_Creazione
+  <sql:param value="${param.id_pagina}"/>
+</sql:query>
+
+<c:choose>
+  <c:when test="${annotazioni_p.rowCount == 0}">
+    <h3>Ancora nessuna annotazione per questa pagina</h3>
+  </c:when>
+  <c:otherwise>
+    <table class="chat-table">
+      <c:forEach var="annotazione" items="${annotazioni_p.rows}">
+        <tr>
+          <c:choose>
+
+
+            <c:when test="${annotazione.ruolo == mittente}">
+              <td></td>
+              <td class="cella-destra">
+                <div class="messaggio inviato">
+
+                  <div class="msg-header">
+                    <span>${annotazione.Nome} ${annotazione.Cognome} (${annotazione.ruolo})</span>
+                    <c:if test="${empty param.id_annotazione_m}">
+                      <form method="GET" style="display:inline;">
+                        <input type="hidden" name="id_pagina" value="${param.id_pagina}">
+                        <input type="hidden" name="id_annotazione_m" value="${annotazione.ID_annotazione}">
+                        <button type="submit" class="btn-icona" title="Modifica Annotazione">
+                          <img class="img-trash" src="edit.svg" alt="Modifica">
+                        </button>
+                      </form>
+                    </c:if>
+                  </div>
+
+
+                  <c:choose>
+                    <c:when test="${param.id_annotazione_m == annotazione.ID_annotazione}">
+                      <form method="POST" action="a_annotazioni.jsp">
+                        <input type="hidden" name="azione" value="salva">
+                        <input type="hidden" name="id_pagina" value="${param.id_pagina}">
+                        <input type="hidden" name="id_annotazione" value="${annotazione.ID_annotazione}">
+                        <input type="hidden" name="destinatario" value="${destinatario}">
+
+                        <textarea name="nuovo_testo" class="edit-area" rows="3">${annotazione.Testo}</textarea>
+                        <br>
+                        <button type="submit" class="submit-btn-small">Salva</button>
+                        <a href="?id_pagina=${param.id_pagina}" class="btn-annulla">Annulla</a>
+
+                      </form>
+                    </c:when>
+                    <c:otherwise>
+                      <div class="msg-testo">${annotazione.Testo}</div>
+                    </c:otherwise>
+                  </c:choose>
+
+                  <div class="msg-data">
+                    <c:choose>
+                      <c:when test="${not empty annotazione.Data_ultima_modifica}">
+                        <em>Modificato: <fmt:formatDate value="${annotazione.Data_ultima_modifica}" pattern="dd/MM/yyyy HH:mm"/></em>
+                      </c:when>
+                      <c:otherwise>
+                        <fmt:formatDate value="${annotazione.Data_Creazione}" pattern="dd/MM/yyyy HH:mm"/>
+                      </c:otherwise>
+                    </c:choose>
+                  </div>
+
+
+                </div>
+              </td>
+            </c:when>
+
+
+            <c:otherwise>
+              <td>
+                <div class="messaggio ricevuto">
+                  <div class="msg-header">
+                    <span>${annotazione.Nome} ${annotazione.Cognome} (${annotazione.ruolo})</span>
+                  </div>
+                  <div class="msg-testo">${annotazione.Testo}</div>
+                  <div class="msg-data">
+                    <c:choose>
+                      <c:when test="${not empty annotazione.Data_ultima_modifica}">
+                        <em>Modificato: <fmt:formatDate value="${annotazione.Data_ultima_modifica}" pattern="dd/MM/yyyy HH:mm"/></em>
+                      </c:when>
+                      <c:otherwise>
+                        <fmt:formatDate value="${annotazione.Data_Creazione}" pattern="dd/MM/yyyy HH:mm"/>
+                      </c:otherwise>
+                    </c:choose>
+                  </div>
+
+                </div>
+              </td>
+              <td></td>
+            </c:otherwise>
+
+          </c:choose>
+        </tr>
+      </c:forEach>
+    </table>
+
+  </c:otherwise>
+</c:choose>

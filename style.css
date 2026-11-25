@@ -508,3 +508,108 @@ table.maxwidth {
 .consigliato_giornaliero_d td:not(:last-child) {
     border-right: 1px solid #96c7bc !important;
 }
+
+
+
+/*PAGINA ANNOTAZIONI*/
+.chat-table {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border-collapse: collapse;
+    border: 1px solid #d1e0dd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.chat-table td {
+    width: 50%;
+    padding: 10px 14px;
+    vertical-align: top;
+}
+
+.cella-destra {
+    text-align: right;
+}
+
+.messaggio {
+    padding: 10px 14px;
+    border-radius: 10px;
+    display: inline-block;
+    max-width: 85%;
+    min-width: 180px;
+    text-align: left;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.ricevuto {
+    background-color: #f4f8f7;
+    border: 1px solid #d1e0dd;
+    color: #263b38;
+}
+
+.inviato {
+    background-color: #e2f1ed;
+    border: 1px solid #b8d8d0;
+    color: #163a36;
+}
+
+.msg-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #124f49;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(23, 107, 99, 0.15);
+}
+
+.msg-testo {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-bottom: 6px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.msg-data {
+    font-size: 11px;
+    color: #52706c;
+    text-align: right;
+}
+
+.edit-area {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #176b63;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #263b38;
+    background-color: #ffffff;
+    resize: vertical;
+}
+
+.edit-area:focus {
+    outline: none;
+    box-shadow: 0 0 4px rgba(23, 107, 99, 0.4);
+}
+
+.btn-annulla {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 12px;
+    color: #176b63;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-annulla:hover {
+    text-decoration: underline;
+}
