@@ -4,8 +4,12 @@
             Diario Alimentare di ${PZ.nome} ${PZ.cognome} del:
             <fmt:formatDate value="${page_date}" pattern="dd MMMM yyyy"/>
         </h1>
-        <form action="pagina_diario.jsp" method="GET">
-            <input type="date" id="page_date" name="page_date" required>
+        <form action="${user.ruolo == 'PZ' ? 'pagina_diario.jsp' : 'v_pagina_diario.jsp'}" method="GET">
+            <fmt:formatDate value="${dateTime_oggi}" pattern="yyyy-MM-dd" var="max_date" />
+            <input type="date" id="page_date" name="page_date" max="${max_date}" required>
+            <c:if test="${not empty param.id_paziente}">
+                <input type="hidden" name="id_paziente" value="${param.id_paziente}">
+            </c:if>
             <input type="submit" value="Vai alla data" class="submit-btn">
         </form>
 
@@ -52,9 +56,12 @@
                                     <sql:param value="${d_visita.rows[0].ID_visita}" />
                                     <sql:dateParam value="${page_date}" type="date" />
                                 </sql:update>
+                                <fmt:formatDate value="${page_date}" pattern="yyyy-MM-dd" var="data_per_forward" />
                                 <jsp:forward page="pagina_diario.jsp">
-                                    <jsp:param name="page_date" value="${page_date}"/>
+                                    <jsp:param name="id_paziente" value="${data_per_forward}"/>
+                                    <jsp:param name="page_date" value="${data_per_forward}"/>
                                 </jsp:forward>
+
                             </c:when>
                             <c:otherwise>
                                 <h3>
@@ -90,7 +97,7 @@
                         <th>
                             <h3>BMI :
                                 <c:if test="${not empty d_info.Peso_giornaliero}">
-                                    <small>${d_info.Peso_giornaliero / (d_visita.altezza * d_visita.altezza)}</small>
+                                    <small><fmt:formatNumber value="${d_info.Peso_giornaliero / (d_visita.altezza * d_visita.altezza)}" maxFractionDigits="1" /></small>
                                 </c:if>
                             </h3>
                         </th>
@@ -120,9 +127,10 @@
         </tr>
         <tr>
             <td align="center">
-                <table class="legend-header-table colonne-7">
+                <table class="legend-header-table colonne-8">
                     <thead>
                         <tr>
+                            <th></th>
                             <th>
                                 <h2>Alimento</h2>
                             </th>
@@ -163,15 +171,17 @@
 
                 <c:forTokens items="Colazione,Pranzo,Cena,Fuori pasto" delims="," var="pasto">
                     <c:set var="pasto_simbolo" value="${fn:substring(pasto, 0, 2)}"/>
-                    <table class="header-table">
+                    <table class="header-table pasto-banner">
                         <thead>
                             <tr>
-                                <th>
-                                    <a href="lista_alimenti.jsp?pasto=${pasto}">
-                                        <img class="img-btn" src="add.svg" title="Aggiungi Porzione" alt="Aggiungi Porzione">
-                                    </a>
-                                </th>
-                                <th>
+                                <c:if test="${user.ruolo == 'PZ'}">
+                                    <th class="col-azione-pasto">
+                                        <a href="lista_alimenti.jsp?pasto=${pasto}">
+                                            <img class="img-btn-small" src="add.svg" title="Aggiungi Porzione" alt="Aggiungi Porzione">
+                                        </a>
+                                    </th>
+                                </c:if>
+                                <th class="col-titolo-pasto">
                                     <h2>${pasto}</h2>
                                 </th>
                             </tr>
@@ -179,7 +189,7 @@
                     </table>
 
                     <sql:query var="composizione_pasto">
-                        SELECT por.Quantita, al.*
+                        SELECT por.ID_porzione, por.Quantita, al.*
                         FROM Porzioni por
                         INNER JOIN Alimenti al on al.id = por.ID_alimento
                         WHERE por.ID_Pagina = ? AND por.Tipo_pasto = ?
@@ -194,11 +204,23 @@
                     <c:set var="totale_Carboidrati_p" value="0" />
                     <c:set var="totale_Liquidi_p" value="0" />
 
-                    <div class="scrollable-table colonne-7">
+                    <div class="scrollable-table colonne-8">
                         <table>
                             <tbody>
                                 <c:forEach var="porzione" items="${composizione_pasto.rows}">
                                     <tr>
+                                        <td class="text-center">
+                                            <c:if test="${user.ruolo == 'PZ'}">
+                                                <form method="POST" action="a_pagina_diario.jsp" style="margin:0;">
+                                                    <input type="hidden" name="action" value="delete_porzione">
+                                                    <input type="hidden" name="id_porzione" value="${porzione.ID_porzione}">
+                                                    <input type="hidden" name="page_date" value="${page_date}">
+                                                    <button type="submit" class="btn-icona" title="Elimina Porzione">
+                                                        <img class="img-trash" src="trash.svg" alt="Elimina">
+                                                    </button>
+                                                </form>
+                                            </c:if>
+                                        </td>
                                         <td>
                                             ${porzione.Alimento}
                                         </td>
@@ -245,9 +267,9 @@
                         </table>
                     </div>
 
-                    <table class="footer-table colonne-7">
+                    <table class="footer-table colonne-8">
                         <tr class="totale_d">
-                            <td><strong>${pasto} Totale</strong></td>
+                            <td colspan="2"><strong>${pasto} Totale</strong></td>
                             <td class="text-center"><strong>${totale_Quantita_p}</strong></td>
                             <td class="text-center"><strong>${totale_Energia_p}</strong></td>
                             <td class="text-center"><strong>${totale_Proteine_p}</strong></td>
@@ -258,7 +280,7 @@
                         <c:if test="${pasto_simbolo != 'Fu'}">
                             <c:set var="percentuale" value="percentuale_${pasto}" />
                             <tr class="consigliato_d">
-                                <td>${pasto} consigliato</td>
+                                <td colspan="2">${pasto} consigliato</td>
                                 <td class="text-center">-</td>
                                 <td class="text-center">
                                     <fmt:formatNumber value="${d_visita.apporto_calorico * d_visita[percentuale] / 100}" maxFractionDigits="0" groupingUsed="false" />
@@ -287,27 +309,28 @@
                     <c:set var="totale_Liquidi" value="${totale_Liquidi + totale_Liquidi_p}" />
                 </c:forTokens>
 
-                <table class="header-table">
-                    <tr>
-                        <td></td>
-                        <td>
-                            <h2>Totale</h2>
-                        </td>
-                    </tr>
+                <table class="header-table totale-banner">
+                    <thead>
+                        <tr>
+                            <th>
+                                <h2>Riepilogo Giornaliero</h2>
+                            </th>
+                        </tr>
+                    </thead>
                 </table>
 
-                <table class="footer-table colonne-7">
-                    <tr class="totale_d">
-                        <td>Totale Giornaliero</td>
-                        <td class="text-center">${totale_Quantita}</td>
-                        <td class="text-center">${totale_Energia}</td>
-                        <td class="text-center">${totale_Proteine}</td>
-                        <td class="text-center">${totale_Grassi}</td>
-                        <td class="text-center">${totale_Carboidrati}</td>
-                        <td class="text-center">${totale_Liquidi}</td>
+                <table class="footer-table colonne-8">
+                    <tr class="totale_giornaliero_d">
+                        <td colspan="2"><strong>Totale Giornaliero</strong></td>
+                        <td class="text-center"><strong>${totale_Quantita}</strong></td>
+                        <td class="text-center"><strong>${totale_Energia}</strong></td>
+                        <td class="text-center"><strong>${totale_Proteine}</strong></td>
+                        <td class="text-center"><strong>${totale_Grassi}</strong></td>
+                        <td class="text-center"><strong>${totale_Carboidrati}</strong></td>
+                        <td class="text-center"><strong>${totale_Liquidi}</strong></td>
                     </tr>
-                    <tr class="consigliato_d">
-                        <td>Totale giornaliero consigliato</td>
+                    <tr class="consigliato_giornaliero_d">
+                        <td colspan="2">Totale giornaliero consigliato</td>
                         <td class="text-center">-</td>
                         <td class="text-center">${d_visita.apporto_calorico}</td>
                         <td class="text-center">${d_visita.Proteine}</td>

@@ -12,6 +12,10 @@
 <c:choose>
     <c:when test="${not empty param.page_date}">
         <fmt:parseDate value="${param.page_date}" pattern="yyyy-MM-dd" var="page_date" />
+        <c:if test="${page_date > dateTime_oggi}">
+            <c:set var="page_date" value="${dateTime_oggi}" />
+        </c:if>
+
     </c:when>
     <c:otherwise>
 
@@ -24,7 +28,7 @@
     <c:when  test="${user.ruolo == 'PZ'}">
         <c:set var="PZ" value="${user}" />
         <%@ include file="navbar_pz.jspf" %>
-         <%@ include file="pagina_diario_contenuto.jspf" %>
+        <%@ include file="pagina_diario_contenuto.jspf" %>
     </c:when>
     <c:otherwise>
         <jsp:forward page="v_pagina_diario.jsp"/>
