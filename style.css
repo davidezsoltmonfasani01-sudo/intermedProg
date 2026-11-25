@@ -595,8 +595,21 @@ table.maxwidth {
     background-color: #ffffff;
     resize: vertical;
 }
+.new-area {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 8px;
+    margin-bottom: 8px;
+    border: 1px solid #176b63;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #263b38;
+    background-color: #ffffff;
+    resize: vertical;
+}
 
-.edit-area:focus {
+.edit-area:focus, .new-area:focus {
     outline: none;
     box-shadow: 0 0 4px rgba(23, 107, 99, 0.4);
 }

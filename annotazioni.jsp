@@ -12,21 +12,27 @@
     <jsp:forward page="pagina_diario.jsp"/>
 </c:if>
 <sql:query var ="d_page_info">
-    SELECT pg.Data_pagina
+    SELECT pg.Data_pagina, pg.ID_pz, u.nome, u.cognome
     FROM Pagine_Diario pg
+    INNER JOIN Utenti u ON u.ID = pg.ID_pz
     WHERE pg.ID_pagina=?
     <sql:param value="${param.id_pagina}"/>
 </sql:query>
 <c:if test="${d_page_info.rowCount == 0}"> <%-- magari meglio da un altra parte --%>
     <jsp:forward page="pagina_diario.jsp"/>
 </c:if>
+<c:set var="d_page_info" value="${d_page_info.rows[0]}"/>
 <%-- Definisco chi è il mettende e il destinatario in base al ruolo e faccio le query di conseguenza --%>
 <tr valign="top">
     <td align="center">
+        <h1>
+            Annotazioni del Diario Alimentare di ${d_page_info.nome} ${d_page_info.cognome} del:
+            <fmt:formatDate value="${d_page_info.Data_pagina}" pattern="dd MMMM yyyy"/>
+        </h1>
         <c:choose>
             <c:when test="${user.ruolo =='KC'}">
                 <c:set var="mittente" value="KC"/>
-                <c:set var="destinatario" value="${d_page_info.rows[0].ID_pz}"/>
+                <c:set var="destinatario" value="${d_page_info.ID_pz}"/>
                 <%@ include file="annotazioni_chat.jspf" %>
             </c:when>
             <c:otherwise>

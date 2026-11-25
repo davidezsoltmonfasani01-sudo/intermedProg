@@ -6,7 +6,7 @@
         <input type="hidden" name="id_pagina" value="${param.id_pagina}">
         <input type="hidden" name="id_scrittore" value="${user.ID}">
         <input type="hidden" name="destinatario" value="${destinatario}">
-        <textarea name="nuovo_testo" class="edit-area" rows="3"></textarea>
+        <textarea name="nuovo_testo" class="new-area" rows="3"></textarea>
         <br>
         <button type="submit" class="submit-btn-small">Salva</button>
         <button type="reset" class="submit-btn-small">Cancella</button>
