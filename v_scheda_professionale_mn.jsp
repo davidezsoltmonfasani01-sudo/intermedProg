@@ -18,7 +18,34 @@ import="java.sql.*" %>
 
     <c:otherwise>
 
-        <%@ include file="navbar_pz.jspf" %>
+        <c:choose>
+        <c:when test="${ user.ID_stato == 2}">
+            <%@ include file="navbar_pz.jspf" %>
+        </c:when>
+        <c:otherwise>
+            <tr>
+                <td colspan="2" bgcolor="#124f49" style="padding: 0;">
+                    <nav class="menu-contenitore" aria-label="Navigazione principale">
+                        <div class="menu-links">
+                            <div class="menu-scrollabile">
+                                <a href="index.jsp">Home</a>
+                                <a href="lista_schede_professionali_mn.jsp">Elenco Medici Nutrizionisti</a>
+                                <a href="lista_schede_professionali_kc.jsp">Elenco Kitchen Coach</a>
+                            </div>
+                            <div>
+                                <a href="logout.jsp"><img  style="width: 45px; height: 45px;"
+                                src="LogOut.svg"
+                                title="logout"
+                                alt="logout"></a>
+                            </div>
+                        </div>
+                    </nav>
+                </td>
+            </tr>
+            </thead>
+        </c:otherwise>
+    </c:choose>
+        
 
         <sql:query var="rset_mn">
             SELECT Utenti.ID, CF, Cognome, Nome, Data_Nascita, Presentazione, data_certificazione, numero_albo
@@ -114,7 +141,8 @@ import="java.sql.*" %>
                                     </table>
                                 </td>
                             </tr>
-							<tr>
+							<c:if test="${ user.ID_stato == 2}">
+                            <tr>
                             <td align="center">
                               <form action="#" method="post">
                                 <input type="hidden" name="id_mn" value="${mn.ID}">
@@ -123,7 +151,7 @@ import="java.sql.*" %>
                               <br>
                             </td>
                           </tr>
-
+                            </c:if>
                             <tr bgcolor="#e6efed">
                                 <td align="center">
                                     <br>

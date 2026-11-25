@@ -12,7 +12,33 @@ import="java.sql.*" %>
 <%@ include file="layout_top.jspf" %>
 
 
-  <%@ include file="navbar_pz.jspf" %>
+  <c:choose>
+        <c:when test="${ user.ID_stato == 2}">
+            <%@ include file="navbar_pz.jspf" %>
+        </c:when>
+        <c:otherwise>
+            <tr>
+                <td colspan="2" bgcolor="#124f49" style="padding: 0;">
+                    <nav class="menu-contenitore" aria-label="Navigazione principale">
+                        <div class="menu-links">
+                            <div class="menu-scrollabile">
+                                <a href="index.jsp">Home</a>
+                                <a href="lista_schede_professionali_mn.jsp">Elenco Medici Nutrizionisti</a>
+                                <a href="lista_schede_professionali_kc.jsp">Elenco Kitchen Coach</a>
+                            </div>
+                            <div>
+                                <a href="logout.jsp"><img  style="width: 45px; height: 45px;"
+                                src="LogOut.svg"
+                                title="logout"
+                                alt="logout"></a>
+                            </div>
+                        </div>
+                    </nav>
+                </td>
+            </tr>
+            </thead>
+        </c:otherwise>
+    </c:choose>
 
     <sql:query var="rset_mn">
       SELECT ID, CF, Cognome, Nome, Data_Nascita

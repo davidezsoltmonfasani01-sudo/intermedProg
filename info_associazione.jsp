@@ -133,12 +133,12 @@ import="java.sql.*" %>
                                                         </tr>
                                                     </table>
                                                     <c:if test="${not empty pz_ass.motivazione}">
-                                                    <table width="100%" border="0" cellpadding="10" cellspacing="0">
+                                                    <table width="100%" border="0" cellpadding="10" cellspacing="0" bgcolor="#e6f0ee">
                                                         <tr>
-                                                            <td align="center">
-                                                                
-                                                                        ${pz_ass.motivazione}
-                                                                    
+                                                            <td align="left">
+                                                                <b><span style="color:#2e6f65;">Motivazione</span></b>
+                                                                <br><br>
+                                                                ${pz_ass.motivazione}
                                                             </td>
                                                         </tr>
                                                     </table>

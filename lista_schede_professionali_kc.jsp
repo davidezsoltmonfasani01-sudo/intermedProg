@@ -12,22 +12,29 @@ import="java.sql.*" %>
 <%@ include file="layout_top.jspf" %>
 <c:choose>
         <c:when test="${ user.ID_stato == 2}">
-            <jsp:include page="navbar_pz.jspf" />
+            <%@ include file="navbar_pz.jspf" %>
         </c:when>
         <c:otherwise>
             <tr>
-                <td colspan="2" bgcolor="#124f49">
-                    <table width="100%" border="0" cellpadding="12" cellspacing="0">
-                        <tr align="center">
-                            <td><a href="index.jsp"
-                                    style="color: white;"><b>Home</b></a></td>
-                            <td><a href="logout.jsp"
-                                    style="color: white;"><b>Logout</b></a></td>
-                        </tr>
-                    </table>
+                <td colspan="2" bgcolor="#124f49" style="padding: 0;">
+                    <nav class="menu-contenitore" aria-label="Navigazione principale">
+                        <div class="menu-links">
+                            <div class="menu-scrollabile">
+                                <a href="index.jsp">Home</a>
+                                <a href="lista_schede_professionali_mn.jsp">Elenco Medici Nutrizionisti</a>
+                                <a href="lista_schede_professionali_kc.jsp">Elenco Kitchen Coach</a>
+                            </div>
+                            <div>
+                                <a href="logout.jsp"><img  style="width: 45px; height: 45px;"
+                                src="LogOut.svg"
+                                title="logout"
+                                alt="logout"></a>
+                            </div>
+                        </div>
+                    </nav>
                 </td>
             </tr>
-           </thead>
+            </thead>
         </c:otherwise>
     </c:choose>
 
