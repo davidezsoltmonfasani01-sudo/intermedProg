@@ -50,7 +50,7 @@
         <%@ include file="pagina_diario_contenuto.jspf" %>
     </c:when>
     <c:otherwise>
-        <jsp:forward page="v_pagina_diario.jsp"/>
+        <jsp:forward page="dispatch_home.jsp"/>
     </c:otherwise>
 </c:choose>
 
