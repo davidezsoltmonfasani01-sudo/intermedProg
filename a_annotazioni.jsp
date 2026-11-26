@@ -36,8 +36,8 @@
                 SET Testo = ?, Data_ultima_modifica = ?
                 WHERE ID_annotazione = ?
                 <sql:param value="${param.nuovo_testo}" />
-                <sql:param value="${param.id_annotazione}" />
                 <sql:param value="${dateTime_oggi}" />
+                <sql:param value="${param.id_annotazione}" />
             </sql:update>
             <sql:update>
                 INSERT INTO Notifiche ( ID_risorsa, ID_tipo, ID_stato, Data_Ora, ID_utente)

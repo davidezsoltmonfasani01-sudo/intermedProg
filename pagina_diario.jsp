@@ -27,7 +27,6 @@
     <%--CASO PAGINA APERTA DAL PAZIENTE PROPRIETARIO DELLA PAGINA--%>
     <c:when  test="${user.ruolo == 'PZ'}">
         <c:set var="PZ" value="${user}" />
-        <%@ include file="navbar_pz.jspf" %>
         <%@ include file="pagina_diario_contenuto.jspf" %>
     </c:when>
     <c:otherwise>

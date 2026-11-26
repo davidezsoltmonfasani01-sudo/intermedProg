@@ -353,7 +353,7 @@ table.maxwidth {
     vertical-align: middle;
 }
 
-.pasto-banner th.col-azione-pasto {
+.pasto-banner th.col-azione-pasto, .back {
     width: 64px !important;
     min-width: 64px !important;
     max-width: 64px !important;

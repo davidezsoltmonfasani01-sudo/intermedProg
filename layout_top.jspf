@@ -40,15 +40,15 @@
 
                 </td>
                 <c:if test="${not empty user}">
-                <sql:query var="CountNotifiche">
-                  SELECT count(*) AS CountNotifiche
-                  FROM Notifiche n
-                  WHERE n.ID_utente = ?
-                  AND  n.ID_stato = '11'
-                 <sql:param value="${user.ID}" />
-                </sql:query>
-               <c:set var="CountNotifiche" value="${CountNotifiche.rows[0].CountNotifiche}" />
-               
+                  <sql:query var="CountNotifiche">
+                    SELECT count(*) AS CountNotifiche
+                    FROM Notifiche n
+                    WHERE n.ID_utente = ?
+                    AND  n.ID_stato = '11'
+                    <sql:param value="${user.ID}" />
+                  </sql:query>
+                  <c:set var="CountNotifiche" value="${CountNotifiche.rows[0].CountNotifiche}" />
+
                   <td>
 
                     <a href="notifiche.jsp">
@@ -68,9 +68,64 @@
                           </td>
                         </table>
                       </a>
-                  </td>
+                    </td>
                   </c:if>
                 </tr>
               </table>
             </td>
           </tr>
+          <tr>
+            <td colspan="2" bgcolor="#124f49" style="padding: 0;">
+              <nav class="menu-contenitore" aria-label="Navigazione principale">
+                <div class="menu-links">
+                  <div class="menu-scrollabile">
+                    <c:if  test="not empty user">
+
+                      <a href="logout.jsp" >Logout</a>
+
+                    </c:if>
+                    <c:choose>
+                      <c:when  test="${user.ruolo == 'PZ'}">
+                        <a href="kc_associato.jsp">Kitchen Coach</a>
+                        <a href="lista_schede_professionali_mn.jsp">Elenco Medici Nutrizionisti</a>
+                        <a href="lista_schede_professionali_kc.jsp">Elenco Kitchen Coach</a>
+                        <a href="lista_visite.jsp">Elenco Visite</a>
+                        <a href="pagina_diario.jsp">Diario Alimentare</a>
+                      </c:when>
+                      <c:when  test="${user.ruolo == 'KC'}">
+                        <a href="lista_pazienti.jsp">Lista Dei Pazienti</a>
+                        <a href="compilazione_scheda_professionale.jsp">Modifica Scheda Professionale</a>
+                      </c:when>
+                      <c:when  test="${user.ruolo == 'MN'}">
+                        <a href="lista_visite.jsp" >Elenco Visite</a>
+                        <a href="lista_prenotazioni.jsp" >Elenco Prenotazioni</a>
+                        <a href="compilazione_scheda_professionale.jsp" >Scheda Professionale</a>
+                        <a href="logout.jsp" >Logout</a>
+                      </c:when>
+                      <c:when  test="${user.ruolo == 'DS'}">
+                        <a href="statistiche.jsp" >Statistiche</a>
+                        <a href="lista_utenti.jsp" >Lista Utenti</a>
+                        <a href="lista_richieste_pz.jsp" >Richieste Attivazione</a>
+                        <a href="registrazione_collaboratori.jsp" >Registra collaboratori</a>
+                        <a href="lista_associazioni.jsp" >Lista associazioni</a>
+                      </c:when>
+                      <c:otherwise>
+                        <a href="dispatch_home.jsp" >Login</a>
+                        <a href="registrazione_pz.jsp" >Registrati</a>
+                      </c:otherwise>
+                    </c:choose>
+                  </div>
+                  <c:if  test="not empty user">
+                    <div>
+                      <a href="logout.jsp" ><img  class="img-btn"
+                        src="LogOut.svg"
+                        title="Universita' di Pavia"
+                        alt="Logo Universita' di Pavia" id="logo">
+                        </a>
+                      </div>
+                    </c:if>
+                  </div>
+                </nav>
+              </td>
+            </tr>
+          </thead>
