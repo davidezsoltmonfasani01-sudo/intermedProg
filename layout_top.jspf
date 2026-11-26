@@ -79,18 +79,43 @@
               <nav class="menu-contenitore" aria-label="Navigazione principale">
                 <div class="menu-links">
                   <div class="menu-scrollabile">
-                    <c:if  test="not empty user">
-
-                      <a href="logout.jsp" >Logout</a>
-
+                    <c:if  test="${not empty user}">
+                      <a href="dispatch_home.jsp" >
+                        <img  class="img-btn"
+                        src="home.svg"
+                        title="home"
+                        alt="Home">
+                      </a>
                     </c:if>
                     <c:choose>
                       <c:when  test="${user.ruolo == 'PZ'}">
-                        <a href="kc_associato.jsp">Kitchen Coach</a>
-                        <a href="lista_schede_professionali_mn.jsp">Elenco Medici Nutrizionisti</a>
-                        <a href="lista_schede_professionali_kc.jsp">Elenco Kitchen Coach</a>
-                        <a href="lista_visite.jsp">Elenco Visite</a>
-                        <a href="pagina_diario.jsp">Diario Alimentare</a>
+                        <c:choose>
+                          <c:when test="${ user.ID_stato == 2}">
+                            <sql:query var="visite">
+                              SELECT count(*) as n_visite
+                              FROM Visite v
+                              INNER JOIN Prenotazioni p ON p.ID_prenotazione = v.ID_prenotazione
+                              WHERE p.ID_pz = ?
+                              <sql:param value="${user.ID}"/>
+                            </sql:query>
+
+                            <a href="kc_associato.jsp">Kitchen Coach</a>
+                            <a href="lista_schede_professionali_mn.jsp">Elenco Medici Nutrizionisti</a>
+                            <a href="lista_schede_professionali_kc.jsp">Elenco Kitchen Coach</a>
+                            <c:if test= "${visite.rows[0].n_visite >0}">
+                              <a href="lista_visite.jsp">Elenco Visite</a>
+                              <a href="pagina_diario.jsp">Diario Alimentare</a>
+                            </c:if>
+                          </c:when>
+                          <c:when test="${ user.ID_stato == 3}">
+                            <a href="lista_schede_professionali_mn.jsp">Elenco Medici Nutrizionisti</a>
+                            <a href="lista_schede_professionali_kc.jsp">Elenco Kitchen Coach</a>
+                          </c:when>
+                          <c:otherwise>
+
+                          </c:otherwise>
+                        </c:choose>
+
                       </c:when>
                       <c:when  test="${user.ruolo == 'KC'}">
                         <a href="lista_pazienti.jsp">Lista Dei Pazienti</a>
@@ -115,17 +140,18 @@
                       </c:otherwise>
                     </c:choose>
                   </div>
-                  <c:if  test="not empty user">
+                  <c:if  test="${not empty user}">
                     <div>
-                      <a href="logout.jsp" ><img  class="img-btn"
+                      <a href="logout.jsp" >
+                        <img  class="img-btn"
                         src="LogOut.svg"
-                        title="Universita' di Pavia"
-                        alt="Logo Universita' di Pavia" id="logo">
-                        </a>
-                      </div>
-                    </c:if>
-                  </div>
-                </nav>
-              </td>
-            </tr>
-          </thead>
+                        title="log out"
+                        alt="logout">
+                      </a>
+                    </div>
+                  </c:if>
+                </div>
+              </nav>
+            </td>
+          </tr>
+        </thead>
