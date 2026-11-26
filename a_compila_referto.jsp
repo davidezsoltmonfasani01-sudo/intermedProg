@@ -48,7 +48,7 @@ contentType="text/html; charset=UTF-8" import="java.sql.*" %>
             </c:when>
 
             <c:when test="${rset_visita.rowCount != 0}">
-                <h3>Il referto per questa visita esiste giaÃÂ </h3>
+                <h3>Il referto per questa visita esiste gia'</h3>
                 <a href="v_referto.jsp?id_prenotazione=${param.id_prenotazione}">
                     Visualizza referto
                 </a>
@@ -80,7 +80,9 @@ contentType="text/html; charset=UTF-8" import="java.sql.*" %>
                         Schema_alimentare,
                         Percentuale_Colazione,
                         Percentuale_Pranzo,
-                        Percentuale_Cena
+                        Percentuale_Cena,
+                        Fabbisogno_energetico,
+                        Data_firma
                     )
                     VALUES
                     (
@@ -104,7 +106,9 @@ contentType="text/html; charset=UTF-8" import="java.sql.*" %>
                         NULLIF(?, ''),
                         NULLIF(?, ''),
                         NULLIF(?, ''),
-                        NULLIF(?, '')
+                        NULLIF(?, ''),
+                        NULLIF(?, ''),
+                        dateTime_oggi
                     )
 
                     <sql:param value="${param.id_prenotazione}"/>
@@ -127,6 +131,7 @@ contentType="text/html; charset=UTF-8" import="java.sql.*" %>
                     <sql:param value="${param.percentuale_colazione}"/>
                     <sql:param value="${param.percentuale_pranzo}"/>
                     <sql:param value="${param.percentuale_cena}"/>
+                    <sql:param value="${param.fabbisogno_energetico}"/>
 
                 </sql:update>
 

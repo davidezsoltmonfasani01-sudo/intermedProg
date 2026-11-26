@@ -163,19 +163,6 @@ import="java.sql.*" %>
 
                                 </c:when>
 
-                                <c:when test="${rset_prenotazione.rows[0].ID_stato == 8}">
-
-                                    <form action="v_referto.jsp" method="get">
-
-                                        <input type="hidden" name="id_prenotazione"
-                                               value="${param.id_prenotazione}">
-
-                                        <input type="submit" value="Visualizza referto">
-
-                                    </form>
-
-                                </c:when>
-
                             </c:choose>
 
                         </c:if>
@@ -194,6 +181,18 @@ import="java.sql.*" %>
                             </form>
 
                         </c:if>
+                      <c:if test="${rset_prenotazione.rows[0].ID_stato == 8}">
+
+                                    <form action="v_referto.jsp" method="get">
+
+                                        <input type="hidden" name="id_prenotazione"
+                                               value="${param.id_prenotazione}">
+
+                                        <input type="submit" value="Visualizza referto">
+
+                                    </form>
+
+                                </c:if>
 
 
                     </c:when>
