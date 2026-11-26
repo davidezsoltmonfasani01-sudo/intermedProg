@@ -189,7 +189,7 @@
                             <tr>
                                 <c:if test="${user.ruolo == 'PZ'}">
                                     <th class="col-azione-pasto">
-                                        <a href="lista_alimenti.jsp?pasto=${pasto}"&id_pagina="${d_info.id_pagina}">
+                                        <a href="lista_alimenti.jsp?pasto=${pasto}&id_pagina=${d_info.id_pagina}">
                                             <img class="img-btn-small" src="add.svg" title="Aggiungi Porzione" alt="Aggiungi Porzione">
                                         </a>
                                     </th>
