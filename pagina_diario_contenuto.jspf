@@ -121,6 +121,18 @@
                                 </table>
                             </a>
                         </th>
+                        <th>
+                            <c:if test="${not empty d_info.Data_compilazione}">
+                                <em>Data compilazione : <fmt:formatDate value="${d_info.Data_compilazione}" pattern="dd/MM/yyyy HH:mm"/></em>
+                            </c:if>
+                            <c:if test="${user.ruolo == 'PZ'}">
+                                <form action="a_pagina_diario.jsp" method="POST">
+                                    <input type="hidden" name="action" value="segna_completata">
+                                    <input type="hidden" name="id_pagina" value="${d_info.id_pagina}">
+                                    <input type="submit" value="segna come completata" class="submit-btn-small">
+                                </form>
+                            </c:if>
+                        </th>
                     </tr>
                 </table>
             </td>
