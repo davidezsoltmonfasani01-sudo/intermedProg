@@ -90,6 +90,7 @@
                         <th>
                             <form method="POST" action="a_pagina_diario.jsp">
                                 <input type="hidden" name="id_page" value="${d_info.ID_pagina}">
+                                <input type="hidden" name="action" value="set_weight">
                                 <input type="number" name="peso" step="0.1" min="0" max="500" placeholder="${d_visita.peso}" required>
                                 <input type="submit" value="aggiungi peso" class="submit-btn-small">
                             </form>
@@ -188,7 +189,7 @@
                             <tr>
                                 <c:if test="${user.ruolo == 'PZ'}">
                                     <th class="col-azione-pasto">
-                                        <a href="lista_alimenti.jsp?pasto=${pasto}">
+                                        <a href="lista_alimenti.jsp?pasto=${pasto}"&id_pagina="${d_info.id_pagina}">
                                             <img class="img-btn-small" src="add.svg" title="Aggiungi Porzione" alt="Aggiungi Porzione">
                                         </a>
                                     </th>
