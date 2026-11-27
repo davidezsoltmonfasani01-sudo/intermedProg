@@ -650,3 +650,80 @@ table.maxwidth {
 .btn-annulla:hover {
     text-decoration: underline;
 }
+
+.bg-carb {
+    background-color: #b59be8;
+}
+
+/* Lilla */
+.bg-grassi {
+    background-color: #ef9a9a;
+}
+
+/* Salmone/Corallo */
+.bg-proteine {
+    background-color: #fff176;
+}
+
+/* Giallo */
+
+/* Barra progressiva */
+.progress-bar {
+    display: flex;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #2c2c2c;
+    margin-bottom: 8px;
+}
+
+.macro-percentuali {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #a3a3a3;
+    margin-bottom: 24px;
+}
+
+.macro-percentuali-destra {
+    display: flex;
+    gap: 8px;
+}
+
+.legenda-pb {
+    display: flex;
+    gap: 18px;
+    font-size: 14px;
+    color: #d4d4d4;
+    margin-bottom: 12px;
+}
+
+.legenda-pb-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+
+.tabella-diario-fissa {
+    width: 90% !important;
+    max-width: 1100px !important;
+    box-sizing: border-box !important;
+    margin: 0 auto !important;
+    border-radius: 0 !important;
+    border-top: none !important;
+    border-bottom: none !important;
+    scrollbar-gutter: auto !important;
+}
+
+.tabella-diario-fissa table {
+    width: 100% !important;
+    table-layout: fixed !important;
+}

@@ -1,82 +1,42 @@
-<%@ page session="true" 
-language="java" 
-contentType="text/html; charset=UTF-8" 
-import="java.sql.*" %> 
+<%@ page session="true"
+language="java"
+contentType="text/html; charset=UTF-8"
+import="java.sql.*" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://it.unipv.bmilab.uploadtags"      prefix="upload" %>
 
-<c:set var="action" value="${param.action}" />
-<c:set var="all_action" value="${param.all_action}" />
-<c:set var="id_notifica" value="${param.id}" />
-<c:set var="risorsa" value="${param.risorsa}" />
-<c:set var="user_username" value="${param.user_username}" />
 
-<%-- Gestione delle azioni singole e globali --%>
 <c:choose>
-    
+    <c:when test="${param.action == 'set_weight'}">
 
-    <c:when test="${action == 'set_weight'}">
-        
-        <sql:update>
-            UPDATE Notifiche SET ID_stato = '10' WHERE ID_notifica = ?
-            <sql:param value="${id_notifica}" />
-        </sql:update>
-        
-       
-        <c:choose>
-            <c:when test="${not empty risorsa}">
-                <c:redirect url="${risorsa}.jsp" />
-            </c:when>
-            <c:otherwise>
-                <jsp:forward page="notifiche.jsp" />
-            </c:otherwise>
-        </c:choose>
     </c:when>
-
-
-    <c:when test="${action == 's_read'}">
-        <sql:update>
-            UPDATE Notifiche SET ID_stato = '10' WHERE ID_notifica = ?
-            <sql:param value="${id_notifica}" />
-        </sql:update>
-        <jsp:forward page="notifiche.jsp" />
+    <c:when test="${param.action == 'insert_porzione' && not empty param.pasto && not empty param.id_pagina && not empty param.id_alimento  && not empty param.quantita }">
+        <c:set var="pasto_simbolo" value="${fn:substring(param.pasto, 0, 2)}"/>
+        <c:if test="${pasto_simbolo == 'Co' || pasto_simbolo == 'Pr'||pasto_simbolo == 'Ce'|| pasto_simbolo == 'Fu'}">
+            <sql:update>
+                INSERT INTO Porzioni (ID_alimento, Tipo_pasto, Quantita, ID_Pagina) VALUES
+                (?,?,?,?)
+                <sql:param value="${param.id_alimento}"/>
+                <sql:param value="${pasto_simbolo}"/>
+                <sql:param value="${param.quantita}"/>
+                <sql:param value="${param.id_pagina}"/>
+            </sql:update>
+        </c:if>
+        <sql:query var="page_date">
+            SELECT p.Data_pagina
+            FROM Pagine_Diario p
+            WHERE  p.id_pagina = ?
+            <sql:param value="${param.id_pagina}"/>
+        </sql:query>
+        <jsp:forward page="pagina_diario.jsp" >
+            <jsp:param name="page_date" value="${page_date.rows[0].Data_pagina}" />
+        </jsp:forward>
     </c:when>
-
-  
-    <c:when test="${action == 'delete'}">
-        <sql:update>
-            DELETE FROM Notifiche WHERE ID_notifica = ?
-            <sql:param value="${id_notifica}" />
-        </sql:update>
-        <jsp:forward page="notifiche.jsp" />
-    </c:when>
-
-    
-    <c:when test="${all_action == 'all_delete'}">
-        <sql:update>
-            DELETE FROM Notifiche 
-            WHERE CF = (SELECT CF FROM Utenti WHERE Username = ?)
-            <sql:param value="${user_username}" />
-        </sql:update>
-        <jsp:forward page="notifiche.jsp" />
-    </c:when>
-
-    <%-- 5. SEGNA TUTTE COME LETTE --%>
-    <c:when test="${all_action == 'all_s_as_view'}">
-        <sql:update>
-            UPDATE Notifiche SET ID_stato = '10' 
-            WHERE CF = (SELECT CF FROM Utenti WHERE Username = ?) AND ID_stato = '11'
-            <sql:param value="${user_username}" />
-        </sql:update>
-        <jsp:forward page="notifiche.jsp" />
-    </c:when>
-
-    <%-- 6. DEFAULT / CAMBIO FILTRO (Visualizza tutte / solo non lette) --%>
     <c:otherwise>
-        <jsp:forward page="notifiche.jsp" />
+        <jsp:forward page="pagina_diario.jsp?seiscemo=True"/>
+            
     </c:otherwise>
-
 </c:choose>

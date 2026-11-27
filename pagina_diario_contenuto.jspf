@@ -85,7 +85,7 @@
                             </a>
                         </th>
                         <th>
-                            <h3>Peso: <small>${d_info.Peso_giornaliero}</small></h3>
+                            <h3>Peso: <small><fmt:formatNumber value="${d_info.Peso_giornaliero}" maxFractionDigits="1" groupingUsed="false" /></small></h3>
                         </th>
                         <th>
                             <form method="POST" action="a_pagina_diario.jsp">
@@ -98,7 +98,7 @@
                         <th>
                             <h3>BMI :
                                 <c:if test="${not empty d_info.Peso_giornaliero}">
-                                    <small><fmt:formatNumber value="${d_info.Peso_giornaliero / (d_visita.altezza * d_visita.altezza)}" maxFractionDigits="1" /></small>
+                                    <small><fmt:formatNumber value="${d_info.Peso_giornaliero / (d_visita.altezza * d_visita.altezza)}" maxFractionDigits="1" groupingUsed="false" /></small>
                                 </c:if>
                             </h3>
                         </th>
@@ -217,7 +217,7 @@
                     <c:set var="totale_Carboidrati_p" value="0" />
                     <c:set var="totale_Liquidi_p" value="0" />
 
-                    <div class="scrollable-table colonne-8">
+                    <div class="scrollable-table colonne-8 tabella-diario-fissa">
                         <table>
                             <tbody>
                                 <c:forEach var="porzione" items="${composizione_pasto.rows}">
@@ -229,7 +229,7 @@
                                                     <input type="hidden" name="id_porzione" value="${porzione.ID_porzione}">
                                                     <input type="hidden" name="page_date" value="${page_date}">
                                                     <button type="submit" class="btn-icona" title="Elimina Porzione">
-                                                        <img class="img-trash" src="trash.svg" alt="Elimina">
+                                                        <img class="img-trash" src="delete.svg" alt="Elimina">
                                                     </button>
                                                 </form>
                                             </c:if>
@@ -240,34 +240,34 @@
                                         <td class="text-center">
                                             <c:set var="Quantita_p" value="${porzione.Quantita}"/>
                                             <c:set var="totale_Quantita_p" value="${totale_Quantita_p + Quantita_p}"/>
-                                            ${Quantita_p}
+                                            <fmt:formatNumber value="${Quantita_p}" maxFractionDigits="1" groupingUsed="false" />
                                         </td>
                                         <td class="text-center">
-                                            <c:set var="Energia_p" value="${porzione.Energia * porzione.quantita}"/>
+                                            <c:set var="Energia_p" value="${porzione.Energia * porzione.quantita /100}"/>
                                             <c:set var="totale_Energia_p" value="${totale_Energia_p + Energia_p}"/>
-                                            ${Energia_p}
+                                            <fmt:formatNumber value="${Energia_p}" maxFractionDigits="1" groupingUsed="false" />
                                         </td>
                                         <td class="text-center">
-                                            <c:set var="Proteine_p" value="${porzione.Proteine * porzione.quantita}"/>
+                                            <c:set var="Proteine_p" value="${porzione.Proteine * porzione.quantita /100}"/>
                                             <c:set var="totale_Proteine_p" value="${totale_Proteine_p + Proteine_p}"/>
-                                            ${Proteine_p}
+                                            <fmt:formatNumber value="${Proteine_p}" maxFractionDigits="1" groupingUsed="false" />
                                         </td>
                                         <td class="text-center">
-                                            <c:set var="Grassi_p" value="${porzione.lipidi * porzione.quantita}"/>
+                                            <c:set var="Grassi_p" value="${porzione.lipidi * porzione.quantita /100}"/>
                                             <c:set var="totale_Grassi_p" value="${totale_Grassi_p + Grassi_p}"/>
-                                            ${Grassi_p}
+                                            <fmt:formatNumber value="${Grassi_p}" maxFractionDigits="1" groupingUsed="false" />
                                         </td>
                                         <td class="text-center">
-                                            <c:set var="Carboidrati_p" value="${porzione.glucidi * porzione.quantita}"/>
+                                            <c:set var="Carboidrati_p" value="${porzione.glucidi * porzione.quantita /100}"/>
                                             <c:set var="totale_Carboidrati_p" value="${totale_Carboidrati_p + Carboidrati_p}"/>
-                                            ${Carboidrati_p}
+                                            <fmt:formatNumber value="${Carboidrati_p}" maxFractionDigits="1" groupingUsed="false" />
                                         </td>
                                         <td class="text-center">
                                             <c:choose>
                                                 <c:when test="${porzione.Liquido == true}">
-                                                    <c:set var="Liquidi_p" value="${porzione.quantita}"/>
+                                                    <c:set var="Liquidi_p" value="${porzione.quantita /100}"/>
                                                     <c:set var="totale_Liquidi_p" value="${totale_Liquidi_p + Liquidi_p}"/>
-                                                    ${Liquidi_p}
+                                                    <fmt:formatNumber value="${Liquidi_p}" maxFractionDigits="1" groupingUsed="false" />
                                                 </c:when>
                                                 <c:otherwise>
                                                     -
@@ -283,12 +283,12 @@
                     <table class="footer-table colonne-8">
                         <tr class="totale_d">
                             <td colspan="2"><strong>${pasto} Totale</strong></td>
-                            <td class="text-center"><strong>${totale_Quantita_p}</strong></td>
-                            <td class="text-center"><strong>${totale_Energia_p}</strong></td>
-                            <td class="text-center"><strong>${totale_Proteine_p}</strong></td>
-                            <td class="text-center"><strong>${totale_Grassi_p}</strong></td>
-                            <td class="text-center"><strong>${totale_Carboidrati_p}</strong></td>
-                            <td class="text-center"><strong>${totale_Liquidi_p}</strong></td>
+                            <td class="text-center"><strong><fmt:formatNumber value="${totale_Quantita_p}" maxFractionDigits="1" groupingUsed="false" /></strong></td>
+                            <td class="text-center"><strong><fmt:formatNumber value="${totale_Energia_p}" maxFractionDigits="1" groupingUsed="false" /></strong></td>
+                            <td class="text-center"><strong><fmt:formatNumber value="${totale_Proteine_p}" maxFractionDigits="1" groupingUsed="false" /></strong></td>
+                            <td class="text-center"><strong><fmt:formatNumber value="${totale_Grassi_p}" maxFractionDigits="1" groupingUsed="false" /></strong></td>
+                            <td class="text-center"><strong><fmt:formatNumber value="${totale_Carboidrati_p}" maxFractionDigits="1" groupingUsed="false" /></strong></td>
+                            <td class="text-center"><strong><fmt:formatNumber value="${totale_Liquidi_p}" maxFractionDigits="1" groupingUsed="false" /></strong></td>
                         </tr>
                         <c:if test="${pasto_simbolo != 'Fu'}">
                             <c:set var="percentuale" value="percentuale_${pasto}" />
@@ -296,19 +296,19 @@
                                 <td colspan="2">${pasto} consigliato</td>
                                 <td class="text-center">-</td>
                                 <td class="text-center">
-                                    <fmt:formatNumber value="${d_visita.apporto_calorico * d_visita[percentuale] / 100}" maxFractionDigits="0" groupingUsed="false" />
+                                    <fmt:formatNumber value="${d_visita.apporto_calorico * d_visita[percentuale] / 100}" maxFractionDigits="1" groupingUsed="false" />
                                 </td>
                                 <td class="text-center">
-                                    <fmt:formatNumber value="${d_visita.Proteine * d_visita[percentuale] / 100}" maxFractionDigits="0" groupingUsed="false" />
+                                    <fmt:formatNumber value="${d_visita.Proteine * d_visita[percentuale] / 100}" maxFractionDigits="1" groupingUsed="false" />
                                 </td>
                                 <td class="text-center">
-                                    <fmt:formatNumber value="${d_visita.Grassi * d_visita[percentuale] / 100}" maxFractionDigits="0" groupingUsed="false" />
+                                    <fmt:formatNumber value="${d_visita.Grassi * d_visita[percentuale] / 100}" maxFractionDigits="1" groupingUsed="false" />
                                 </td>
                                 <td class="text-center">
-                                    <fmt:formatNumber value="${d_visita.Carboidrati * d_visita[percentuale] / 100}" maxFractionDigits="0" groupingUsed="false" />
+                                    <fmt:formatNumber value="${d_visita.Carboidrati * d_visita[percentuale] / 100}" maxFractionDigits="1" groupingUsed="false" />
                                 </td>
                                 <td class="text-center">
-                                    <fmt:formatNumber value="${d_visita.Idratazione * d_visita[percentuale] / 100}" maxFractionDigits="0" groupingUsed="false" />
+                                    <fmt:formatNumber value="${d_visita.Idratazione * d_visita[percentuale] / 100}" maxFractionDigits="1" groupingUsed="false" />
                                 </td>
                             </tr>
                         </c:if>
@@ -335,21 +335,21 @@
                 <table class="footer-table colonne-8">
                     <tr class="totale_giornaliero_d">
                         <td colspan="2"><strong>Totale Giornaliero</strong></td>
-                        <td class="text-center"><strong>${totale_Quantita}</strong></td>
-                        <td class="text-center"><strong>${totale_Energia}</strong></td>
-                        <td class="text-center"><strong>${totale_Proteine}</strong></td>
-                        <td class="text-center"><strong>${totale_Grassi}</strong></td>
-                        <td class="text-center"><strong>${totale_Carboidrati}</strong></td>
-                        <td class="text-center"><strong>${totale_Liquidi}</strong></td>
+                        <td class="text-center"><strong><fmt:formatNumber value="${totale_Quantita}" maxFractionDigits="1" groupingUsed="false" /></strong></td>
+                        <td class="text-center"><strong><fmt:formatNumber value="${totale_Energia}" maxFractionDigits="1" groupingUsed="false" /></strong></td>
+                        <td class="text-center"><strong><fmt:formatNumber value="${totale_Proteine}" maxFractionDigits="1" groupingUsed="false" /></strong></td>
+                        <td class="text-center"><strong><fmt:formatNumber value="${totale_Grassi}" maxFractionDigits="1" groupingUsed="false" /></strong></td>
+                        <td class="text-center"><strong><fmt:formatNumber value="${totale_Carboidrati}" maxFractionDigits="1" groupingUsed="false" /></strong></td>
+                        <td class="text-center"><strong><fmt:formatNumber value="${totale_Liquidi}" maxFractionDigits="1" groupingUsed="false" /></strong></td>
                     </tr>
                     <tr class="consigliato_giornaliero_d">
                         <td colspan="2">Totale giornaliero consigliato</td>
                         <td class="text-center">-</td>
-                        <td class="text-center">${d_visita.apporto_calorico}</td>
-                        <td class="text-center">${d_visita.Proteine}</td>
-                        <td class="text-center">${d_visita.Grassi}</td>
-                        <td class="text-center">${d_visita.Carboidrati}</td>
-                        <td class="text-center">${d_visita.Idratazione}</td>
+                        <td class="text-center"><fmt:formatNumber value="${d_visita.apporto_calorico}" maxFractionDigits="1" groupingUsed="false" /></td>
+                        <td class="text-center"><fmt:formatNumber value="${d_visita.Proteine}" maxFractionDigits="1" groupingUsed="false" /></td>
+                        <td class="text-center"><fmt:formatNumber value="${d_visita.Grassi}" maxFractionDigits="1" groupingUsed="false" /></td>
+                        <td class="text-center"><fmt:formatNumber value="${d_visita.Carboidrati}" maxFractionDigits="1" groupingUsed="false" /></td>
+                        <td class="text-center"><fmt:formatNumber value="${d_visita.Idratazione}" maxFractionDigits="1" groupingUsed="false" /></td>
                     </tr>
                 </table>
             </c:otherwise>
