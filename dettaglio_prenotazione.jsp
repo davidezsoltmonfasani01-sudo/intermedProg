@@ -32,6 +32,7 @@ import="java.sql.*" %>
                 Prenotazioni.Data_prenotazione,
                 Prenotazioni.Data_visita,
                 Prenotazioni.ID_stato,
+          		Prenotazioni.ID_pz,
                 Stati.Stato,
 
                 (SELECT Nome FROM Utenti
@@ -105,95 +106,81 @@ import="java.sql.*" %>
 
                         <br>
 
-                        <c:if test="${user.Ruolo == 'MN'}">
+                        <table border="0">
+                            <tr>
+                                <c:if test="${user.Ruolo == 'MN'}">
+                                    <c:choose>
+                                        <c:when test="${rset_prenotazione.rows[0].ID_stato == 12}">
+                                            <td>
+                                                <form action="a_m_stato_prenotazione.jsp" method="post">
+                                                    <input type="hidden" name="id_prenotazione"
+                                                           value="${param.id_prenotazione}">
+                                                    <input type="hidden" name="azione" value="accetta">
+                                                    <input type="submit" value="Accetta prenotazione" class="submit-btn">
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form action="a_m_stato_prenotazione.jsp" method="post">
+                                                    <input type="hidden" name="id_prenotazione"
+                                                           value="${param.id_prenotazione}">
+                                                    <input type="hidden" name="azione" value="rifiuta">
+                                                    <input type="submit" value="Rifiuta prenotazione" class="submit-btn">
+                                                </form>
+                                            </td>
+                                        </c:when>
 
-                            <c:choose>
+                                        <c:when test="${rset_prenotazione.rows[0].ID_stato == 4}">
+                                            <td>
+                                                <form action="a_m_stato_prenotazione.jsp" method="post">
+                                                    <input type="hidden" name="id_prenotazione"
+                                                           value="${param.id_prenotazione}">
+                                                    <input type="hidden" name="azione" value="effettuata">
+                                                    <input type="submit" value="Segna visita come effettuata" class="submit-btn">
+                                                </form>
+                                            </td>
+                                        </c:when>
 
-                                <c:when test="${rset_prenotazione.rows[0].ID_stato == 12}">
-
-                                    <form action="a_m_stato_prenotazione.jsp" method="post">
-
-                                        <input type="hidden" name="id_prenotazione"
-                                               value="${param.id_prenotazione}">
-
-                                        <input type="hidden" name="azione" value="accetta">
-
-                                        <input type="submit" value="Accetta prenotazione">
-
-                                    </form>
-
-                                    <form action="a_m_stato_prenotazione.jsp" method="post">
-
-                                        <input type="hidden" name="id_prenotazione"
-                                               value="${param.id_prenotazione}">
-
-                                        <input type="hidden" name="azione" value="rifiuta">
-
-                                        <input type="submit" value="Rifiuta prenotazione">
-
-                                    </form>
-
-                                </c:when>
-
-                                <c:when test="${rset_prenotazione.rows[0].ID_stato == 4}">
-
-                                    <form action="a_m_stato_prenotazione.jsp" method="post">
-
-                                        <input type="hidden" name="id_prenotazione"
-                                               value="${param.id_prenotazione}">
-
-                                        <input type="hidden" name="azione" value="effettuata">
-
-                                        <input type="submit" value="Segna visita come effettuata">
-
-                                    </form>
-
-                                </c:when>
-
-                                <c:when test="${rset_prenotazione.rows[0].ID_stato == 7}">
-
-                                    <form action="compila_referto.jsp" method="get">
-
-                                        <input type="hidden" name="id_prenotazione"
-                                               value="${param.id_prenotazione}">
-
-                                        <input type="submit" value="Compila referto">
-
-                                    </form>
-
-                                </c:when>
-
-                            </c:choose>
-
-                        </c:if>
-
-                        <c:if test="${user.Ruolo == 'PZ' && (rset_prenotazione.rows[0].ID_stato == 4 || rset_prenotazione.rows[0].ID_stato == 12)}">
-
-                            <form action="a_m_stato_prenotazione.jsp" method="post">
-
-                                <input type="hidden" name="id_prenotazione"
-                                       value="${param.id_prenotazione}">
-
-                                <input type="hidden" name="azione" value="annulla">
-
-                                <input type="submit" value="Annulla prenotazione">
-
-                            </form>
-
-                        </c:if>
-                      <c:if test="${rset_prenotazione.rows[0].ID_stato == 8}">
-
-                                    <form action="v_referto.jsp" method="get">
-
-                                        <input type="hidden" name="id_prenotazione"
-                                               value="${param.id_prenotazione}">
-
-                                        <input type="submit" value="Visualizza referto">
-
-                                    </form>
-
+                                        <c:when test="${rset_prenotazione.rows[0].ID_stato == 7}">
+                                            <td>
+                                                <form action="compila_referto.jsp" method="get">
+                                                    <input type="hidden" name="id_prenotazione"
+                                                           value="${param.id_prenotazione}">
+                                                    <input type="submit" value="Compila referto" class="submit-btn">
+                                                </form>
+                                            </td>
+                                        </c:when>
+                                    </c:choose>
                                 </c:if>
 
+                                <c:if test="${(rset_prenotazione.rows[0].ID_stato == 4 || rset_prenotazione.rows[0].ID_stato == 12)}">
+                                    <td>
+                                        <form action="a_m_stato_prenotazione.jsp" method="post">
+                                            <input type="hidden" name="id_prenotazione"
+                                                   value="${param.id_prenotazione}">
+                                            <input type="hidden" name="azione" value="annulla">
+                                            <input type="submit" value="Annulla prenotazione" class="submit-btn">
+                                        </form>
+                                    </td>
+                                </c:if>
+
+                                <c:if test="${rset_prenotazione.rows[0].ID_stato == 8}">
+                                    <td>
+                                        <form action="v_referto.jsp" method="get">
+                                            <input type="hidden" name="id_prenotazione"
+                                                   value="${param.id_prenotazione}">
+                                            <input type="submit" value="Visualizza referto" class="submit-btn">
+                                        </form>
+                                    </td>
+                                </c:if>
+                            </tr>
+                        </table>
+						
+                      	<c:if test="${(user.Ruolo == 'MN' && rset_prenotazione.rows[0].ID_stato == 4)}">
+                         <br>
+                          <a href="info_paziente.jsp?id_paziente=${rset_prenotazione.rows[0].ID_pz}" 
+       style="display: inline-block; background-color: #2e6f65; color: white; padding: 10px 18px; text-decoration: none; border-radius: 4px; font-weight: bold; margin: 5px;">
+        Maggiori Informazioni sul Paziente
+                          </a> </c:if>
 
                     </c:when>
 

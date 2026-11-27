@@ -77,7 +77,7 @@ import="java.sql.*" %>
     </c:when>
 
 
-    <c:when test="${user.Ruolo == 'PZ' && param.azione == 'annulla'}">
+    <c:when test="${param.azione == 'annulla'}">
 
         <sql:update>
             UPDATE Prenotazioni
